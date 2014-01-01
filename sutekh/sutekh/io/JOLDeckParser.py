@@ -7,7 +7,7 @@
 """Parser for JOL deck format"""
 
 import re
-from sutekh.core.SutekhObjects import csv_to_canonical
+from sutekh.generic.Utility import move_articles_to_front
 from sutekh.io.IOBase import BaseLineParser
 
 
@@ -33,6 +33,6 @@ class JOLDeckParser(BaseLineParser):
         if sName.endswith('(advanced)'):
             sName = sName.replace('(advanced)', '(Advanced)')
         # Avoid going down the exception path in IAbstractCard if we can
-        sName = csv_to_canonical(sName)
+        sName = move_articles_to_front(sName)
         # JOL has no expansion info
         oHolder.add(iNum, sName, None)

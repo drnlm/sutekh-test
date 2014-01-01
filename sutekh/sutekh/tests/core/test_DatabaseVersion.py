@@ -6,8 +6,8 @@
 """Test database versioning code"""
 
 from sutekh.tests.TestCore import SutekhTest
-from sutekh.core.DatabaseVersion import DatabaseVersion
-from sutekh.core.SutekhObjects import TABLE_LIST
+from sutekh.core.generic.DatabaseVersion import DatabaseVersion
+from sutekh.core.Objects import TABLE_LIST
 
 
 class DatabaseVersionTests(SutekhTest):

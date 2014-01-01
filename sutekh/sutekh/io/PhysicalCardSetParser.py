@@ -25,7 +25,7 @@
    """
 
 from sutekh.io.IOBase import BaseSutekhXMLParser
-from sutekh.core.SutekhObjects import MAX_ID_LENGTH
+from sutekh.core.Objects import MAX_ID_LENGTH
 
 
 class PhysicalCardSetParser(BaseSutekhXMLParser):

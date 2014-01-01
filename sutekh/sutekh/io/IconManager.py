@@ -8,7 +8,7 @@
 import os
 from logging import Logger
 from urllib2 import urlopen, HTTPError
-from sutekh.core.SutekhObjects import Clan, Creed, CardType, DisciplinePair, \
+from sutekh.core.Objects import Clan, Creed, CardType, DisciplinePair, \
         Virtue, ICardType, IDisciplinePair, IVirtue, ICreed, IClan
 from sutekh.core import Groupings
 from sutekh.SutekhUtility import ensure_dir_exists

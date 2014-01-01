@@ -6,7 +6,7 @@
 """Test the Sutekh ruling parser"""
 
 from sutekh.tests.TestCore import SutekhTest
-from sutekh.core.SutekhObjects import Ruling, IRuling
+from sutekh.core.Objects import Ruling, IRuling
 import unittest
 
 

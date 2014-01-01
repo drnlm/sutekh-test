@@ -21,7 +21,8 @@
 
 import unicodedata
 from sutekh.core.ELDBUtilities import type_of_card
-from sutekh.core.SutekhObjects import canonical_to_csv, IAbstractCard
+from sutekh.core.Objects import IAbstractCard
+from sutekh.generic.Utility import move_articles_to_back
 
 
 def lackey_name(oCard):
@@ -29,7 +30,7 @@ def lackey_name(oCard):
     sName = oCard.name
     if oCard.level is not None:
         sName = sName.replace("(Advanced)", "Adv.")
-    sName = canonical_to_csv(sName)
+    sName = move_articles_to_back(sName)
     # Lackey handles double-quotes a bit oddly, so we must as well
     if oCard.cardtype[0].name == 'Imbued':
         # Lackey only uses '' for Imbued

@@ -8,7 +8,7 @@
    chain to the correct Parser"""
 
 import StringIO
-from sutekh.core.CardSetHolder import CardSetHolder
+from sutekh.core.generic.CardSetHolder import CardSetHolder
 
 from sutekh.io.AbstractCardSetParser import AbstractCardSetParser
 from sutekh.io.PhysicalCardSetParser import PhysicalCardSetParser

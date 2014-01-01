@@ -6,7 +6,7 @@
 """Export a card set to HTML."""
 
 import time
-from sutekh.core.SutekhObjects import IAbstractCard
+from sutekh.core.Objects import IAbstractCard
 from sutekh.core.ArdbInfo import ArdbInfo
 from sutekh.SutekhInfo import SutekhInfo
 from sutekh.SutekhUtility import pretty_xml, monger_url, secret_library_url, \

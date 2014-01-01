@@ -6,7 +6,8 @@
 """Utility functions for importing from & exporting to FELDB"""
 
 import unicodedata
-from sutekh.core.SutekhObjects import AbstractCard, canonical_to_csv
+from sutekh.core.Objects import AbstractCard
+from sutekh.generic.Utility import move_articles_to_back
 from sutekh.SutekhUtility import is_crypt_card
 
 SINGLE_QUOTE_NAMES = [
@@ -37,7 +38,7 @@ def norm_name(oCard):
         sName = sName.replace("(Advanced)", "(ADV)")
     # Handle annoying ELDB special cases
     if sName != "The Kikiyaon":
-        sName = canonical_to_csv(sName)
+        sName = move_articles_to_back(sName)
     if sType == 'Imbued' or sName == 'Ondine "Boudicca" Sinclair':
         # These are quoted differently from other ELDB names
         sName = sName.replace('"', "'")

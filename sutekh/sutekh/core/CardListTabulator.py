@@ -5,7 +5,7 @@
 
 """Create a table (as a list of list) from a list of cards"""
 
-from sutekh.core.SutekhObjects import Discipline, Clan, Rarity, Expansion, \
+from sutekh.core.Objects import Discipline, Clan, Rarity, Expansion, \
         CardType, IAbstractCard
 
 

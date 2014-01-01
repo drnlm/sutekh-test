@@ -8,25 +8,25 @@
 
 # Do importing
 
-from sutekh.core.SutekhObjects import AbstractCard, PhysicalCard, \
-                    PhysicalCardSet, RarityPair, \
-                    Expansion, Rarity, DisciplinePair, Discipline, \
-                    Clan, CardType, Ruling
+from sutekh.core.Objects import (AbstractCard, PhysicalCard,
+                    PhysicalCardSet, RarityPair,
+                    Expansion, Rarity, DisciplinePair, Discipline,
+                    Clan, CardType, Ruling)
 
-from sutekh.core.Filters import FilterAndBox, FilterOrBox, ClanFilter, \
-                    DisciplineFilter, CardTypeFilter, CardTextFilter, \
-                    MultiCardTypeFilter, MultiDisciplineFilter, \
-                    MultiClanFilter, PhysicalCardSetFilter, \
-                    PhysicalCardFilter, GroupFilter, MultiGroupFilter, \
-                    ExpansionFilter, MultiExpansionFilter, \
-                    PhysicalExpansionFilter, CardNameFilter, \
-                    MultiPhysicalExpansionFilter, CardSetNameFilter, \
-                    CardSetDescriptionFilter, CardSetAuthorFilter, \
-                    CardSetAnnotationsFilter
+from sutekh.core.Filters import (FilterAndBox, FilterOrBox, ClanFilter,
+                    DisciplineFilter, CardTypeFilter, CardTextFilter,
+                    MultiCardTypeFilter, MultiDisciplineFilter,
+                    MultiClanFilter, PhysicalCardSetFilter,
+                    PhysicalCardFilter, GroupFilter, MultiGroupFilter,
+                    ExpansionFilter, MultiExpansionFilter,
+                    PhysicalExpansionFilter, CardNameFilter,
+                    MultiPhysicalExpansionFilter, CardSetNameFilter,
+                    CardSetDescriptionFilter, CardSetAuthorFilter,
+                    CardSetAnnotationsFilter)
 
-from sutekh.core.Groupings import CardTypeGrouping, ClanGrouping, \
-                    DisciplineGrouping, ExpansionGrouping, \
-                    RarityGrouping
+from sutekh.core.Groupings import (CardTypeGrouping, ClanGrouping,
+                    DisciplineGrouping, ExpansionGrouping,
+                    RarityGrouping)
 
 from sutekh.core.CardListTabulator import CardListTabulator
 

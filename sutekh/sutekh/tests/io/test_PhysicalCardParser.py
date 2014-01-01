@@ -7,9 +7,9 @@
 
 from sutekh.tests.TestCore import SutekhTest
 from sutekh.tests.io import test_WhiteWolfParser
-from sutekh.core.SutekhObjects import IAbstractCard, IPhysicalCard, \
+from sutekh.core.Objects import IAbstractCard, IPhysicalCard, \
         IPhysicalCardSet, PhysicalCardSet
-from sutekh.core.CardSetHolder import CardSetHolder
+from sutekh.core.generic.CardSetHolder import CardSetHolder
 from sutekh.io.PhysicalCardParser import PhysicalCardParser
 from sutekh.io.XmlFileHandling import PhysicalCardXmlFile
 from sutekh.tests.core.test_PhysicalCardSet import ABSTRACT_CARDS

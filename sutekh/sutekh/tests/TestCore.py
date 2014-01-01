@@ -8,8 +8,8 @@
 
 """Base for Sutekh test cases"""
 
-from sutekh.SutekhUtility import refresh_tables
-from sutekh.core.SutekhObjects import PHYSICAL_SET_LIST
+from sutekh.core.generic.DBUtilities import refresh_tables
+from sutekh.core.Objects import PHYSICAL_SET_LIST
 from sqlobject import sqlhub
 import unittest
 import tempfile

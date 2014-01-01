@@ -9,9 +9,9 @@
 
 """Routines for manipulating XML Files"""
 
-from sutekh.core.SutekhObjects import PhysicalCardSet, IPhysicalCardSet
-from sutekh.core.CardSetHolder import CardSetHolder, CardSetWrapper
-from sutekh.core.CardLookup import DEFAULT_LOOKUP
+from sutekh.core.Objects import PhysicalCardSet, IPhysicalCardSet
+from sutekh.core.generic.CardSetHolder import CardSetHolder, CardSetWrapper
+from sutekh.core.generic.CardLookup import DEFAULT_LOOKUP
 from sutekh.SutekhUtility import gen_temp_file, gen_temp_dir, safe_filename
 from sutekh.io.PhysicalCardParser import PhysicalCardParser
 from sutekh.io.PhysicalCardSetParser import PhysicalCardSetParser

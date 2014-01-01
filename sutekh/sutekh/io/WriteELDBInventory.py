@@ -14,7 +14,7 @@
    "Zip Line",0,0,"","Library"
    """
 
-from sutekh.core.SutekhObjects import AbstractCard, IAbstractCard
+from sutekh.core.Objects import AbstractCard, IAbstractCard
 from sutekh.core.ELDBUtilities import norm_name, type_of_card
 
 

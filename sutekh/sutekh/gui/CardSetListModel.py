@@ -19,7 +19,7 @@ from sutekh.core.Filters import FilterAndBox, NullFilter, PhysicalCardFilter, \
 from sutekh.core.SutekhObjects import PhysicalCard, IAbstractCard, \
         MapPhysicalCardToPhysicalCardSet, PhysicalCardAdapter, \
         PhysicalCardSetAdapter, PhysicalCardSet, ExpansionNameAdapter, \
-        canonical_to_csv, PhysicalCardToAbstractCardAdapter, \
+        move_articles_to_back, PhysicalCardToAbstractCardAdapter, \
         PhysicalCardMappingToPhysicalCardAdapter
 from sutekh.gui.CardListModel import CardListModel, USE_ICONS, HIDE_ILLEGAL
 from sutekh.core.DBSignals import listen_changed, disconnect_changed, \
@@ -309,7 +309,7 @@ class CardSetCardListModel(CardListModel):
                 # We skip name here, as that gets reset in _set_display_name
                 sName = oCard.name
                 if bPostfix:
-                    sName = canonical_to_csv(sName)
+                    sName = move_articles_to_back(sName)
                 self.set(oChildIter,
                     0, sName,
                     1, iCnt, 2, iParCnt,
@@ -1173,7 +1173,7 @@ class CardSetCardListModel(CardListModel):
                 # We don't do the full _set_display_name for speed here.
                 sName = oCard.name
                 if bPostfix:
-                    sName = canonical_to_csv(sName)
+                    sName = move_articles_to_back(sName)
                 self.set(oChildIter, 0, sName,
                         1, iCnt, 2, iParCnt, 3, bIncCard, 4, bDecCard,
                         8, oCard, 9, oRow.oPhysCard,

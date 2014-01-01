@@ -17,7 +17,7 @@
 
    """
 
-from sutekh.core.SutekhObjects import IAbstractCard
+from sutekh.core.Objects import IAbstractCard
 from sutekh.core.ELDBUtilities import type_of_card
 
 

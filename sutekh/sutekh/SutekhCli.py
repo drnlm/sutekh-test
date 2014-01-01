@@ -16,18 +16,19 @@ import StringIO
 import logging
 from logging import StreamHandler
 from sqlobject import sqlhub, connectionForURI, SQLObjectNotFound
-from sutekh.core.SutekhObjects import Ruling, TABLE_LIST, PHYSICAL_LIST, \
+from sutekh.core.Objects import Ruling, TABLE_LIST, PHYSICAL_LIST, \
         IPhysicalCardSet, IAbstractCard, PhysicalCard, \
         MapPhysicalCardToPhysicalCardSet
 from sutekh.core.Filters import PhysicalCardSetFilter, FilterAndBox, \
         PhysicalCardFilter
-from sutekh.core.FilterParser import FilterParser
-from sutekh.SutekhUtility import refresh_tables, read_white_wolf_list, \
+from sutekh.core.generic.FilterParser import FilterParser
+from sutekh.core.generic.DBUtilities import refresh_tables
+from sutekh.SutekhUtility import read_white_wolf_list, \
         read_rulings, gen_temp_dir, prefs_dir, ensure_dir_exists, sqlite_uri, \
         is_crypt_card, format_text, read_exp_date_list
 from sutekh.core.DatabaseUpgrade import attempt_database_upgrade
-from sutekh.core.CardSetHolder import CardSetWrapper
-from sutekh.core.CardSetUtilities import format_cs_list
+from sutekh.core.generic.CardSetHolder import CardSetWrapper
+from sutekh.core.generic.CardSetUtilities import format_cs_list
 from sutekh.io.XmlFileHandling import PhysicalCardXmlFile, \
         PhysicalCardSetXmlFile, AbstractCardSetXmlFile, \
         write_all_pcs

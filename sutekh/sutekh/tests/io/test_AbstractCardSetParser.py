@@ -6,9 +6,9 @@
 """Test the Abstract Card Set parser"""
 
 from sutekh.tests.TestCore import SutekhTest
-from sutekh.core.SutekhObjects import IAbstractCard, IPhysicalCard, \
+from sutekh.core.Objects import IAbstractCard, IPhysicalCard, \
         IPhysicalCardSet, MapPhysicalCardToPhysicalCardSet, PhysicalCardSet
-from sutekh.core.CardSetHolder import CardSetHolder
+from sutekh.core.generic.CardSetHolder import CardSetHolder
 from sutekh.io.AbstractCardSetParser import AbstractCardSetParser
 from sutekh.io.XmlFileHandling import AbstractCardSetXmlFile
 from sutekh.tests.core.test_PhysicalCardSet import CARD_SET_NAMES, \
