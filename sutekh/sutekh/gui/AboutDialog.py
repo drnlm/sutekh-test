@@ -5,7 +5,7 @@
 
 """Simple about dialog for Sutekh"""
 
-from sutekh.gui import SutekhIcon
+from sutekh.gui import AppConfig
 from sutekh.SutekhInfo import SutekhInfo
 from sutekh.SutekhUtility import get_database_url
 import gtk
@@ -32,7 +32,7 @@ class SutekhAboutDialog(gtk.AboutDialog):
         self.set_authors([tAuth[0] for tAuth in SutekhInfo.AUTHORS])
         self.set_documenters([tAuth[0] for tAuth in SutekhInfo.DOCUMENTERS])
         self.set_artists([tAuth[0] for tAuth in SutekhInfo.ARTISTS])
-        self.set_logo(SutekhIcon.SUTEKH_ICON)
+        self.set_logo(AppConfig.SUTEKH_ICON)
         # self.set_translator_credits(translator_credits)
         # pylint: disable-msg=E1101
         # pylint doesn't like the dialog vbox

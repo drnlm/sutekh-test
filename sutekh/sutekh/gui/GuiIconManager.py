@@ -9,11 +9,11 @@ import gtk
 import gobject
 import os
 from sutekh.SutekhUtility import prefs_dir, ensure_dir_exists
-from sutekh.core.SutekhObjects import Creed, DisciplinePair, Virtue, Clan, \
+from sutekh.core.Objects import Creed, DisciplinePair, Virtue, Clan, \
         CardType
 from sutekh.io.IconManager import IconManager
-from sutekh.gui.ProgressDialog import ProgressDialog, SutekhCountLogHandler
-from sutekh.gui.SutekhDialog import do_complaint
+from sutekh.gui.generic.ProgressDialog import ProgressDialog, SutekhCountLogHandler
+from sutekh.gui.generic.SutekhDialog import do_complaint
 
 
 # Crop the transparent border from the image

@@ -8,16 +8,16 @@
 
 import gtk
 from sqlobject import sqlhub
-from sutekh.gui.SutekhDialog import do_complaint_error
-from sutekh.gui.SutekhFileWidget import ImportDialog
+from sutekh.gui.generic.SutekhDialog import do_complaint_error
+from sutekh.gui.generic.SutekhFileWidget import ImportDialog
 from sutekh.gui.GuiDBManagement import refresh_ww_card_list
-from sutekh.gui.GuiCardSetFunctions import import_cs
-from sutekh.gui.ProfileManagement import ProfileMngDlg
+from sutekh.gui.generic.GuiCardSetFunctions import import_cs
+from sutekh.gui.generic.ProfileManagement import ProfileMngDlg
 from sutekh.io.IdentifyXMLFile import IdentifyXMLFile
 from sutekh.io.AbstractCardSetParser import AbstractCardSetParser
 from sutekh.io.PhysicalCardParser import PhysicalCardParser
 from sutekh.io.PhysicalCardSetParser import PhysicalCardSetParser
-from sutekh.gui.SutekhMenu import SutekhMenu
+from sutekh.gui.generic.SutekhMenu import SutekhMenu
 
 
 class MainMenu(SutekhMenu):

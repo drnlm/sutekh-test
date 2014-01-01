@@ -21,25 +21,25 @@ from pkg_resources import resource_stream, resource_exists
 from itertools import chain
 # pylint: enable-msg=E0611
 from sqlobject import SQLObjectNotFound
-from sutekh.core.SutekhObjectCache import SutekhObjectCache
-from sutekh.core.SutekhObjects import PhysicalCardSet, flush_cache, \
+from sutekh.core.generic.ObjectCache import ObjectCache
+from sutekh.core.Objects import PhysicalCardSet, flush_cache, \
         PhysicalCard, IAbstractCard
-from sutekh.gui.MultiPaneWindow import MultiPaneWindow
-from sutekh.gui.PhysicalCardFrame import PhysicalCardFrame
-from sutekh.gui.CardTextFrame import CardTextFrame
-from sutekh.gui.CardSetFrame import CardSetFrame
+from sutekh.gui.generic.MultiPaneWindow import MultiPaneWindow
+from sutekh.gui.generic.PhysicalCardFrame import PhysicalCardFrame
+from sutekh.gui.generic.CardTextFrame import CardTextFrame
+from sutekh.gui.generic.CardSetFrame import CardSetFrame
 from sutekh.gui.AboutDialog import SutekhAboutDialog
 from sutekh.gui.MainMenu import MainMenu
-from sutekh.gui.GuiCardLookup import GuiLookup
-from sutekh.gui.GuiCardSetFunctions import break_existing_loops
-from sutekh.gui.CardSetManagementFrame import CardSetManagementFrame
+from sutekh.gui.generic.GuiCardLookup import GuiLookup
+from sutekh.gui.generic.GuiCardSetFunctions import break_existing_loops
+from sutekh.gui.generic.CardSetManagementFrame import CardSetManagementFrame
 from sutekh.gui.PluginManager import PluginManager
 from sutekh.gui.GuiDBManagement import refresh_ww_card_list
-from sutekh.gui import SutekhIcon
-from sutekh.gui.MessageBus import MessageBus, DATABASE_MSG
-from sutekh.gui.HTMLTextView import HTMLViewDialog
+from sutekh.gui import AppConfig
+from sutekh.gui.generic.MessageBus import MessageBus, DATABASE_MSG
+from sutekh.gui.generic.HTMLTextView import HTMLViewDialog
 from sutekh.gui.GuiIconManager import GuiIconManager
-from sutekh.gui.SutekhDialog import do_complaint_error_details, \
+from sutekh.gui.generic.SutekhDialog import do_complaint_error_details, \
         do_exception_complaint, do_complaint
 
 
@@ -61,7 +61,7 @@ class SutekhMainWindow(MultiPaneWindow):
         self.set_default_size(800, 600)
 
         # Set Default Window Icon for all Windows
-        gtk.window_set_default_icon(SutekhIcon.SUTEKH_ICON)
+        gtk.window_set_default_icon(AppConfig.SUTEKH_ICON)
 
         # common current directory for file dialogs
         self._sWorkingDir = ''
@@ -124,7 +124,7 @@ class SutekhMainWindow(MultiPaneWindow):
         oConfig.sanitize()
 
         # Create object cache
-        self.__oSutekhObjectCache = SutekhObjectCache()
+        self.__oSutekhObjectCache = ObjectCache()
 
         # Create global icon manager
         self._oIconManager = GuiIconManager(oConfig.get_icon_path())
@@ -318,7 +318,7 @@ class SutekhMainWindow(MultiPaneWindow):
     def replace_with_physical_card_list(self, _oWidget, oOldFrame=None):
         """Replace the currently focussed or given pane with the physical
            card list."""
-        if self.is_open_by_menu_name("White Wolf Card List"):
+        if self.is_open_by_menu_name(AppConfig.PHYS_CARD_LIST_NAME):
             return None
         if oOldFrame is None:
             oOldFrame = self._oFocussed
@@ -361,7 +361,7 @@ class SutekhMainWindow(MultiPaneWindow):
         # Flush the caches, so we don't hit stale lookups
         flush_cache()
         # Reset the lookup cache holder
-        self.__oSutekhObjectCache = SutekhObjectCache()
+        self.__oSutekhObjectCache = ObjectCache()
         # We publish here, after we've cleared the caches
         MessageBus.publish(DATABASE_MSG, "update_to_new_db")
 

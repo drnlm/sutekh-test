@@ -7,8 +7,8 @@
 """File selection dialog for choosing cardlist and rulings files"""
 
 import gtk
-from sutekh.gui.SutekhDialog import SutekhDialog
-from sutekh.gui.SutekhFileWidget import SutekhFileDialog, SutekhFileButton
+from sutekh.gui.generic.SutekhDialog import SutekhDialog
+from sutekh.gui.generic.SutekhFileWidget import SutekhFileDialog, SutekhFileButton
 from sutekh.io.WwFile import (WW_CARDLIST_URL, WW_RULINGS_URL, EXTRA_CARD_URL,
                               EXP_DATE_URL)
 
@@ -136,7 +136,7 @@ class WWFilesDialog(SutekhDialog):
         if iResponse == gtk.RESPONSE_OK:
             if self.oUseWwCardListButton.get_active():
                 self.bCLIsUrl = True
-                self.sCLName = WW_CARDLIST_URL
+                self.sCLName = PHYS_CARDLIST_URL
             else:
                 self.bCLIsUrl = False
                 self.sCLName = self.oCardListFileButton.get_filename()

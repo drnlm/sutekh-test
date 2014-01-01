@@ -10,13 +10,14 @@
 
 from configobj import ConfigObj, flatten_errors
 from validate import Validator, is_option, is_list
-from sutekh.gui.MessageBus import MessageBus, CONFIG_MSG
+from sutekh.gui.generic.MessageBus import MessageBus, CONFIG_MSG
+from sutekh.gui.AppConfig import PHYS_CARD_LIST_NAME
 import pkg_resources
 
 # Type definitions
 CARDSET = 'Card Set'
 FRAME = 'Frame'
-WW_CARDLIST = 'cardlist'
+PHYS_CARDLIST = 'cardlist'
 CARDSET_LIST = 'cardset list'
 
 # Reserved filter names (for filter in profile special cases)
@@ -142,7 +143,7 @@ class ConfigFile(object):
         aValidProfileFilters.append(DEF_PROFILE_FILTER)
         # We set this directly on the spec object, since we need to
         # override the existing value whenever the filter list changes
-        for sType in ['per_deck', WW_CARDLIST]:
+        for sType in ['per_deck', PHYS_CARDLIST]:
             self.__oConfigSpec[sType]['defaults']['filter'] = \
                     "option(%s, default=%s)" % (
                             ", ".join(aValidProfileFilters),
@@ -155,7 +156,7 @@ class ConfigFile(object):
 
     def _fix_filter_defaults(self):
         """Ensure we are set in the default profile if needed"""
-        for sType in ['per_deck', WW_CARDLIST]:
+        for sType in ['per_deck', PHYS_CARDLIST]:
             if 'filter' not in self.__oConfig[sType]['defaults']:
                 self.__oConfig[sType]['defaults']['filter'] = \
                         DEF_PROFILE_FILTER
@@ -193,7 +194,7 @@ class ConfigFile(object):
            """
         if not self.__oConfig['open_frames']:
             # No panes information, so we set 'sensible' defaults
-            self.add_frame(1, 'physical_card', 'White Wolf Card List', False,
+            self.add_frame(1, 'physical_card', PHYS_CARD_LIST_NAME, False,
                     False, -1, None)
             self.add_frame(2, 'Card Text', 'Card Text', False, False, -1, None)
             self.add_frame(3, 'Card Set List', 'Card Set List', False, False,
@@ -344,7 +345,7 @@ class ConfigFile(object):
     def get_profiles_for_filter(self, sMatchFilter):
         """Return a dictionary of profiles currently using the given filter"""
         dProfileFilters = {}
-        for sType in [CARDSET, WW_CARDLIST]:
+        for sType in [CARDSET, PHYS_CARDLIST]:
             dProfileFilters[sType] = []
             if sType == CARDSET:
                 dConfig = self.__oConfig['per_deck']
@@ -592,7 +593,7 @@ class ConfigFile(object):
                 del dProfiles[sId]
             else:
                 dProfiles[sId] = sProfile
-        elif (sType == WW_CARDLIST and sId == WW_CARDLIST) or \
+        elif (sType == PHYS_CARDLIST and sId == PHYS_CARDLIST) or \
                 (sType == CARDSET_LIST and sId == CARDSET_LIST):
             sCurProfile = self.__oConfig[sType].get('current profile')
             if sCurProfile == sProfile:
@@ -612,7 +613,7 @@ class ConfigFile(object):
             return self.__oConfig['per_deck']['cardset_profiles'].get(sId)
         elif sType == FRAME:
             return self.__oConfig['per_deck']['frame_profiles'].get(sId)
-        elif (sType == WW_CARDLIST and sId == WW_CARDLIST) or \
+        elif (sType == PHYS_CARDLIST and sId == PHYS_CARDLIST) or \
                 (sType == CARDSET_LIST and sId == CARDSET_LIST):
             return self.__oConfig[sType].get('current profile')
         return None
@@ -641,7 +642,7 @@ class ConfigFile(object):
             dData = self.__oConfig['per_deck']['profiles']
         elif sType == CARDSET_LIST:
             dData = self.__oConfig['cardset list']['profiles']
-        elif sType == WW_CARDLIST:
+        elif sType == PHYS_CARDLIST:
             dData = self.__oConfig['cardlist']['profiles']
         if sProfile in dData:
             if sType == FRAME or sType == CARDSET:
@@ -664,10 +665,10 @@ class ConfigFile(object):
             sCurProfile = self.__oConfig[sType].get('current profile')
             if sCurProfile == sProfile:
                 return ['Card Set List']
-        elif sType == WW_CARDLIST:
+        elif sType == PHYS_CARDLIST:
             sCurProfile = self.__oConfig[sType].get('current profile')
             if sCurProfile == sProfile:
-                return ['White Wolf Card List']
+                return [PHYS_CARD_LIST_NAME]
         elif sType == CARDSET:
             aUsers = []
             for dProfiles in (
@@ -686,7 +687,7 @@ class ConfigFile(object):
             return list(self.__oConfig['per_deck']['profiles'].keys())
         elif sType == CARDSET_LIST:
             return list(self.__oConfig['cardset list']['profiles'].keys())
-        elif sType == WW_CARDLIST:
+        elif sType == PHYS_CARDLIST:
             return list(self.__oConfig['cardlist']['profiles'].keys())
         # Unkown type
         return None

@@ -10,20 +10,20 @@
 
 from sutekh.tests.GuiSutekhTest import ConfigSutekhTest
 from sutekh.gui.ConfigFile import CARDSET, FRAME
-from sutekh.gui.CardSetListModel import CardSetCardListModel, \
+from sutekh.gui.generic.CardSetListModel import CardSetCardListModel, \
         EXTRA_LEVEL_OPTION, EXTRA_LEVEL_LOOKUP, SHOW_CARD_OPTION, \
         SHOW_CARD_LOOKUP, PARENT_COUNT_MODE, PARENT_COUNT_LOOKUP, \
         NO_SECOND_LEVEL, SHOW_EXPANSIONS, SHOW_CARD_SETS, EXP_AND_CARD_SETS, \
         CARD_SETS_AND_EXP, ALL_CARDS, PARENT_CARDS, MINUS_SETS_IN_USE, \
         CHILD_CARDS, IGNORE_PARENT, PARENT_COUNT, MINUS_THIS_SET, THIS_SET_ONLY
 from sutekh.core import Filters, Groupings
-from sutekh.core.SutekhObjects import PhysicalCardSet, \
+from sutekh.core.Objects import PhysicalCardSet, \
         MapPhysicalCardToPhysicalCardSet
 from sutekh.tests.core.test_Filters import make_card
 # Needed to reduce speed impact of Grouping tests
-from sutekh.core.SutekhObjectCache import SutekhObjectCache
-from sutekh.core.DBSignals import send_changed_signal
-from sutekh.gui.MessageBus import MessageBus
+from sutekh.core.generic.ObjectCache import ObjectCache
+from sutekh.core.generic.DBSignals import send_changed_signal
+from sutekh.gui.generic.MessageBus import MessageBus
 import unittest
 
 
@@ -382,7 +382,7 @@ class CardSetListModelTests(ConfigSutekhTest):
 
     def test_basic(self):
         """Set of simple tests of the Card Set List Model"""
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         oPCS = PhysicalCardSet(name=self.aNames[0])
         oModel = CardSetCardListModel(self.aNames[0], self.oConfig)
         oListener = CardSetListener(oModel)
@@ -541,7 +541,7 @@ class CardSetListModelTests(ConfigSutekhTest):
 
     def test_adding_cards(self):
         """Test adding & removing cards from the model"""
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         oPCS = self._setup_simple()
         # Test adding more cards
         oModel = self._get_model(self.aNames[0])
@@ -552,7 +552,7 @@ class CardSetListModelTests(ConfigSutekhTest):
 
     def test_groupings(self):
         """Check over various groupings, single card set"""
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         oPCS = self._setup_simple()
         aModels = []
         for cGrouping in (Groupings.CryptLibraryGrouping,
@@ -567,7 +567,7 @@ class CardSetListModelTests(ConfigSutekhTest):
 
     def test_adding_filter(self):
         """Check adding cards with filters enabled (single card set)"""
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         oPCS = self._setup_simple()
         aModels = []
         for oFilter in (Filters.CardTypeFilter('Vampire'),
@@ -584,7 +584,7 @@ class CardSetListModelTests(ConfigSutekhTest):
 
     def test_adding_config_filter(self):
         """Check adding cards with config filter enabled (single card set)"""
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         oPCS = self._setup_simple()
         aModels = []
         for oFilter in (Filters.CardTypeFilter('Vampire'),
@@ -602,7 +602,7 @@ class CardSetListModelTests(ConfigSutekhTest):
         """Test that the special persistent caches don't affect results"""
         # pylint: disable-msg=W0212
         # we need to access protected methods
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         oPCS = self._setup_simple()
         oModelCache = self._get_model(self.aNames[0])
         oModelNoCache = self._get_model(self.aNames[0])
@@ -648,7 +648,7 @@ class CardSetListModelTests(ConfigSutekhTest):
         # pylint: disable-msg=W0212, R0914
         # we need to access protected methods
         # We loop over a lot of combinations, so lots of local variables
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         aNoCache = []
         aCache = []
         aCards, oPCS, oChildPCS = self._setup_parent_child()
@@ -783,7 +783,7 @@ class CardSetListModelTests(ConfigSutekhTest):
 
     def test_child_parent(self):
         """Tests Model against parent-child relationships"""
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         _aCards, oPCS, oChildPCS = self._setup_parent_child()
         oModel = self._get_model(self.aNames[0])
         oChildModel = self._get_model(self.aNames[1])
@@ -799,7 +799,7 @@ class CardSetListModelTests(ConfigSutekhTest):
 
     def test_parent_child_grandchild(self):
         """Test against parent-child-grandchild setup"""
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         aModels = []
         aCards, _oPCS, oChildPCS = self._setup_parent_child()
         oModel = self._get_model(self.aNames[0])
@@ -820,7 +820,7 @@ class CardSetListModelTests(ConfigSutekhTest):
         """Test with siblings in the tree as well"""
         # Add some cards to oGrandChildPCS that aren't in parent and oChildPCS,
         # add a sibling card set to oChildPCS and add another child and retest
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         aModels = []
         aCards, oPCS, oChildPCS = self._setup_parent_child()
         oModel = self._get_model(self.aNames[0])
@@ -868,7 +868,7 @@ class CardSetListModelTests(ConfigSutekhTest):
         # different cards sets than test_complex_heirachy. It includes a
         # few more cards where the different physical cards of the same
         # abstract cards are split across the card sets
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         oPCS, oSibPCS, _oChildPCS, _oGrandChildPCS, oGrandChild2PCS = \
                 self._setup_relationships()
         oModel = self._get_model(self.aNames[0])
@@ -889,7 +889,7 @@ class CardSetListModelTests(ConfigSutekhTest):
         # Go through some of grouping tests as well
         # We want to ensure that this works with non-NullGroupings,
         # but we don't need to cover all the groupings again
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         _oPCS, _oSPCS, oChildPCS, _oGCPCS, _oGC2PCS = \
                 self._setup_relationships()
         aModels = []
@@ -904,7 +904,7 @@ class CardSetListModelTests(ConfigSutekhTest):
 
     def test_relation_filters(self):
         """Test adding with complex relationships and filters"""
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         _oPCS, _oSPCS, oChildPCS, _oGCPCS, _oGC2PCS = \
                 self._setup_relationships()
         aModels = []
@@ -925,7 +925,7 @@ class CardSetListModelTests(ConfigSutekhTest):
     def test_relation_config_filters(self):
         """Test adding with complex relationships and the config filter
            enabled"""
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         _oPCS, _oSPCS, oChildPCS, _oGCPCS, _oGC2PCS = \
                 self._setup_relationships()
         aModels = []
@@ -945,7 +945,7 @@ class CardSetListModelTests(ConfigSutekhTest):
     def test_rel_filter_cfg_filter(self):
         """Test with complex relationship, a physical config filter
            and additional filters"""
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         _oPCS, _oSPCS, oChildPCS, _oGCPCS, _oGC2PCS = \
                 self._setup_relationships()
         aModels = []
@@ -971,7 +971,7 @@ class CardSetListModelTests(ConfigSutekhTest):
         # repeated setups, so it has lots of lines
         # W0212: We need to access protected methods
         # Note that these tests are with the illegal card filter enabled
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         oPCS = PhysicalCardSet(name=self.aNames[0])
         aCards = [('Alexandra', 'CE'), ('Sha-Ennu', 'Third Edition'),
                 ('Alexandra', None), ('Bronwen', 'Sabbat'),
@@ -1079,7 +1079,7 @@ class CardSetListModelTests(ConfigSutekhTest):
 
     def test_empty(self):
         """Test corner cases around empty card sets"""
-        _oCache = SutekhObjectCache()
+        _oCache = ObjectCache()
         oPCS = PhysicalCardSet(name=self.aNames[0])
         oChildPCS = PhysicalCardSet(name=self.aNames[1], parent=oPCS)
         oGrandChildPCS = PhysicalCardSet(name=self.aNames[2], parent=oChildPCS)
