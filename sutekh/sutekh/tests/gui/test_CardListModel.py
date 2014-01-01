@@ -6,10 +6,10 @@
 """Tests the Card List Model"""
 
 from sutekh.tests.GuiSutekhTest import ConfigSutekhTest
-from sutekh.core.SutekhObjects import PhysicalCard, AbstractCard
+from sutekh.core.Objects import PhysicalCard, AbstractCard
 from sutekh.core import Filters, Groupings
-from sutekh.gui.CardListModel import CardListModel
-from sutekh.gui.MessageBus import MessageBus
+from sutekh.gui.generic.CardListModel import CardListModel
+from sutekh.gui.generic.MessageBus import MessageBus
 import unittest
 
 
