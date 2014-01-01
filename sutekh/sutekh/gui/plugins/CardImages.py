@@ -14,19 +14,19 @@ import tempfile
 import logging
 import urllib2
 from sqlobject import SQLObjectNotFound
-from sutekh.core.SutekhObjects import IAbstractCard, IExpansion
+from sutekh.core.Objects import IAbstractCard, IExpansion
 from sutekh.io.DataPack import urlopen_with_timeout
-from sutekh.gui.GuiDataPack import progress_fetch_data, gui_error_handler
+from sutekh.gui.generic.GuiDataPack import progress_fetch_data, gui_error_handler
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.ProgressDialog import ProgressDialog
-from sutekh.gui.MessageBus import MessageBus, CARD_TEXT_MSG
-from sutekh.gui.BasicFrame import BasicFrame
-from sutekh.gui.SutekhDialog import SutekhDialog, do_complaint_buttons, \
+from sutekh.gui.generic.ProgressDialog import ProgressDialog
+from sutekh.gui.generic.MessageBus import MessageBus, CARD_TEXT_MSG
+from sutekh.gui.generic.BasicFrame import BasicFrame
+from sutekh.gui.generic.SutekhDialog import SutekhDialog, do_complaint_buttons, \
         do_complaint_error
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.gui.generic.AutoScrolledWindow import AutoScrolledWindow
 from sutekh.SutekhUtility import prefs_dir, ensure_dir_exists
-from sutekh.gui.FileOrUrlWidget import FileOrDirOrUrlWidget
-from sutekh.gui.SutekhFileWidget import add_filter
+from sutekh.gui.generic.FileOrUrlWidget import FileOrDirOrUrlWidget
+from sutekh.gui.generic.SutekhFileWidget import add_filter
 
 
 FORWARD, BACKWARD = range(2)

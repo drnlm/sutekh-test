@@ -11,10 +11,10 @@ hand out at a tournament.
 
 import gtk
 from random import shuffle
-from sutekh.core.SutekhObjects import PhysicalCardSet, IAbstractCard
+from sutekh.core.Objects import PhysicalCardSet, IAbstractCard
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhDialog import SutekhDialog
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.gui.generic.SutekhDialog import SutekhDialog
+from sutekh.gui.generic.AutoScrolledWindow import AutoScrolledWindow
 
 
 class RandomPromoDialog(SutekhDialog):

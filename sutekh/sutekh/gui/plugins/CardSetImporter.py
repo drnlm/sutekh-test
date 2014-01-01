@@ -17,12 +17,12 @@ from sutekh.io.JOLDeckParser import JOLDeckParser
 from sutekh.io.LackeyDeckParser import LackeyDeckParser
 from sutekh.io.GuessFileParser import GuessFileParser
 from sutekh.io.DataPack import urlopen_with_timeout
-from sutekh.core.SutekhObjects import PhysicalCardSet
+from sutekh.core.Objects import PhysicalCardSet
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhDialog import SutekhDialog
-from sutekh.gui.GuiCardSetFunctions import import_cs
-from sutekh.gui.SutekhFileWidget import SutekhFileWidget
-from sutekh.gui.GuiDataPack import gui_error_handler
+from sutekh.gui.generic.SutekhDialog import SutekhDialog
+from sutekh.gui.generic.GuiCardSetFunctions import import_cs
+from sutekh.gui.generic.SutekhFileWidget import SutekhFileWidget
+from sutekh.gui.generic.GuiDataPack import gui_error_handler
 
 
 class ACSImporter(SutekhPlugin):

@@ -9,10 +9,10 @@ import gtk
 import gobject
 from copy import copy
 from random import choice
-from sutekh.core.SutekhObjects import PhysicalCardSet, IAbstractCard
+from sutekh.core.Objects import PhysicalCardSet, IAbstractCard
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhDialog import SutekhDialog, do_complaint_error
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.gui.generic.SutekhDialog import SutekhDialog, do_complaint_error
+from sutekh.gui.generic.AutoScrolledWindow import AutoScrolledWindow
 from sutekh.core.Filters import CryptCardFilter, MultiCardTypeFilter, \
         CardTypeFilter, CardFunctionFilter, FilterNot
 

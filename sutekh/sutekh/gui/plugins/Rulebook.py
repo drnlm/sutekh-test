@@ -7,11 +7,11 @@
 
 from sutekh.io.DataPack import DOC_URL, urlopen_with_timeout, find_data_pack
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.FileOrUrlWidget import FileOrUrlWidget
-from sutekh.gui.GuiDataPack import gui_error_handler, progress_fetch_data
-from sutekh.gui.SutekhDialog import SutekhDialog, do_exception_complaint
-from sutekh.gui.SutekhFileWidget import add_filter
-from sutekh.gui.ProgressDialog import ProgressDialog, SutekhCountLogHandler
+from sutekh.gui.generic.FileOrUrlWidget import FileOrUrlWidget
+from sutekh.gui.generic.GuiDataPack import gui_error_handler, progress_fetch_data
+from sutekh.gui.generic.SutekhDialog import SutekhDialog, do_exception_complaint
+from sutekh.gui.generic.SutekhFileWidget import add_filter
+from sutekh.gui.generic.ProgressDialog import ProgressDialog, SutekhCountLogHandler
 from sutekh.SutekhUtility import prefs_dir, ensure_dir_exists
 import gtk
 import os

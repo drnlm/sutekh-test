@@ -5,24 +5,24 @@
 
 """Adds info about the starter decks cards are found in"""
 
-from sutekh.core.SutekhObjects import PhysicalCardSet, \
+from sutekh.core.Objects import PhysicalCardSet, \
         MapPhysicalCardToPhysicalCardSet, IPhysicalCardSet, IRarityPair
 from sutekh.core.Filters import PhysicalCardSetFilter, \
         FilterAndBox, SpecificCardIdFilter
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.MessageBus import MessageBus, CARD_TEXT_MSG
-from sutekh.gui.ProgressDialog import ProgressDialog, SutekhCountLogHandler
-from sutekh.gui.SutekhDialog import SutekhDialog, do_exception_complaint, \
+from sutekh.gui.generic.MessageBus import MessageBus, CARD_TEXT_MSG
+from sutekh.gui.generic.ProgressDialog import ProgressDialog, SutekhCountLogHandler
+from sutekh.gui.generic.SutekhDialog import SutekhDialog, do_exception_complaint, \
         do_complaint_error
-from sutekh.core.CardSetUtilities import delete_physical_card_set, \
+from sutekh.core.generic.CardSetUtilities import delete_physical_card_set, \
         find_children, has_children
 from sutekh.io.ZipFileWrapper import ZipFileWrapper
 from sutekh.io.DataPack import DOC_URL, urlopen_with_timeout, find_data_pack
-from sutekh.gui.GuiCardSetFunctions import reparent_all_children, \
+from sutekh.gui.generic.GuiCardSetFunctions import reparent_all_children, \
         update_open_card_sets
-from sutekh.gui.FileOrUrlWidget import FileOrUrlWidget
-from sutekh.gui.GuiDataPack import gui_error_handler, progress_fetch_data
-from sutekh.gui.SutekhFileWidget import add_filter
+from sutekh.gui.generic.FileOrUrlWidget import FileOrUrlWidget
+from sutekh.gui.generic.GuiDataPack import gui_error_handler, progress_fetch_data
+from sutekh.gui.generic.SutekhFileWidget import add_filter
 import re
 import gtk
 from logging import Logger

@@ -6,10 +6,10 @@
 """Plugin for exporting to standard writers"""
 
 import gtk
-from sutekh.core.SutekhObjects import PhysicalCardSet
-from sutekh.core.CardSetHolder import CardSetWrapper
+from sutekh.core.Objects import PhysicalCardSet
+from sutekh.core.generic.CardSetHolder import CardSetWrapper
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhFileWidget import ExportDialog
+from sutekh.gui.generic.SutekhFileWidget import ExportDialog
 from sutekh.io.WriteJOL import WriteJOL
 from sutekh.io.WriteLackeyCCG import WriteLackeyCCG
 from sutekh.io.WriteArdbXML import WriteArdbXML

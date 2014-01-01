@@ -8,16 +8,16 @@
 import gtk
 import gobject
 import pango
-from sutekh.core.SutekhObjects import (PhysicalCardSet, PhysicalCard,
+from sutekh.core.Objects import (PhysicalCardSet, PhysicalCard,
         IAbstractCard, AbstractCard, IPhysicalCard, IPhysicalCardSet)
 from sutekh.core.Filters import (MultiGroupFilter, CardTypeFilter,
         MultiVirtueFilter, MultiDisciplineFilter, MultiDisciplineLevelFilter,
         FilterAndBox)
 from sutekh.SutekhUtility import is_crypt_card, is_vampire
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhDialog import SutekhDialog, do_complaint_error
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.GuiCardSetFunctions import create_card_set
+from sutekh.gui.generic.SutekhDialog import SutekhDialog, do_complaint_error
+from sutekh.gui.generic.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.gui.generic.GuiCardSetFunctions import create_card_set
 
 
 def _gen_subsets(aData, iSetSize, iDepth=1):

@@ -6,12 +6,12 @@
 """Export a card set to HTML."""
 
 import gtk
-from sutekh.core.SutekhObjects import PhysicalCardSet
-from sutekh.core.CardSetHolder import CardSetWrapper
+from sutekh.core.Objects import PhysicalCardSet
+from sutekh.core.generic.CardSetHolder import CardSetWrapper
 from sutekh.io.WriteArdbHTML import WriteArdbHTML
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhDialog import do_complaint_error, do_exception_complaint
-from sutekh.gui.SutekhFileWidget import ExportDialog
+from sutekh.gui.generic.SutekhDialog import do_complaint_error, do_exception_complaint
+from sutekh.gui.generic.SutekhFileWidget import ExportDialog
 from sutekh.SutekhUtility import safe_filename
 
 

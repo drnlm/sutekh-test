@@ -6,11 +6,11 @@
 
 import gtk
 import datetime
-from sutekh.core.SutekhObjects import PhysicalCardSet
-from sutekh.core.CardSetHolder import CardSetHolder
+from sutekh.core.Objects import PhysicalCardSet
+from sutekh.core.generic.CardSetHolder import CardSetHolder
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhDialog import do_complaint
-from sutekh.gui.GuiCardSetFunctions import get_import_name
+from sutekh.gui.generic.SutekhDialog import do_complaint
+from sutekh.gui.generic.GuiCardSetFunctions import get_import_name
 
 
 class SnapshotCardSet(SutekhPlugin):

@@ -7,9 +7,9 @@
 """Provide count card options for the WW card list"""
 
 import gtk
-from sutekh.core.SutekhObjects import PhysicalCard, IAbstractCard
+from sutekh.core.Objects import PhysicalCard, IAbstractCard
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.MessageBus import MessageBus
+from sutekh.gui.generic.MessageBus import MessageBus
 from sutekh.SutekhUtility import is_crypt_card
 from sutekh.gui.plugins.CountCardSetCards import TOT_FORMAT, TOT_TOOLTIP, \
         TOTAL, CRYPT, LIB

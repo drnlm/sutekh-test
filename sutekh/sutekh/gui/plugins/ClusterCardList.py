@@ -8,13 +8,13 @@
 import gtk
 import random
 import math
-from sutekh.core.SutekhObjects import PhysicalCard, \
+from sutekh.core.Objects import PhysicalCard, \
                                       PhysicalCardSet, \
                                       IPhysicalCard
 from sutekh.core.CardListTabulator import CardListTabulator
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.SutekhDialog import SutekhDialog, do_complaint_error
+from sutekh.gui.generic.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.gui.generic.SutekhDialog import SutekhDialog, do_complaint_error
 
 
 class ClusterCardList(SutekhPlugin):

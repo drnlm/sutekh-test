@@ -5,7 +5,7 @@
 
 """Allow the use to change how the cards are grouped in the CardListView"""
 
-from sutekh.core.SutekhObjects import PhysicalCard, PhysicalCardSet
+from sutekh.core.Objects import PhysicalCard, PhysicalCardSet
 from sutekh.core.Groupings import CardTypeGrouping, ClanGrouping, \
         DisciplineGrouping, ExpansionGrouping, RarityGrouping, \
         CryptLibraryGrouping, NullGrouping, MultiTypeGrouping, \

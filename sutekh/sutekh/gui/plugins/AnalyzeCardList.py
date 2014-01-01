@@ -13,13 +13,13 @@
 import gtk
 import logging
 from sqlobject import SQLObjectNotFound
-from sutekh.core.SutekhObjects import PhysicalCardSet, \
+from sutekh.core.Objects import PhysicalCardSet, \
         IAbstractCard, IPhysicalCard, IExpansion, CRYPT_TYPES, IKeyword
 from sutekh.core.Filters import CardTypeFilter, FilterNot, KeywordFilter
 from sutekh.core.Abbreviations import Titles
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhDialog import SutekhDialog
-from sutekh.gui.MultiSelectComboBox import MultiSelectComboBox
+from sutekh.gui.generic.SutekhDialog import SutekhDialog
+from sutekh.gui.generic.MultiSelectComboBox import MultiSelectComboBox
 
 try:
     THIRD_ED = IExpansion('Third Edition')

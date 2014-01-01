@@ -8,11 +8,11 @@
 
 import gtk
 import StringIO
-from sutekh.core.SutekhObjects import PhysicalCardSet
-from sutekh.core.CardSetHolder import CardSetWrapper
+from sutekh.core.Objects import PhysicalCardSet
+from sutekh.core.generic.CardSetHolder import CardSetWrapper
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.SutekhDialog import SutekhDialog
+from sutekh.gui.generic.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.gui.generic.SutekhDialog import SutekhDialog
 from sutekh.io.WriteJOL import WriteJOL
 from sutekh.io.WriteLackeyCCG import WriteLackeyCCG
 from sutekh.io.WriteELDBDeckFile import WriteELDBDeckFile
