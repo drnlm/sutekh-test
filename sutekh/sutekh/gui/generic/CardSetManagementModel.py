@@ -9,7 +9,7 @@ import gtk
 import gobject
 from ...core.generic.BaseObjects import PhysicalCardSet, IPhysicalCardSet
 from ...core.generic.BaseFilters import NullFilter
-from ..ConfigFile import CARDSET_LIST
+from .BaseConfigFile import CARDSET_LIST
 
 
 class CardSetManagementModel(gtk.TreeStore):

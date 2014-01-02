@@ -26,7 +26,7 @@ from .CardListModel import CardListModel, USE_ICONS, HIDE_ILLEGAL
 from ...core.generic.DBSignals import (listen_changed, disconnect_changed,
         listen_row_destroy, listen_row_update, disconnect_row_destroy,
         disconnect_row_update)
-from ..ConfigFile import CARDSET, FRAME
+from .BaseConfigFile import CARDSET, FRAME
 from .MessageBus import MessageBus
 import gtk
 

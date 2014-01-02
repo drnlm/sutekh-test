@@ -10,7 +10,7 @@
 import gtk
 from .FilteredViewMenu import CardListMenu
 from .FrameProfileEditor import FrameProfileEditor
-from ..ConfigFile import PHYS_CARDLIST
+from .BaseConfigFile import PHYS_CARDLIST
 from .MessageBus import MessageBus, CONFIG_MSG
 
 

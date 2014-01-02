@@ -10,7 +10,7 @@
 import gtk
 from .FilteredViewMenu import FilteredViewMenu
 from .FrameProfileEditor import FrameProfileEditor
-from ..ConfigFile import CARDSET_LIST
+from .BaseConfigFile import CARDSET_LIST
 from .MessageBus import MessageBus, CONFIG_MSG
 
 

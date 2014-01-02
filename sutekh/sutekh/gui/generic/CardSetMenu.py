@@ -14,7 +14,7 @@ from ...io.XmlFileHandling import PhysicalCardSetXmlFile
 from .FilteredViewMenu import CardListMenu
 from .FrameProfileEditor import FrameProfileEditor
 from .LocalProfileEditor import LocalProfileEditor
-from ..ConfigFile import CARDSET, FRAME
+from .BaseConfigFile import CARDSET, FRAME
 from .MessageBus import MessageBus, CONFIG_MSG
 
 

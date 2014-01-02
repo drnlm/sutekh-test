@@ -10,7 +10,7 @@
 from .SutekhDialog import SutekhDialog, do_complaint_error, \
                                     do_complaint_buttons
 from ...core.generic import FilterParser
-from ..ConfigFile import PHYS_CARDLIST, CARDSET, DEF_PROFILE_FILTER
+from .BaseConfigFile import PHYS_CARDLIST, CARDSET, DEF_PROFILE_FILTER
 from .MessageBus import MessageBus, CONFIG_MSG
 from .FilterEditor import FilterEditor
 import gtk

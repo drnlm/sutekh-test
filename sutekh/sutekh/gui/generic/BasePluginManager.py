@@ -16,7 +16,7 @@ import re
 from sqlobject import sqlhub
 from ...core.generic.DatabaseVersion import DatabaseVersion
 from ...core.generic.BaseObjects import PhysicalCardSet
-from ..ConfigFile import CARDSET, PHYS_CARDLIST, CARDSET_LIST, FRAME
+from .BaseConfigFile import CARDSET, PHYS_CARDLIST, CARDSET_LIST, FRAME
 from .MessageBus import MessageBus, CONFIG_MSG, DATABASE_MSG
 from .SutekhDialog import do_complaint_warning
 

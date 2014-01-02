@@ -14,7 +14,7 @@ from .SutekhDialog import SutekhDialog, do_complaint_error, \
                                     do_complaint_warning
 from .AutoScrolledWindow import AutoScrolledWindow
 from .FrameProfileEditor import FrameProfileEditor
-from ..ConfigFile import CARDSET, PHYS_CARDLIST, CARDSET_LIST
+from .BaseConfigFile import CARDSET, PHYS_CARDLIST, CARDSET_LIST
 from ..AppConfig import PHYS_CARD_LIST_NAME
 
 LABELS = {

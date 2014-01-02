@@ -16,7 +16,7 @@ from ...core.Objects import (PhysicalCardToAbstractCardAdapter,
         PhysicalCard, PhysicalCardAdapter, ExpansionNameAdapter)
 from ...generic.Utility import move_articles_to_back
 from ...core.generic.FilterParser import FilterParser
-from ..ConfigFile import PHYS_CARDLIST
+from .BaseConfigFile import PHYS_CARDLIST
 from .MessageBus import MessageBus, CONFIG_MSG
 
 EXTRA_LEVEL_OPTION = "extra levels"
