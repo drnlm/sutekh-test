@@ -7,15 +7,13 @@
 
 import gtk
 from sutekh.core.Objects import PhysicalCardSet
-from sutekh.core.generic.CardSetHolder import CardSetWrapper
 from sutekh.io.WriteArdbHTML import WriteArdbHTML
 from sutekh.gui.PluginManager import SutekhPlugin
 from sutekh.gui.generic.SutekhDialog import do_complaint_error, do_exception_complaint
-from sutekh.gui.generic.SutekhFileWidget import ExportDialog
-from sutekh.SutekhUtility import safe_filename
+from sutekh.gui.generic.baseplugins.BaseExport import BaseExport
 
 
-class CardSetExportHTML(SutekhPlugin):
+class CardSetExportHTML(SutekhPlugin, BaseExport):
     """Export a Card set to a 'nice' HTML file.
 
        We create a ElementTree that represents the XHTML file,
@@ -29,8 +27,14 @@ class CardSetExportHTML(SutekhPlugin):
         'HTML export mode': 'string(default=None)',
     }
 
+    _dExporters = {
+            "HTML": (WriteArdbHTML, "Export to HTML", 
+                     '.html', 'HTML Files', ['*.html']),
+            }
+
+
     def get_menu_item(self):
-        """Register on the Plugins Menu"""
+        """Register on the correct Menu"""
         if not self.check_versions() or not self.check_model_type():
             return None
 
@@ -58,15 +62,7 @@ class CardSetExportHTML(SutekhPlugin):
                 oItem.connect("toggled", self.change_prefs, sVal)
             return ('File Preferences', oPrefs)
 
-        oExport = gtk.MenuItem("Export to HTML")
-        oExport.connect("activate", self.activate)
-        return ('Export Card Set', oExport)
-
-    def activate(self, _oWidget):
-        """In response to the menu, create the dialog and run it."""
-        oDlg = self.make_dialog()
-        oDlg.run()
-        self.handle_response(oDlg.get_name())
+        return super(CardSetExportHTML, self).get_menu_item()
 
     def change_prefs(self, _oWidget, sChoice):
         """Manage the preferences (library to link to, etc.)"""
@@ -78,11 +74,9 @@ class CardSetExportHTML(SutekhPlugin):
     # pylint: disable-msg=W0201
     # we define attributes outside __init__, but it's OK because of plugin
     # structure
-    def make_dialog(self):
-        """Create the dialog prompted for the filename."""
-        oDlg = ExportDialog("Filename to save as", self.parent,
-                '%s.html' % safe_filename(self.view.sSetName))
-        oDlg.add_filter_with_pattern('HTML Files', ['*.html'])
+    def _create_dialog(self, tInfo):
+        """Create the dialog prompting for the filename."""
+        oDlg = super(CardSetExportHTML, self)._create_dialog(tInfo)
         # pylint: disable-msg=E1101
         # vbox confuses pylint
         self.oTextButton = gtk.CheckButton("Include Card _Texts?")
@@ -93,29 +87,22 @@ class CardSetExportHTML(SutekhPlugin):
 
     # pylint: enable-msg=W0201
 
-    def handle_response(self, sFileName):
+    def handle_response(self, sFilename, _cWriter):
         """Handle the response to the dialog"""
         # pylint: disable-msg=E1101
         # SQLObject methods confuse pylint
-        if sFileName is not None:
+        if sFilename is not None:
             # pylint: disable-msg=W0703
             # we do want to catch all exceptions here
             oCardSet = self.get_card_set()
             if not oCardSet:
-                do_complaint_error("Unsupported Card Set Type")
                 return
             bDoText = False
             if self.oTextButton.get_active():
                 bDoText = True
             sLinkMode = self.get_config_item('HTML export mode')
-            try:
-                oWriter = WriteArdbHTML(sLinkMode, bDoText)
-                fOut = file(sFileName, 'w')
-                oWriter.write(fOut, CardSetWrapper(oCardSet))
-                fOut.close()
-            except Exception, oExp:
-                sMsg = "Failed to open output file.\n\n%s" % oExp
-                do_exception_complaint(sMsg)
+            oWriter = WriteArdbHTML(sLinkMode, bDoText)
+            self._write_cardset(sFilename, oWriter, oCardSet)
 
 
 plugin = CardSetExportHTML

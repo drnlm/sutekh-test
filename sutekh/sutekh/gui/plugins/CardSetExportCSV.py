@@ -7,58 +7,42 @@
 
 import gtk
 from sutekh.core.Objects import PhysicalCardSet
-from sutekh.core.generic.CardSetHolder import CardSetWrapper
 from sutekh.io.WriteCSV import WriteCSV
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.generic.SutekhFileWidget import ExportDialog
-from sutekh.SutekhUtility import safe_filename
+from sutekh.gui.generic.baseplugins.BaseExport import BaseExport
 
 
-class CardSetExportCSV(SutekhPlugin):
+class CardSetExportCSV(SutekhPlugin, BaseExport):
     """Provides a dialog for selecting a filename, then calls on
        WriteCSV to produce the required output."""
     dTableVersions = {PhysicalCardSet: (4, 5, 6)}
     aModelsSupported = (PhysicalCardSet,)
 
-    def get_menu_item(self):
-        """Register on the 'Export Card Set' Menu"""
-        if not self.check_versions() or not self.check_model_type():
-            return None
-        oExport = gtk.MenuItem("Export to CSV")
-        oExport.connect("activate", self.make_dialog)
-        return ('Export Card Set', oExport)
+    _dExporters = {
+            'CSV': (WriteCSV, 'Export to CSV', '.csv', 'CSV Files', ['*.csv']),
+            }
 
-    def make_dialog(self, _oWidget):
-        """Create the dialog"""
-        # pylint: disable-msg=E1101
-        # vbox confuses pylint
-        oDlg = ExportDialog("Choose FileName for Exported CardSet",
-                self.parent, '%s.csv' % safe_filename(self.view.sSetName))
-        oDlg.add_filter_with_pattern('CSV Files', ['*.xml'])
-        oIncHeader = gtk.CheckButton("Include Column Headers")
-        oIncHeader.set_active(True)
-        oDlg.vbox.pack_start(oIncHeader, expand=False)
-        oIncExpansion = gtk.CheckButton("Include Expansions")
-        oIncExpansion.set_active(True)
-        oDlg.vbox.pack_start(oIncExpansion, expand=False)
+    def _create_dialog(self, tInfo):
+        oDlg = super(CardSetExportCSV, self)._create_dialog(tInfo)
+        # Add extra widgets for CSV export options
+        self.oIncHeader = gtk.CheckButton("Include Column Headers")
+        self.oIncHeader.set_active(True)
+        oDlg.vbox.pack_start(self.oIncHeader, expand=False)
+        self.oIncExpansion = gtk.CheckButton("Include Expansions")
+        self.oIncExpansion.set_active(True)
+        oDlg.vbox.pack_start(self.oIncExpansion, expand=False)
         oDlg.show_all()
-        oDlg.run()
+        return oDlg
 
-        self.handle_response(oDlg.get_name(), oIncHeader.get_active(),
-                oIncExpansion.get_active())
-
-    def handle_response(self, sFileName, bIncHeader, bIncExpansion):
+    def handle_response(self, sFilename, cWriter):
         """Handle the users response. Write the CSV output to file."""
-        # pylint: disable-msg=E1101
-        # SQLObject methods confuse pylint
-        if sFileName is not None:
+        if sFilename is not None:
             oCardSet = self.get_card_set()
             if not oCardSet:
                 return
-            fOut = file(sFileName, "w")
-            oWriter = WriteCSV(bIncHeader, bIncExpansion)
-            oWriter.write(fOut, CardSetWrapper(oCardSet))
-            fOut.close()
+            oWriter = cWriter(self.oIncHeader.get_active(),
+                              self.oIncExpansion.get_active())
+            self._write_cardset(sFilename, oWriter, oCardSet)
 
 
 plugin = CardSetExportCSV
