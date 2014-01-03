@@ -13,9 +13,10 @@ from sutekh.core.Groupings import CardTypeGrouping, ClanGrouping, \
         ArtistGrouping, KeywordGrouping, GroupPairGrouping, \
         DisciplineLevelGrouping
 from sutekh.gui.PluginManager import SutekhPlugin
+from sutekh.gui.generic.baseplugins.BaseChangeGroupBy import BaseGroupCardList
 
 
-class GroupCardList(SutekhPlugin):
+class GroupCardList(SutekhPlugin, BaseGroupCardList):
     """Plugin to allow the user to change how cards are grouped.
 
        Show a dialog which allows the user to select from the avail
@@ -52,32 +53,5 @@ class GroupCardList(SutekhPlugin):
 
     dCardListConfig = dPerPaneConfig
 
-    # pylint: disable-msg=W0142
-    # ** magic OK here
-    def __init__(self, *aArgs, **kwargs):
-        super(GroupCardList, self).__init__(*aArgs, **kwargs)
-        self._oFirstBut = None  # placeholder for the radio group
-        # We don't reload on init, to avoid double loads.
-        self.perpane_config_updated(False)
-
-    # Config Update
-
-    def perpane_config_updated(self, bDoReload=True):
-        """Called by base class on config updates."""
-        # bReload flag so we can call this during __init__
-        sGrping = self.get_perpane_item(self.GROUP_BY)
-        cGrping = self.GROUPINGS.get(sGrping)
-        if cGrping is not None:
-            self.set_grouping(cGrping, bDoReload)
-
-    # Actions
-
-    def set_grouping(self, cGrping, bReload=True):
-        """Set the grouping to that specified by cGrping."""
-        if self.model.groupby != cGrping:
-            self.model.groupby = cGrping
-            if bReload:
-                # Use view.load so we get busy cursor, etc.
-                self.view.frame.queue_reload()
 
 plugin = GroupCardList
