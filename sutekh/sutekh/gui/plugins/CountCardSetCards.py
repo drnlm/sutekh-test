@@ -12,6 +12,10 @@ from sutekh.gui.generic.baseplugins.BaseCountCSCards import BaseCountCSCards
 from sutekh.SutekhUtility import is_crypt_card
 
 
+TOT_FORMAT = 'Tot: <b>%(tot)d</b> L: <b>%(lib)d</b> C: <b>%(crypt)d</b>'
+TOT_TOOLTIP = 'Total Cards: <b>%(tot)d</b> (Library: <b>%(lib)d</b>' \
+              ' Crypt: <b>%(crypt)d</b>)'
+
 TOTAL, CRYPT, LIB = 'tot', 'crypt', 'lib'
 
 
@@ -23,9 +27,8 @@ class CountCardSetCards(SutekhPlugin, BaseCountCSCards):
     dTableVersions = {PhysicalCardSet: (5, 6)}
     aModelsSupported = (PhysicalCardSet,)
 
-    TOT_FORMAT = 'Tot: <b>%(tot)d</b> L: <b>%(lib)d</b> C: <b>%(crypt)d</b>'
-    TOT_TOOLTIP = 'Total Cards: <b>%(tot)d</b> (Library: <b>%(lib)d</b>' \
-            ' Crypt: <b>%(crypt)d</b>)'
+    FORMAT = TOT_FORMAT
+    TOOLTIP = TOT_TOOLTIP
 
     # pylint: disable-msg=W0142
     # **magic OK here

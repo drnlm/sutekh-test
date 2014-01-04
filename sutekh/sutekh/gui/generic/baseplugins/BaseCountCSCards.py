@@ -16,8 +16,8 @@ class BaseCountCSCards(BasePlugin):
        containing a label with a running count of the cards in the card
        set, the library cards and the crypt cards
        """
-    TOT_FORMAT = ''
-    TOT_TOOLTIP = ''
+    FORMAT = ''
+    TOOLTIP = ''
 
     # pylint: disable-msg=W0142
     # **magic OK here
@@ -52,8 +52,8 @@ class BaseCountCSCards(BasePlugin):
 
         dInfo = self._get_count_info()
 
-        self._oTextLabel = gtk.Label(self.TOT_FORMAT % dInfo)
-        self._oTextLabel.set_tooltip_markup(self.TOT_TOOLTIP % dInfo)
+        self._oTextLabel = gtk.Label(self.FORMAT % dInfo)
+        self._oTextLabel.set_tooltip_markup(self.TOOLTIP % dInfo)
         self._oTextLabel.show()
         return self._oTextLabel
 
@@ -63,8 +63,8 @@ class BaseCountCSCards(BasePlugin):
         # been properly realised, so we need this guard case
         if self._oTextLabel:
             dInfo = self._get_count_info()
-            self._oTextLabel.set_markup(self.TOT_FORMAT % dInfo)
-            self._oTextLabel.set_tooltip_markup(self.TOT_TOOLTIP % dInfo)
+            self._oTextLabel.set_markup(self.FORMAT % dInfo)
+            self._oTextLabel.set_tooltip_markup(self.TOOLTIP % dInfo)
 
     def _get_count_info(self):
         """Return a dict of the card count info"""
