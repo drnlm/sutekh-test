@@ -6,10 +6,10 @@
 """Calculate probabilities for drawing the current selection."""
 
 import gtk
-from copy import copy
-from sutekh.core.Objects import PhysicalCardSet, IAbstractCard
+from sutekh.core.Objects import PhysicalCardSet
 from sutekh.SutekhUtility import is_crypt_card
 from sutekh.gui.PluginManager import SutekhPlugin
+from sutekh.gui.generic.SutekhDialog import do_complaint_error
 from sutekh.gui.generic.baseplugins.BaseDrawProbabilities import BaseDrawSim
 
 

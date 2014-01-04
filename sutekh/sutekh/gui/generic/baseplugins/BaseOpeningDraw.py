@@ -8,9 +8,9 @@
 import gtk
 import gobject
 from random import choice
-from sutekh.core.Objects import PhysicalCardSet, IAbstractCard
+from sutekh.core.Objects import IAbstractCard
 from ..BasePluginManager import BasePlugin
-from ..SutekhDialog import SutekhDialog, do_complaint_error
+from ..SutekhDialog import SutekhDialog
 from ..AutoScrolledWindow import AutoScrolledWindow
 
 

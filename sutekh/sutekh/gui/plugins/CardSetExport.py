@@ -5,7 +5,6 @@
 
 """Plugin for exporting to standard writers"""
 
-import gtk
 from sutekh.core.Objects import PhysicalCardSet
 from sutekh.gui.PluginManager import SutekhPlugin
 from sutekh.gui.generic.baseplugins.BaseExport import BaseExport

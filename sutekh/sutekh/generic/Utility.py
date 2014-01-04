@@ -12,8 +12,8 @@
 import tempfile
 import os
 import sys
-import re
 from sqlobject import sqlhub
+from StringIO import StringIO
 import urlparse
 
 # Helper functions for dealing with strings

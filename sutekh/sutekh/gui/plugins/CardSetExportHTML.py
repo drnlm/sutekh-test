@@ -9,7 +9,6 @@ import gtk
 from sutekh.core.Objects import PhysicalCardSet
 from sutekh.io.WriteArdbHTML import WriteArdbHTML
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.generic.SutekhDialog import do_complaint_error, do_exception_complaint
 from sutekh.gui.generic.baseplugins.BaseExport import BaseExport
 
 

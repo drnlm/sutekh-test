@@ -4,7 +4,6 @@
 # GPL - see COPYING for details
 """Force all cards which can only belong to 1 expansion to that expansion"""
 
-import gtk
 from sutekh.core.Objects import PhysicalCardSet
 from sutekh.gui.PluginManager import SutekhPlugin
 from sutekh.gui.generic.baseplugins.BaseSetExpansions import BaseSetExpansions

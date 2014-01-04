@@ -7,8 +7,9 @@
 
 import gtk
 from copy import copy
-from sutekh.core.Objects import PhysicalCardSet, IAbstractCard
+from sutekh.core.Objects import PhysicalCardSet
 from sutekh.gui.PluginManager import SutekhPlugin
+from sutekh.gui.generic.SutekhDialog import do_complaint_error
 from sutekh.gui.generic.baseplugins.BaseOpeningDraw import (BaseOpeningDraw,
         get_cards_filter, get_probs, check_card, fill_string, format_dict,
         hypergeometric_mean, setup_grouped_view, setup_ungrouped_view,

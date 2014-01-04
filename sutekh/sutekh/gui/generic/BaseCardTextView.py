@@ -10,7 +10,6 @@ import gtk
 import pango
 import logging
 from .MessageBus import MessageBus, CARD_TEXT_MSG
-from sqlobject import SQLObjectNotFound
 
 
 class BaseCardTextBuffer(gtk.TextBuffer):

@@ -7,7 +7,7 @@
 
 import gtk
 from copy import copy
-from ....core.generic.BaseObjects import PhysicalCardSet, IAbstractCard
+from ....core.generic.BaseObjects import IAbstractCard
 from ..BasePluginManager import BasePlugin
 from ..SutekhDialog import (SutekhDialog, do_complaint_error,
         do_complaint_warning)

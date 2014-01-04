@@ -11,6 +11,7 @@
 from configobj import ConfigObj, flatten_errors
 from validate import Validator, is_option, is_list
 from .MessageBus import MessageBus, CONFIG_MSG
+from ..AppConfig import PHYS_CARD_LIST_NAME
 
 # Type definitions
 CARDSET = 'Card Set'
