@@ -6,19 +6,16 @@
 
 """Display a running total of the cards in a card set"""
 
-import gtk
 from sutekh.core.Objects import PhysicalCardSet, IAbstractCard
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.generic.MessageBus import MessageBus
+from sutekh.gui.generic.baseplugins.BaseCountCSCards import BaseCountCSCards
 from sutekh.SutekhUtility import is_crypt_card
 
-TOT_FORMAT = 'Tot: <b>%(tot)d</b> L: <b>%(lib)d</b> C: <b>%(crypt)d</b>'
-TOT_TOOLTIP = 'Total Cards: <b>%(tot)d</b> (Library: <b>%(lib)d</b>' \
-        ' Crypt: <b>%(crypt)d</b>)'
+
 TOTAL, CRYPT, LIB = 'tot', 'crypt', 'lib'
 
 
-class CountCardSetCards(SutekhPlugin):
+class CountCardSetCards(SutekhPlugin, BaseCountCSCards):
     """Listen to changes on the card list views, and display a toolbar
        containing a label with a running count of the cards in the card
        set, the library cards and the crypt cards
@@ -26,65 +23,36 @@ class CountCardSetCards(SutekhPlugin):
     dTableVersions = {PhysicalCardSet: (5, 6)}
     aModelsSupported = (PhysicalCardSet,)
 
+    TOT_FORMAT = 'Tot: <b>%(tot)d</b> L: <b>%(lib)d</b> C: <b>%(crypt)d</b>'
+    TOT_TOOLTIP = 'Total Cards: <b>%(tot)d</b> (Library: <b>%(lib)d</b>' \
+            ' Crypt: <b>%(crypt)d</b>)'
+
     # pylint: disable-msg=W0142
     # **magic OK here
     def __init__(self, *args, **kwargs):
         super(CountCardSetCards, self).__init__(*args, **kwargs)
 
-        self.__iTot = 0
-        self.__iCrypt = 0
-        self.__iLibrary = 0
-        self.__oTextLabel = None
-
-        # We only add listeners to windows we're going to display the toolbar
-        # on
-        if self.check_versions() and self.check_model_type():
-            MessageBus.subscribe(self.model, 'add_new_card', self.add_new_card)
-            MessageBus.subscribe(self.model, 'alter_card_count',
-                    self.alter_card_count)
-            MessageBus.subscribe(self.model, 'load', self.load)
+        self._iTot = 0
+        self._iCrypt = 0
+        self._iLibrary = 0
     # pylint: enable-msg=W0142
 
-    def cleanup(self):
-        """Remove the listener"""
-        if self.check_versions() and self.check_model_type():
-            MessageBus.unsubscribe(self.model, 'add_new_card',
-                    self.add_new_card)
-            MessageBus.unsubscribe(self.model, 'alter_card_count',
-                    self.alter_card_count)
-            MessageBus.unsubscribe(self.model, 'load', self.load)
-        super(CountCardSetCards, self).cleanup()
-
-    def get_toolbar_widget(self):
-        """Overrides method from base class."""
-        if not self.check_versions() or not self.check_model_type():
-            return None
-
-        dInfo = {TOTAL: 0, CRYPT: 0, LIB: 0}
-        self.__oTextLabel = gtk.Label(TOT_FORMAT % dInfo)
-        self.__oTextLabel.set_tooltip_markup(TOT_TOOLTIP % dInfo)
-        self.__oTextLabel.show()
-        return self.__oTextLabel
-
-    def update_numbers(self):
+    def _get_count_info(self):
         """Update the label"""
         # Timing issues mean that this can be called before text label has
         # been properly realised, so we need this guard case
-        if self.__oTextLabel:
-            dInfo = {TOTAL: self.__iTot, CRYPT: self.__iCrypt,
-                    LIB: self.__iLibrary}
-            self.__oTextLabel.set_markup(TOT_FORMAT % dInfo)
-            self.__oTextLabel.set_tooltip_markup(TOT_TOOLTIP % dInfo)
+        return {TOTAL: self._iTot, CRYPT: self._iCrypt,
+                 LIB: self._iLibrary}
 
-    def load(self, aCards):
+    def _do_load(self, aCards):
         """Listen on load events & update counts"""
         # We cache type  lookups to save time
         # The cache is short-lived to avoid needing to deal with
         # flushing the cache on database changes.
         dCache = {}
-        self.__iCrypt = 0
-        self.__iLibrary = 0
-        self.__iTot = len(aCards)
+        self._iCrypt = 0
+        self._iLibrary = 0
+        self._iTot = len(aCards)
         for oCard in aCards:
             bCrypt = dCache.get(oCard.id, None)
             if bCrypt is None:
@@ -92,29 +60,27 @@ class CountCardSetCards(SutekhPlugin):
                 bCrypt = is_crypt_card(oAbsCard)
                 dCache[oCard.id] = bCrypt
             if bCrypt:
-                self.__iCrypt += 1
+                self._iCrypt += 1
             else:
-                self.__iLibrary += 1
-        self.update_numbers()
+                self._iLibrary += 1
 
-    def alter_card_count(self, oCard, iChg):
+    def _do_alter_card_count(self, oCard, iChg):
         """respond to alter_card_count events"""
-        self.__iTot += iChg
+        self._iTot += iChg
         oAbsCard = IAbstractCard(oCard)
         if is_crypt_card(oAbsCard):
-            self.__iCrypt += iChg
+            self._iCrypt += iChg
         else:
-            self.__iLibrary += iChg
-        self.update_numbers()
+            self._iLibrary += iChg
 
-    def add_new_card(self, oCard, iCnt):
+    def _do_add_new_card(self, oCard, iCnt):
         """response to add_new_card events"""
-        self.__iTot += iCnt
+        self._iTot += iCnt
         oAbsCard = IAbstractCard(oCard)
         if is_crypt_card(oAbsCard):
-            self.__iCrypt += iCnt
+            self._iCrypt += iCnt
         else:
-            self.__iLibrary += iCnt
-        self.update_numbers()
+            self._iLibrary += iCnt
+
 
 plugin = CountCardSetCards
