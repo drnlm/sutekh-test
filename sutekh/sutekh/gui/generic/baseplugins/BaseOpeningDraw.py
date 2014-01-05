@@ -8,7 +8,7 @@
 import gtk
 import gobject
 from random import choice
-from sutekh.core.Objects import IAbstractCard
+from ....core.Objects import IAbstractCard
 from ..BasePluginManager import BasePlugin
 from ..SutekhDialog import SutekhDialog
 from ..AutoScrolledWindow import AutoScrolledWindow
