@@ -1,3 +1,30 @@
+10 Mar 2014
+ * Fix marker used to indicate TWDA plugin was configured
+ * Update test suite to skip TWDA question
+
+06 Mar 2014
+ * Use a single progress dialog for all the TWDA downloads
+
+05 Mar 2014
+ * Tweak layout of the TWDA & Starter plugin dialogs
+ * Tweak layout of the import card set dialog
+
+27 Feb 2014
+ * Add basic TWDA plugin
+ * Use transactions to speed up importing TWDA lists
+ * Don't nest transactions when deleting card sets either
+ * Use scrolled widget for deck comments in Analyse plugin to handle very long
+   deck descriptions better.
+
+26 Feb 2014
+ * Fix error path in find_all_data_packs
+
+25 Feb 2014
+ * Add description option to progress_fetch_data function
+
+13 Feb 2014
+ * Return date information from find_all_data_packs
+
 31 Dec 2013
  * Add releasedate to the Expansion table
    - Support database upgrade to new Expansion table
