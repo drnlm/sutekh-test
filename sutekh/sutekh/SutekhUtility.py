@@ -15,9 +15,11 @@ import re
 from sqlobject import sqlhub
 import urlparse
 
-from sutekh.core.SutekhObjects import VersionTable, flush_cache, CRYPT_TYPES, \
-        PhysicalCardSet, canonical_to_csv
-from sutekh.core.DatabaseVersion import DatabaseVersion
+
+from sutekh.base.core.BaseObjects import VersionTable, PhysicalCardSet
+from sutekh.core.SutekhObjects import flush_cache, CRYPT_TYPES
+from sutekh.base.Utility import move_articles_to_back
+from sutekh.base.core.DatabaseVersion import DatabaseVersion
 from sutekh.io.WhiteWolfTextParser import WhiteWolfTextParser
 from sutekh.io.RulingParser import RulingParser
 from sutekh.io.ExpDateCSVParser import ExpDateCSVParser
@@ -219,7 +221,7 @@ def get_cs_id_name_table():
 # Helper functions for the io routines
 def monger_url(oCard, bVamp):
     """Return a monger url for the given AbstractCard"""
-    sName = canonical_to_csv(oCard.name)
+    sName = move_articles_to_back(oCard.name)
     if bVamp:
         if oCard.level is not None:
             sName = sName.replace(' (Advanced)', '')
@@ -236,7 +238,7 @@ def monger_url(oCard, bVamp):
 
 def secret_library_url(oCard, bVamp):
     """Return a Secret Library url for the given AbstractCard"""
-    sName = canonical_to_csv(oCard.name)
+    sName = move_articles_to_back(oCard.name)
     if bVamp:
         if oCard.level is not None:
             sName = sName.replace(' (Advanced)', '')

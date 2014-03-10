@@ -27,10 +27,10 @@ from sutekh.core.SutekhObjects import PhysicalCard, AbstractCard, \
         RarityPair, CardType, Ruling, TABLE_LIST, DisciplinePair, Creed, \
         Sect, Title, Keyword, Artist, flush_cache, MAX_ID_LENGTH, \
         SutekhAbstractCard
-from sutekh.core.CardSetHolder import CachedCardSetHolder
+from sutekh.base.core.CardSetHolder import CachedCardSetHolder
 from sutekh.io.WhiteWolfTextParser import strip_braces
 from sutekh.SutekhUtility import refresh_tables
-from sutekh.core.DatabaseVersion import DatabaseVersion
+from sutekh.base.core.DatabaseVersion import DatabaseVersion
 
 # This file handles all the grunt work of the database upgrades. We have some
 # (arguablely overly) complex trickery to read old databases, and we create a

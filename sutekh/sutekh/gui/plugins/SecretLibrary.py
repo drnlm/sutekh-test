@@ -15,7 +15,8 @@ import logging
 from sqlobject import SQLObjectNotFound
 from sutekh.SutekhInfo import SutekhInfo
 from sutekh.core.SutekhObjects import PhysicalCardSet, IAbstractCard, \
-    IKeyword, canonical_to_csv
+    IKeyword
+from sutekh.base.Utility import move_articles_to_back
 from sutekh.core.Filters import CryptCardFilter, FilterNot
 from sutekh.io.SLDeckParser import SLDeckParser
 from sutekh.io.DataPack import urlopen_with_timeout
@@ -28,7 +29,7 @@ from sutekh.gui.GuiDataPack import gui_error_handler
 
 def canonical_to_sl(sName):
     """Convert a canonical card name to a Secret Library name."""
-    sName = canonical_to_csv(sName)
+    sName = move_articles_to_back(sName)
     return sName.encode('latin1')
 
 

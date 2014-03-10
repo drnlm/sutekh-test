@@ -7,13 +7,16 @@
 
 from sutekh.tests.TestCore import SutekhTest
 from sutekh.tests.io import test_WhiteWolfParser
-from sutekh.core.SutekhObjects import AbstractCard, IAbstractCard, \
-        AbstractCardAdapter, PhysicalCard, PhysicalCardAdapter, \
-        Expansion, ExpansionAdapter, PhysicalCardSet, \
-        MapPhysicalCardToPhysicalCardSet, IPhysicalCard
+from sutekh.base.core.BaseObjects import (AbstractCard, IAbstractCard,
+                                          AbstractCardAdapter, PhysicalCard,
+                                          PhysicalCardAdapter,
+                                          Expansion, ExpansionAdapter,
+                                          PhysicalCardSet,
+                                          MapPhysicalCardToPhysicalCardSet,
+                                          IPhysicalCard)
 from sutekh.core import Filters
 from sqlobject import SQLObjectNotFound
-from sutekh.core.CardLookup import best_guess_filter
+from sutekh.core.Filters import best_guess_filter
 import unittest
 
 

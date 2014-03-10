@@ -14,8 +14,8 @@
 import ply.lex as lex
 import ply.yacc as yacc
 # pylint: enable-msg=E0611
-from sutekh.core.Filters import (PARSER_FILTERS, FilterNot, FilterAndBox,
-        FilterOrBox)
+from .BaseFilters import FilterNot, FilterAndBox, FilterOrBox
+from ...core.Filters import PARSER_FILTERS
 
 
 ENTRY_FILTERS = set([x.keyword for x in PARSER_FILTERS

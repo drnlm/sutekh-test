@@ -11,8 +11,9 @@ from sutekh.tests.io import test_WhiteWolfParser
 from sutekh.tests.core.test_Filters import make_physical_card_sets
 from sutekh.core.SutekhObjects import AbstractCard, PhysicalCardSet, \
         PhysicalCard, MapPhysicalCardToPhysicalCardSet, IAbstractCard
-from sutekh.core import FilterParser, Filters, FilterBox
-from sutekh.core.FilterParser import escape, unescape
+from sutekh.core import Filters
+from sutekh.base.core import FilterParser, FilterBox
+from sutekh.base.Utility import escape_quotes, unescape_quotes
 import unittest
 
 
@@ -186,8 +187,8 @@ class FilterParserTests(SutekhTest):
                 ]
 
         for sData, sEscaped in aStrings:
-            self.assertEqual(sData, unescape(escape(sData)))
-            self.assertEqual(escape(sData), sEscaped)
+            self.assertEqual(sData, unescape_quotes(escape_quotes(sData)))
+            self.assertEqual(escape_quotes(sData), sEscaped)
 
     def test_quoting(self):
         """Check that both single and double quotes work"""

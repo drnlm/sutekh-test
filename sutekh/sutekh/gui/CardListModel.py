@@ -13,8 +13,8 @@ from sutekh.core.Filters import FilterAndBox, NullFilter, PhysicalCardFilter, \
         make_illegal_filter, CachedFilter
 from sutekh.core.Groupings import CardTypeGrouping
 from sutekh.core.SutekhObjects import PhysicalCardToAbstractCardAdapter, \
-        PhysicalCard, PhysicalCardAdapter, ExpansionNameAdapter, \
-        canonical_to_csv
+        PhysicalCard, PhysicalCardAdapter, ExpansionNameAdapter
+from sutekh.base.Utility import move_articles_to_back
 from sutekh.core.FilterParser import FilterParser
 from sutekh.gui.ConfigFile import WW_CARDLIST
 from sutekh.gui.MessageBus import MessageBus, CONFIG_MSG
@@ -200,7 +200,7 @@ class CardListModel(gtk.TreeStore):
             while oChildIter:
                 sName = self.get_card_name_from_iter(oChildIter)
                 if bPostfix:
-                    sName = canonical_to_csv(sName)
+                    sName = move_articles_to_back(sName)
                 self.set(oChildIter, 0, sName)
                 self.row_changed(self.get_path(oChildIter), oChildIter)
                 oChildIter = self.iter_next(oChildIter)
@@ -255,7 +255,7 @@ class CardListModel(gtk.TreeStore):
                 # Names will be set by _set_display_name
                 sName = oCard.name
                 if bPostfix:
-                    sName = canonical_to_csv(sName)
+                    sName = move_articles_to_back(sName)
                 self.set(oChildIter,
                     0, sName,
                     8, oCard,

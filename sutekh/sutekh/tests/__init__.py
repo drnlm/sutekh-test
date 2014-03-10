@@ -5,7 +5,8 @@
 
 """This is the sutekh test suite"""
 
-from sutekh.core.SutekhObjects import TABLE_LIST, VersionTable
+from sutekh.core.SutekhObjects import TABLE_LIST
+from sutekh.base.core.BaseObjects import VersionTable
 from sutekh.SutekhUtility import read_white_wolf_list, read_rulings, \
         refresh_tables
 from sutekh.tests.TestData import TEST_CARD_LIST, TEST_RULINGS
