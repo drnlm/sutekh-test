@@ -598,6 +598,8 @@ class CardDict(dict):
         self._add_physical_cards(oCard)
 
         oCard.syncUpdate()
+        # This is a bit hack'ish - possible SQLObject bug
+        oCard._parent.syncUpdate()
         # FIXME: Pass back any error confitions? Missing text, etc.
 
 

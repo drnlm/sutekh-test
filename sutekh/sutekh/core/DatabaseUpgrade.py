@@ -25,7 +25,8 @@ from logging import Logger
 from sutekh.core.SutekhObjects import PhysicalCard, AbstractCard, \
         PhysicalCardSet, Expansion, Clan, Virtue, Discipline, Rarity, \
         RarityPair, CardType, Ruling, TABLE_LIST, DisciplinePair, Creed, \
-        Sect, Title, Keyword, Artist, flush_cache, MAX_ID_LENGTH
+        Sect, Title, Keyword, Artist, flush_cache, MAX_ID_LENGTH, \
+        SutekhAbstractCard
 from sutekh.core.CardSetHolder import CachedCardSetHolder
 from sutekh.io.WhiteWolfTextParser import strip_braces
 from sutekh.SutekhUtility import refresh_tables
@@ -493,10 +494,10 @@ def copy_abstract_card(oOrigConn, oTrans, oLogger):
     # pylint: disable-msg=E1101, R0912
     # E1101 - SQLObject confuses pylint
     # R0912 - need the branches for this
-    for oCard in AbstractCard.select(connection=oOrigConn):
+    for oCard in SutekhAbstractCard.select(connection=oOrigConn):
         # force issue for SQObject >= 0.11.4
         oCard._connection = oOrigConn
-        oCardCopy = AbstractCard(id=oCard.id,
+        oCardCopy = SutekhAbstractCard(id=oCard.id,
                 canonicalName=oCard.canonicalName, name=oCard.name,
                 text=oCard.text, search_text=oCard.search_text,
                 connection=oTrans)

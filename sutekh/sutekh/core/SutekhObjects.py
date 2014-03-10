@@ -19,6 +19,7 @@ from sutekh.core.Abbreviations import CardTypes, Clans, Creeds, Disciplines, \
 from sqlobject import sqlmeta, SQLObject, IntCol, UnicodeCol, RelatedJoin, \
        EnumCol, MultipleJoin, BoolCol, DatabaseIndex, ForeignKey, \
        SQLObjectNotFound, DateCol
+from sqlobject.inheritance import InheritableSQLObject
 # pylint: enable-msg=E0611
 from protocols import advise, Interface
 
@@ -118,7 +119,7 @@ class VersionTable(SQLObject):
     tableversion = 1
 
 
-class AbstractCard(SQLObject):
+class AbstractCard(InheritableSQLObject):
     advise(instancesProvide=[IAbstractCard])
 
     tableversion = 6
@@ -127,6 +128,30 @@ class AbstractCard(SQLObject):
     canonicalName = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
     name = UnicodeCol()
     text = UnicodeCol()
+
+    cardtype = CachedRelatedJoin('CardType', intermediateTable='abs_type_map',
+            joinColumn="abstract_card_id",
+            createRelatedTable=False)
+    rarity = CachedRelatedJoin('RarityPair',
+            intermediateTable='abs_rarity_pair_map',
+            joinColumn="abstract_card_id",
+            createRelatedTable=False)
+    rulings = CachedRelatedJoin('Ruling', intermediateTable='abs_ruling_map',
+            joinColumn="abstract_card_id",
+            createRelatedTable=False)
+    artists = CachedRelatedJoin('Artist', intermediateTable='abs_artist_map',
+            joinColumn="abstract_card_id",
+            createRelatedTable=False)
+    keywords = CachedRelatedJoin('Keyword',
+            joinColumn="abstract_card_id",
+            intermediateTable='abs_keyword_map', createRelatedTable=False)
+
+    physicalCards = MultipleJoin('PhysicalCard')
+
+
+class SutekhAbstractCard(AbstractCard):
+    _inheritable = False
+
     search_text = UnicodeCol(default="")
     group = IntCol(default=None, dbName='grp')
     capacity = IntCol(default=None)
@@ -142,31 +167,23 @@ class AbstractCard(SQLObject):
     # ones.
     discipline = CachedRelatedJoin('DisciplinePair',
             intermediateTable='abs_discipline_pair_map',
-            createRelatedTable=False)
-    rarity = CachedRelatedJoin('RarityPair',
-            intermediateTable='abs_rarity_pair_map',
+            joinColumn="abstract_card_id",
             createRelatedTable=False)
     clan = CachedRelatedJoin('Clan',
+            joinColumn="abstract_card_id",
             intermediateTable='abs_clan_map', createRelatedTable=False)
-    cardtype = CachedRelatedJoin('CardType', intermediateTable='abs_type_map',
-            createRelatedTable=False)
     sect = CachedRelatedJoin('Sect', intermediateTable='abs_sect_map',
+            joinColumn="abstract_card_id",
             createRelatedTable=False)
     title = CachedRelatedJoin('Title', intermediateTable='abs_title_map',
+            joinColumn="abstract_card_id",
             createRelatedTable=False)
     creed = CachedRelatedJoin('Creed', intermediateTable='abs_creed_map',
+            joinColumn="abstract_card_id",
             createRelatedTable=False)
     virtue = CachedRelatedJoin('Virtue', intermediateTable='abs_virtue_map',
+            joinColumn="abstract_card_id",
             createRelatedTable=False)
-    rulings = CachedRelatedJoin('Ruling', intermediateTable='abs_ruling_map',
-            createRelatedTable=False)
-    artists = CachedRelatedJoin('Artist', intermediateTable='abs_artist_map',
-            createRelatedTable=False)
-    keywords = CachedRelatedJoin('Keyword',
-            intermediateTable='abs_keyword_map', createRelatedTable=False)
-
-    physicalCards = MultipleJoin('PhysicalCard')
-
 
 class PhysicalCard(SQLObject):
     advise(instancesProvide=[IPhysicalCard])
@@ -230,7 +247,7 @@ class DisciplinePair(SQLObject):
     discipline = ForeignKey('Discipline')
     level = EnumCol(enumValues=['inferior', 'superior'])
     disciplineLevelIndex = DatabaseIndex(discipline, level, unique=True)
-    cards = RelatedJoin('AbstractCard',
+    cards = RelatedJoin('SutekhAbstractCard',
             intermediateTable='abs_discipline_pair_map',
             createRelatedTable=False)
 
@@ -250,7 +267,7 @@ class Virtue(SQLObject):
     tableversion = 2
     name = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
     fullname = UnicodeCol(default=None)
-    cards = RelatedJoin('AbstractCard', intermediateTable='abs_virtue_map',
+    cards = RelatedJoin('SutekhAbstractCard', intermediateTable='abs_virtue_map',
             createRelatedTable=False)
 
 
@@ -260,7 +277,7 @@ class Creed(SQLObject):
     tableversion = 2
     name = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
     shortname = UnicodeCol(default=None)
-    cards = RelatedJoin('AbstractCard', intermediateTable='abs_creed_map',
+    cards = RelatedJoin('SutekhAbstractCard', intermediateTable='abs_creed_map',
             createRelatedTable=False)
 
 
@@ -270,7 +287,7 @@ class Clan(SQLObject):
     tableversion = 3
     name = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
     shortname = UnicodeCol(default=None)
-    cards = RelatedJoin('AbstractCard', intermediateTable='abs_clan_map',
+    cards = RelatedJoin('SutekhAbstractCard', intermediateTable='abs_clan_map',
             createRelatedTable=False)
 
 
@@ -288,7 +305,7 @@ class Sect(SQLObject):
 
     tableversion = 2
     name = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
-    cards = RelatedJoin('AbstractCard', intermediateTable='abs_sect_map',
+    cards = RelatedJoin('SutekhAbstractCard', intermediateTable='abs_sect_map',
             createRelatedTable=False)
 
 
@@ -297,7 +314,7 @@ class Title(SQLObject):
 
     tableversion = 2
     name = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
-    cards = RelatedJoin('AbstractCard', intermediateTable='abs_title_map',
+    cards = RelatedJoin('SutekhAbstractCard', intermediateTable='abs_title_map',
             createRelatedTable=False)
 
 
@@ -331,7 +348,8 @@ class Keyword(SQLObject):
 
     tableversion = 1
     keyword = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
-    cards = RelatedJoin('AbstractCard', intermediateTable='abs_keyword_map',
+    cards = RelatedJoin('AbstractCard',
+            intermediateTable='abs_keyword_map',
             createRelatedTable=False)
 
 # Mapping Tables
@@ -383,7 +401,7 @@ class MapAbstractCardToClan(SQLObject):
 
     tableversion = 1
 
-    abstractCard = ForeignKey('AbstractCard', notNull=True)
+    abstractCard = ForeignKey('SutekhAbstractCard', notNull=True)
     clan = ForeignKey('Clan', notNull=True)
 
     abstractCardIndex = DatabaseIndex(abstractCard, unique=False)
@@ -396,7 +414,7 @@ class MapAbstractCardToDisciplinePair(SQLObject):
 
     tableversion = 1
 
-    abstractCard = ForeignKey('AbstractCard', notNull=True)
+    abstractCard = ForeignKey('SutekhAbstractCard', notNull=True)
     disciplinePair = ForeignKey('DisciplinePair', notNull=True)
 
     abstractCardIndex = DatabaseIndex(abstractCard, unique=False)
@@ -422,7 +440,7 @@ class MapAbstractCardToSect(SQLObject):
 
     tableversion = 1
 
-    abstractCard = ForeignKey('AbstractCard', notNull=True)
+    abstractCard = ForeignKey('SutekhAbstractCard', notNull=True)
     sect = ForeignKey('Sect', notNull=True)
 
     abstractCardIndex = DatabaseIndex(abstractCard, unique=False)
@@ -435,7 +453,7 @@ class MapAbstractCardToTitle(SQLObject):
 
     tableversion = 1
 
-    abstractCard = ForeignKey('AbstractCard', notNull=True)
+    abstractCard = ForeignKey('SutekhAbstractCard', notNull=True)
     title = ForeignKey('Title', notNull=True)
 
     abstractCardIndex = DatabaseIndex(abstractCard, unique=False)
@@ -448,7 +466,7 @@ class MapAbstractCardToCreed(SQLObject):
 
     tableversion = 1
 
-    abstractCard = ForeignKey('AbstractCard', notNull=True)
+    abstractCard = ForeignKey('SutekhAbstractCard', notNull=True)
     creed = ForeignKey('Creed', notNull=True)
 
     abstractCardIndex = DatabaseIndex(abstractCard, unique=False)
@@ -461,7 +479,7 @@ class MapAbstractCardToVirtue(SQLObject):
 
     tableversion = 1
 
-    abstractCard = ForeignKey('AbstractCard', notNull=True)
+    abstractCard = ForeignKey('SutekhAbstractCard', notNull=True)
     virtue = ForeignKey('Virtue', notNull=True)
 
     abstractCardIndex = DatabaseIndex(abstractCard, unique=False)
@@ -497,7 +515,7 @@ class MapAbstractCardToKeyword(SQLObject):
 
 # List of Tables to be created, dropped, etc.
 
-TABLE_LIST = [AbstractCard, Expansion,
+TABLE_LIST = [AbstractCard, SutekhAbstractCard, Expansion,
                PhysicalCard, PhysicalCardSet,
                Rarity, RarityPair, Discipline, DisciplinePair,
                Clan, CardType, Sect, Title, Ruling, Virtue, Creed,
@@ -590,7 +608,8 @@ class SutekhObjectMaker(object):
         except SQLObjectNotFound:
             sName = sCard.strip()
             sCanonical = sName.lower()
-            return AbstractCard(canonicalName=sCanonical, name=sName, text="")
+            return SutekhAbstractCard(canonicalName=sCanonical,
+                                      name=sName, text="")
 
     def make_physical_card(self, oCard, oExp):
         try:

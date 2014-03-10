@@ -19,7 +19,7 @@ from sutekh.core.SutekhObjects import AbstractCard, IAbstractCard, ICreed, \
         Discipline, CardType, Title, Creed, Virtue, Sect, Expansion, \
         RarityPair, PhysicalCardSet, PhysicalCard, IDisciplinePair, \
         MapPhysicalCardToPhysicalCardSet, Artist, Keyword, IArtist, IKeyword, \
-        CRYPT_TYPES
+        CRYPT_TYPES, SutekhAbstractCard
 from sqlobject import SQLObjectNotFound, AND, OR, NOT, LIKE, func, sqlhub, \
         IN as SQLOBJ_IN
 from sqlobject.sqlbuilder import Table, Alias, LEFTJOINOn, Select, \
@@ -797,7 +797,8 @@ class GroupFilter(DirectFilter):
     def _get_expression(self):
         # pylint: disable-msg=E1101
         # SQLObject methods not detected by pylint
-        return AbstractCard.q.group == self.__iGroup
+        return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                   SutekhAbstractCard.q.group == self.__iGroup)
 
 
 class MultiGroupFilter(DirectFilter):
@@ -820,13 +821,14 @@ class MultiGroupFilter(DirectFilter):
     def get_values(cls):
         # pylint: disable-msg=E1101
         # E1101 - avoid SQLObject method not detected problems
-        iMax = AbstractCard.select().max(AbstractCard.q.group)
+        iMax = SutekhAbstractCard.select().max(SutekhAbstractCard.q.group)
         return [str(x) for x in range(1, iMax + 1)] + ['Any']
 
     def _get_expression(self):
         # pylint: disable-msg=E1101
         # SQLObject methods not detected by pylint
-        return IN(AbstractCard.q.group, self.__aGroups)
+        return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                   IN(SutekhAbstractCard.q.group, self.__aGroups))
 
 
 class CapacityFilter(DirectFilter):
@@ -841,7 +843,8 @@ class CapacityFilter(DirectFilter):
     def _get_expression(self):
         # pylint: disable-msg=E1101
         # SQLObject methods not detected by pylint
-        return AbstractCard.q.capacity == self.__iCap
+        return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                   SutekhAbstractCard.q.capacity == self.__iCap)
 
 
 class MultiCapacityFilter(DirectFilter):
@@ -862,13 +865,14 @@ class MultiCapacityFilter(DirectFilter):
     def get_values(cls):
         # pylint: disable-msg=E1101
         # E1101 - avoid SQLObject method not detected problems
-        iMax = AbstractCard.select().max(AbstractCard.q.capacity)
+        iMax = SutekhAbstractCard.select().max(SutekhAbstractCard.q.capacity)
         return [str(x) for x in range(1, iMax + 1)]
 
     def _get_expression(self):
         # pylint: disable-msg=E1101
         # SQLObject methods not detected by pylint
-        return IN(AbstractCard.q.capacity, self.__aCaps)
+        return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                   IN(SutekhAbstractCard.q.capacity, self.__aCaps))
 
 
 class CostFilter(DirectFilter):
@@ -888,7 +892,8 @@ class CostFilter(DirectFilter):
     def _get_expression(self):
         # pylint: disable-msg=E1101
         # SQLObject methods not detected by pylint
-        return AbstractCard.q.cost == self.__iCost
+        return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                   SutekhAbstractCard.q.cost == self.__iCost)
 
 
 class MultiCostFilter(DirectFilter):
@@ -914,7 +919,7 @@ class MultiCostFilter(DirectFilter):
     def get_values(cls):
         # pylint: disable-msg=E1101
         # E1101 - avoid SQLObject method not detected problems
-        iMax = AbstractCard.select().max(AbstractCard.q.cost)
+        iMax = SutekhAbstractCard.select().max(SutekhAbstractCard.q.cost)
         return [str(x) for x in range(0, iMax + 1)] + ['X']
 
     def _get_expression(self):
@@ -922,11 +927,14 @@ class MultiCostFilter(DirectFilter):
         # SQLObject methods not detected by pylint
         if self.__bZeroCost:
             if self.__aCost:
-                return OR(IN(AbstractCard.q.cost, self.__aCost),
-                        AbstractCard.q.cost == None)
+                return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                           OR(IN(SutekhAbstractCard.q.cost, self.__aCost),
+                              SutekhAbstractCard.q.cost == None))
             else:
-                return AbstractCard.q.cost == None
-        return IN(AbstractCard.q.cost, self.__aCost)
+                return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                           SutekhAbstractCard.q.cost == None)
+        return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                   IN(SutekhAbstractCard.q.cost, self.__aCost))
 
 
 class CostTypeFilter(DirectFilter):
@@ -942,7 +950,8 @@ class CostTypeFilter(DirectFilter):
     def _get_expression(self):
         # pylint: disable-msg=E1101
         # SQLObject methods not detected by pylint
-        return AbstractCard.q.costtype == self.__sCostType.lower()
+        return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                   SutekhAbstractCard.q.costtype == self.__sCostType.lower())
 
 
 class MultiCostTypeFilter(DirectFilter):
@@ -970,7 +979,8 @@ class MultiCostTypeFilter(DirectFilter):
     def _get_expression(self):
         # pylint: disable-msg=E1101
         # SQLObject methods not detected by pylint
-        return IN(AbstractCard.q.costtype, self.__aCostTypes)
+        return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                   IN(SutekhAbstractCard.q.costtype, self.__aCostTypes))
 
 
 class LifeFilter(DirectFilter):
@@ -985,7 +995,8 @@ class LifeFilter(DirectFilter):
     def _get_expression(self):
         # pylint: disable-msg=E1101
         # SQLObject methods not detected by pylint
-        return AbstractCard.q.life == self.__iLife
+        return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                   SutekhAbstractCard.q.life == self.__iLife)
 
 
 class MultiLifeFilter(DirectFilter):
@@ -1008,13 +1019,14 @@ class MultiLifeFilter(DirectFilter):
     def get_values(cls):
         # pylint: disable-msg=E1101
         # E1101 - avoid SQLObject method not detected problems
-        iMax = AbstractCard.select().max(AbstractCard.q.life)
+        iMax = SutekhAbstractCard.select().max(SutekhAbstractCard.q.life)
         return [str(x) for x in range(1, iMax + 1)]
 
     def _get_expression(self):
         # pylint: disable-msg=E1101
         # SQLObject methods not detected by pylint
-        return IN(AbstractCard.q.life, self.__aLife)
+        return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                   IN(SutekhAbstractCard.q.life, self.__aLife))
 
 
 class CardTextFilter(DirectFilter):
@@ -1042,8 +1054,9 @@ class CardTextFilter(DirectFilter):
         if self.__bBraces:
             return LIKE(func.LOWER(AbstractCard.q.text),
                     '%' + self.__sPattern + '%')
-        return LIKE(func.LOWER(AbstractCard.q.search_text),
-                '%' + self.__sPattern + '%')
+        return AND(AbstractCard.q.id == SutekhAbstractCard.q.id,
+                   LIKE(func.LOWER(SutekhAbstractCard.q.search_text),
+                        '%' + self.__sPattern + '%'))
 
 
 class CardNameFilter(DirectFilter):
