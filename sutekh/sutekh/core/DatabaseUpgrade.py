@@ -29,7 +29,7 @@ from sutekh.core.SutekhObjects import PhysicalCard, AbstractCard, \
         SutekhAbstractCard
 from sutekh.base.core.CardSetHolder import CachedCardSetHolder
 from sutekh.io.WhiteWolfTextParser import strip_braces
-from sutekh.SutekhUtility import refresh_tables
+from sutekh.base.core.DBUtility import refresh_tables
 from sutekh.base.core.DatabaseVersion import DatabaseVersion
 
 # This file handles all the grunt work of the database upgrades. We have some

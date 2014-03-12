@@ -8,42 +8,15 @@
 
 """Misc functions needed in various places in Sutekh."""
 
-import tempfile
-import os
-import sys
 import re
 from sqlobject import sqlhub
-import urlparse
 
 
-from sutekh.base.core.BaseObjects import VersionTable, PhysicalCardSet
 from sutekh.core.SutekhObjects import flush_cache, CRYPT_TYPES
 from sutekh.base.Utility import move_articles_to_back
-from sutekh.base.core.DatabaseVersion import DatabaseVersion
 from sutekh.io.WhiteWolfTextParser import WhiteWolfTextParser
 from sutekh.io.RulingParser import RulingParser
 from sutekh.io.ExpDateCSVParser import ExpDateCSVParser
-
-
-def refresh_tables(aTables, oConn, bMakeCache=True):
-    """Drop and recreate the given list of tables"""
-    aTables.reverse()
-    for cCls in aTables:
-        cCls.dropTable(ifExists=True, connection=oConn)
-    aTables.reverse()
-    oVerHandler = DatabaseVersion(oConn)
-    # Make sure we recreate the database version table
-    oVerHandler.expire_table_conn(oConn)
-    oVerHandler.ensure_table_exists(oConn)
-    if not oVerHandler.set_version(VersionTable, VersionTable.tableversion,
-            oConn):
-        return False
-    for cCls in aTables:
-        cCls.createTable(connection=oConn)
-        if not oVerHandler.set_version(cCls, cCls.tableversion, oConn):
-            return False
-    flush_cache(bMakeCache)
-    return True
 
 
 def read_white_wolf_list(aEncodedFiles, oLogHandler=None):
@@ -115,18 +88,6 @@ def is_crypt_card(oAbsCard):
 def is_vampire(oAbsCard):
     """Test if a card is a vampire or not"""
     return oAbsCard.cardtype[0].name == 'Vampire'
-
-
-# Utility function to help with config management and such
-def get_cs_id_name_table():
-    """Returns a dictionary id : name for all the card sets.
-
-       We do this so we can have the old info available to fix the config
-       after a database reload, etc."""
-    dMapping = {}
-    for oCS in PhysicalCardSet.select():
-        dMapping[oCS.id] = oCS.name
-    return dMapping
 
 
 # Helper functions for the io routines

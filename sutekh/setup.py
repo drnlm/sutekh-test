@@ -113,7 +113,7 @@ setup   (   # Metadata
                 },
 
             # py2exe
-            console = ['sutekh/SutekhCli.py', 'sutekh/TestConsole.py'],
+            console = ['sutekh/SutekhCli.py', 'sutekh/base/TestConsole.py'],
             windows = [{
                 'script': 'sutekh/SutekhGui.py',
                 'icon_resources': [(0, "artwork/sutekh-icon-inkscape.ico")],

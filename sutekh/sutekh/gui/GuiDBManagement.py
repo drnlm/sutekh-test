@@ -20,8 +20,9 @@ from sutekh.base.gui.SutekhDialog import do_complaint_buttons, do_complaint, \
 from sutekh.io.ZipFileWrapper import ZipFileWrapper
 from sutekh.base.io.EncodedFile import EncodedFile
 from sutekh.core.SutekhObjects import TABLE_LIST, PhysicalCardSet
-from sutekh.SutekhUtility import refresh_tables, read_rulings, \
-        read_white_wolf_list, get_cs_id_name_table, read_exp_date_list
+from sutekh.base.core.DBUtility import refresh_tables, get_cs_id_name_table
+from sutekh.SutekhUtility import (read_rulings, read_white_wolf_list,
+                                  read_exp_date_list)
 
 
 def read_cardlist(oCardList, oProgressDialog, oLogHandler):

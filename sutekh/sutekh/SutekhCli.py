@@ -23,7 +23,8 @@ from sutekh.core.SutekhObjects import TABLE_LIST, PHYSICAL_LIST
 from sutekh.core.Filters import PhysicalCardSetFilter, FilterAndBox, \
         PhysicalCardFilter
 from sutekh.base.core.FilterParser import FilterParser
-from sutekh.SutekhUtility import refresh_tables, read_white_wolf_list, \
+from sutekh.base.core.DBUtility import refresh_tables
+from sutekh.SutekhUtility import read_white_wolf_list, \
         read_rulings, is_crypt_card, format_text, read_exp_date_list
 from sutekh.base.Utility import gen_temp_dir, prefs_dir, ensure_dir_exists, \
         sqlite_uri
