@@ -16,18 +16,18 @@ from sutekh.core.Filters import FilterAndBox, NullFilter, PhysicalCardFilter, \
 # We use the adapters directly, rather than going through PyProtocols
 # because we know the types explicitly, and thus don't need the overhead
 # of PyPrortocols dispatch logic.
-from sutekh.core.SutekhObjects import PhysicalCard, IAbstractCard, \
-        MapPhysicalCardToPhysicalCardSet, PhysicalCardAdapter, \
-        PhysicalCardSetAdapter, PhysicalCardSet, ExpansionNameAdapter, \
-        PhysicalCardToAbstractCardAdapter, \
-        PhysicalCardMappingToPhysicalCardAdapter
+from sutekh.base.core.BaseObjects import (PhysicalCard, IAbstractCard,
+        MapPhysicalCardToPhysicalCardSet, PhysicalCardAdapter,
+        PhysicalCardSetAdapter, PhysicalCardSet, ExpansionNameAdapter,
+        PhysicalCardToAbstractCardAdapter,
+        PhysicalCardMappingToPhysicalCardAdapter)
 from sutekh.base.Utility import move_articles_to_back
 from sutekh.gui.CardListModel import CardListModel, USE_ICONS, HIDE_ILLEGAL
-from sutekh.core.DBSignals import listen_changed, disconnect_changed, \
+from sutekh.base.core.DBSignals import listen_changed, disconnect_changed, \
         listen_row_destroy, listen_row_update, disconnect_row_destroy, \
         disconnect_row_update
 from sutekh.gui.ConfigFile import CARDSET, FRAME
-from sutekh.gui.MessageBus import MessageBus
+from sutekh.base.gui.MessageBus import MessageBus
 import gtk
 
 # consts for the different modes we need (iExtraLevelsMode)

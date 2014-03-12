@@ -7,8 +7,8 @@
 
 import gtk
 import sys
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.ScrolledList import ScrolledListView
+from .AutoScrolledWindow import AutoScrolledWindow
+from .ScrolledList import ScrolledListView
 
 
 def mouse_in_button(oButton):

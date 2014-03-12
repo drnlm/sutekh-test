@@ -7,11 +7,11 @@
 """View object for card sets."""
 
 import gtk
-from sutekh.gui.CellRendererSutekhButton import CellRendererSutekhButton
-from sutekh.gui.CellRendererIcons import CellRendererIcons
+from sutekh.base.gui.CellRendererSutekhButton import CellRendererSutekhButton
+from sutekh.base.gui.CellRendererIcons import CellRendererIcons
 from sutekh.gui.CardListView import CardListView
 from sutekh.gui.CardSetListModel import CardSetCardListModel
-from sutekh.core.SutekhObjects import PhysicalCardSet
+from sutekh.base.core.BaseObjects import PhysicalCardSet
 
 NUM_KEYS = {
         gtk.gdk.keyval_from_name('1'): 1,

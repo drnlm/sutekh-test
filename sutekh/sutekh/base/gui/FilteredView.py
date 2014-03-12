@@ -8,7 +8,7 @@
 
 import gtk
 import unicodedata
-from sutekh.gui.CustomDragIconView import CustomDragIconView
+from .CustomDragIconView import CustomDragIconView
 
 
 class FilteredView(CustomDragIconView):

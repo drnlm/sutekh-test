@@ -9,7 +9,7 @@
 import gtk
 import gobject
 
-from sutekh.gui.MessageBus import MessageBus, DATABASE_MSG
+from .MessageBus import MessageBus, DATABASE_MSG
 
 
 class BasicFrame(gtk.Frame):

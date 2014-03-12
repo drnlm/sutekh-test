@@ -10,7 +10,7 @@
 
 from configobj import ConfigObj, flatten_errors
 from validate import Validator, is_option, is_list
-from sutekh.gui.MessageBus import MessageBus, CONFIG_MSG
+from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
 import pkg_resources
 
 # Type definitions

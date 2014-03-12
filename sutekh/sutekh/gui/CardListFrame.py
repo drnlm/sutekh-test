@@ -7,8 +7,8 @@
 """Basic Card List Frame."""
 
 import gtk
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.BasicFrame import BasicFrame
+from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.base.gui.BasicFrame import BasicFrame
 
 
 class CardListFrame(BasicFrame):

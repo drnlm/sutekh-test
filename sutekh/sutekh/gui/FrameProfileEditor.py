@@ -11,7 +11,7 @@ passed in when the dialog is created.
 
 
 from sutekh.gui.SutekhDialog import SutekhDialog
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
 from sutekh.gui.PreferenceTable import PreferenceTable
 import gtk
 import gobject

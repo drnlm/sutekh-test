@@ -15,7 +15,7 @@ from sutekh.gui.FilteredViewMenu import CardListMenu
 from sutekh.gui.FrameProfileEditor import FrameProfileEditor
 from sutekh.gui.LocalProfileEditor import LocalProfileEditor
 from sutekh.gui.ConfigFile import CARDSET, FRAME
-from sutekh.gui.MessageBus import MessageBus, CONFIG_MSG
+from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
 
 
 class CardSetMenu(CardListMenu):

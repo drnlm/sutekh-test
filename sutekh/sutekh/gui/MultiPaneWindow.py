@@ -12,7 +12,7 @@ import gtk
 from itertools import chain
 
 from sutekh.gui.MainToolbar import MainToolbar
-from sutekh.gui.BasicFrame import BasicFrame
+from sutekh.base.gui.BasicFrame import BasicFrame
 
 
 class MultiPaneWindow(gtk.Window):

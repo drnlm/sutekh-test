@@ -36,7 +36,7 @@ from sutekh.gui.CardSetManagementFrame import CardSetManagementFrame
 from sutekh.gui.PluginManager import PluginManager
 from sutekh.gui.GuiDBManagement import refresh_ww_card_list
 from sutekh.gui import SutekhIcon
-from sutekh.gui.MessageBus import MessageBus, DATABASE_MSG
+from sutekh.base.gui.MessageBus import MessageBus, DATABASE_MSG
 from sutekh.gui.HTMLTextView import HTMLViewDialog
 from sutekh.gui.GuiIconManager import GuiIconManager
 from sutekh.gui.SutekhDialog import do_complaint_error_details, \

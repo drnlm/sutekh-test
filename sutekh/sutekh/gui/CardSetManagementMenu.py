@@ -11,7 +11,7 @@ import gtk
 from sutekh.gui.FilteredViewMenu import FilteredViewMenu
 from sutekh.gui.FrameProfileEditor import FrameProfileEditor
 from sutekh.gui.ConfigFile import CARDSET_LIST
-from sutekh.gui.MessageBus import MessageBus, CONFIG_MSG
+from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
 
 
 class CardSetManagementMenu(FilteredViewMenu):

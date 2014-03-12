@@ -8,9 +8,9 @@
 """Frame to hold the CardTextView."""
 
 import gtk
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
 from sutekh.gui.CardTextView import CardTextView
-from sutekh.gui.BasicFrame import BasicFrame
+from sutekh.base.gui.BasicFrame import BasicFrame
 from sutekh.gui.MessageBus import MessageBus, CARD_TEXT_MSG
 
 

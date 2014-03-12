@@ -7,8 +7,8 @@
 """gtk.TreeView classes for displaying the card list."""
 
 import gtk
-from sutekh.gui.FilteredView import FilteredView
-from sutekh.gui.FilterDialog import FilterDialog
+from sutekh.base.gui.FilteredView import FilteredView
+from sutekh.base.gui.FilterDialog import FilterDialog
 
 
 class CardListView(FilteredView):

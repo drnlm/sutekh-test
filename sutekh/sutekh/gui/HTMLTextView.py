@@ -23,7 +23,7 @@ import warnings
 import HTMLParser
 from cStringIO import StringIO
 from sutekh.gui.SutekhDialog import SutekhDialog
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
 
 WHITE_SPACE_REGEX = re.compile("\\s+")
 

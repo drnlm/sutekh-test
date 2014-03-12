@@ -12,12 +12,13 @@ import logging
 from sutekh.core.Filters import FilterAndBox, NullFilter, PhysicalCardFilter, \
         make_illegal_filter, CachedFilter
 from sutekh.core.Groupings import CardTypeGrouping
-from sutekh.core.SutekhObjects import PhysicalCardToAbstractCardAdapter, \
-        PhysicalCard, PhysicalCardAdapter, ExpansionNameAdapter
+from sutekh.base.core.BaseObjects import (PhysicalCardToAbstractCardAdapter,
+                                          PhysicalCard, PhysicalCardAdapter,
+                                          ExpansionNameAdapter)
 from sutekh.base.Utility import move_articles_to_back
-from sutekh.core.FilterParser import FilterParser
+from sutekh.base.core.FilterParser import FilterParser
 from sutekh.gui.ConfigFile import WW_CARDLIST
-from sutekh.gui.MessageBus import MessageBus, CONFIG_MSG
+from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
 
 EXTRA_LEVEL_OPTION = "extra levels"
 EXTRA_LEVEL_LOOKUP = {

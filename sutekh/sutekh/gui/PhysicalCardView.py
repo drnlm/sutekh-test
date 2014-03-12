@@ -9,7 +9,7 @@
 import gtk
 from sutekh.gui.CardListView import CardListView
 from sutekh.gui.CardListModel import CardListModel
-from sutekh.gui.CellRendererIcons import CellRendererIcons
+from sutekh.base.gui.CellRendererIcons import CellRendererIcons
 
 
 class PhysicalCardView(CardListView):

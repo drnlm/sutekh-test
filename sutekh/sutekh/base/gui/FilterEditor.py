@@ -8,9 +8,9 @@
 """Widget for editing filters."""
 
 from sutekh.gui.SutekhDialog import SutekhDialog
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.FilterModelPanes import FilterModelPanes, add_accel_to_button
-from sutekh.core.FilterParser import get_filters_for_type
+from .AutoScrolledWindow import AutoScrolledWindow
+from .FilterModelPanes import FilterModelPanes, add_accel_to_button
+from ..core.FilterParser import get_filters_for_type
 import gtk
 import pango
 

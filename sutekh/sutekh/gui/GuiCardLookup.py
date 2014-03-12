@@ -11,15 +11,17 @@ import gtk
 import pango
 import gobject
 from sqlobject import SQLObjectNotFound
-from sutekh.core.SutekhObjects import AbstractCard, PhysicalCard, IExpansion, \
-        Expansion, IPhysicalCard, IAbstractCard
-from sutekh.core.CardLookup import AbstractCardLookup, PhysicalCardLookup, \
-        ExpansionLookup, LookupFailed, best_guess_filter
+from sutekh.base.core.BaseObjects import (AbstractCard, PhysicalCard,
+                                          IExpansion, Expansion,
+                                          IPhysicalCard, IAbstractCard)
+from sutekh.base.core.CardLookup import AbstractCardLookup, PhysicalCardLookup, \
+        ExpansionLookup, LookupFailed
+from sutekh.core.Filters import best_guess_filter
 from sutekh.gui.SutekhDialog import SutekhDialog, do_complaint_error
-from sutekh.gui.CellRendererSutekhButton import CellRendererSutekhButton
+from sutekh.base.gui.CellRendererSutekhButton import CellRendererSutekhButton
 from sutekh.gui.PhysicalCardView import PhysicalCardView
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.FilterModelPanes import add_accel_to_button
+from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.base.gui.FilterModelPanes import add_accel_to_button
 
 
 NO_CARD = "  No Card"

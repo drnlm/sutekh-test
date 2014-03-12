@@ -7,7 +7,7 @@
 
 import gtk
 from sutekh.gui.CardSetManagementModel import CardSetManagementModel
-from sutekh.gui.FilteredView import FilteredView
+from sutekh.base.gui.FilteredView import FilteredView
 
 
 class CardSetsListView(FilteredView):

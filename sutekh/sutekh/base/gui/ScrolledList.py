@@ -8,8 +8,8 @@
 
 import gtk
 import gobject
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.CustomDragIconView import CustomDragIconView
+from .AutoScrolledWindow import AutoScrolledWindow
+from .CustomDragIconView import CustomDragIconView
 
 
 class ScrolledListStore(gtk.ListStore):

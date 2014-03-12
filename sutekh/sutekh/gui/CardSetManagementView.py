@@ -7,10 +7,10 @@
 
 import gtk
 from sqlobject import SQLObjectNotFound
-from sutekh.core.SutekhObjects import IPhysicalCardSet
+from sutekh.base.core.BaseObjects import IPhysicalCardSet
 from sutekh.gui.GuiCardSetFunctions import reparent_card_set
 from sutekh.gui.CardSetsListView import CardSetsListView
-from sutekh.gui.FilterDialog import FilterDialog
+from sutekh.base.gui.FilterDialog import FilterDialog
 
 
 class CardSetManagementView(CardSetsListView):
