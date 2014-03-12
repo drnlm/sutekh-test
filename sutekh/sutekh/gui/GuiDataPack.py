@@ -8,7 +8,7 @@
 import urllib2
 import socket
 from sutekh.io.DataPack import fetch_data
-from sutekh.gui.SutekhDialog import do_exception_complaint
+from sutekh.base.gui.SutekhDialog import do_exception_complaint
 from sutekh.gui.ProgressDialog import ProgressDialog, SutekhCountLogHandler
 
 

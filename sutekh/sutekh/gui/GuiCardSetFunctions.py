@@ -9,7 +9,7 @@ import gtk
 import datetime
 import logging
 from sutekh.base.core.CardSetHolder import CardSetHolder
-from sutekh.gui.SutekhDialog import do_complaint_warning, do_complaint, \
+from sutekh.base.gui.SutekhDialog import do_complaint_warning, do_complaint, \
         do_complaint_error, do_exception_complaint
 from sutekh.base.core.BaseObjects import PhysicalCardSet, IPhysicalCardSet
 from sutekh.base.core.CardLookup import LookupFailed

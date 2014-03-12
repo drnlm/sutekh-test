@@ -39,7 +39,7 @@ from sutekh.gui import SutekhIcon
 from sutekh.base.gui.MessageBus import MessageBus, DATABASE_MSG
 from sutekh.gui.HTMLTextView import HTMLViewDialog
 from sutekh.gui.GuiIconManager import GuiIconManager
-from sutekh.gui.SutekhDialog import do_complaint_error_details, \
+from sutekh.base.gui.SutekhDialog import do_complaint_error_details, \
         do_exception_complaint, do_complaint
 
 

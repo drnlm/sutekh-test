@@ -13,7 +13,7 @@ from sutekh.core.SutekhObjects import Creed, DisciplinePair, Virtue, Clan, \
         CardType
 from sutekh.io.IconManager import IconManager
 from sutekh.gui.ProgressDialog import ProgressDialog, SutekhCountLogHandler
-from sutekh.gui.SutekhDialog import do_complaint
+from sutekh.base.gui.SutekhDialog import do_complaint
 
 
 # Crop the transparent border from the image

@@ -9,7 +9,7 @@ import gtk
 import os.path
 from ..io.EncodedFile import EncodedFile
 from sutekh.io.DataPack import urlopen_with_timeout
-from sutekh.gui.SutekhFileWidget import SutekhFileButton
+from .SutekhFileWidget import SutekhFileButton
 from sutekh.gui.GuiDataPack import gui_error_handler, progress_fetch_data
 
 

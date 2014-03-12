@@ -9,7 +9,7 @@
 
 import gtk
 from sutekh.gui.FilteredViewMenu import FilteredViewMenu
-from sutekh.gui.FrameProfileEditor import FrameProfileEditor
+from sutekh.base.gui.FrameProfileEditor import FrameProfileEditor
 from sutekh.gui.ConfigFile import CARDSET_LIST
 from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
 

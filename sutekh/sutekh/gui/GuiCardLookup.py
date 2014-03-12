@@ -17,7 +17,7 @@ from sutekh.base.core.BaseObjects import (AbstractCard, PhysicalCard,
 from sutekh.base.core.CardLookup import AbstractCardLookup, PhysicalCardLookup, \
         ExpansionLookup, LookupFailed
 from sutekh.core.Filters import best_guess_filter
-from sutekh.gui.SutekhDialog import SutekhDialog, do_complaint_error
+from sutekh.base.gui.SutekhDialog import SutekhDialog, do_complaint_error
 from sutekh.base.gui.CellRendererSutekhButton import CellRendererSutekhButton
 from sutekh.gui.PhysicalCardView import PhysicalCardView
 from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow

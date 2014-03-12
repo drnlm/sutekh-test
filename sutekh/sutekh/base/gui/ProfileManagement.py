@@ -9,11 +9,11 @@
 import gtk
 import gobject
 from sqlobject import SQLObjectNotFound
-from sutekh.base.core.BaseObjects import PhysicalCardSet
-from sutekh.gui.SutekhDialog import SutekhDialog, do_complaint_error, \
-                                    do_complaint_warning
-from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.FrameProfileEditor import FrameProfileEditor
+from ..core.BaseObjects import PhysicalCardSet
+from .SutekhDialog import (SutekhDialog, do_complaint_error,
+                           do_complaint_warning)
+from .AutoScrolledWindow import AutoScrolledWindow
+from .FrameProfileEditor import FrameProfileEditor
 from sutekh.gui.ConfigFile import CARDSET, WW_CARDLIST, CARDSET_LIST
 
 LABELS = {

@@ -9,11 +9,11 @@
 
 import gtk
 from sutekh.base.Utility import safe_filename
-from sutekh.gui.SutekhFileWidget import ExportDialog
+from sutekh.base.gui.SutekhFileWidget import ExportDialog
 from sutekh.io.XmlFileHandling import PhysicalCardSetXmlFile
 from sutekh.gui.FilteredViewMenu import CardListMenu
-from sutekh.gui.FrameProfileEditor import FrameProfileEditor
-from sutekh.gui.LocalProfileEditor import LocalProfileEditor
+from sutekh.base.gui.FrameProfileEditor import FrameProfileEditor
+from sutekh.base.gui.LocalProfileEditor import LocalProfileEditor
 from sutekh.gui.ConfigFile import CARDSET, FRAME
 from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
 

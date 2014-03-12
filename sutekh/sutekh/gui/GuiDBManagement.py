@@ -14,7 +14,7 @@ from sutekh.gui.ProgressDialog import ProgressDialog, SutekhHTMLLogHandler, \
 from sutekh.core.DatabaseUpgrade import create_memory_copy, \
         create_final_copy, UnknownVersion, copy_to_new_abstract_card_db
 from sutekh.core.SutekhObjects import flush_cache
-from sutekh.gui.SutekhDialog import do_complaint_buttons, do_complaint, \
+from sutekh.base.gui.SutekhDialog import do_complaint_buttons, do_complaint, \
         do_complaint_warning, do_exception_complaint, \
         do_complaint_error_details
 from sutekh.io.ZipFileWrapper import ZipFileWrapper

@@ -8,9 +8,9 @@
 """This handles editing the local profile editor, (for temporary options)"""
 
 
-from sutekh.gui.SutekhDialog import SutekhDialog
-from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.PreferenceTable import PreferenceTable
+from .SutekhDialog import SutekhDialog
+from .AutoScrolledWindow import AutoScrolledWindow
+from .PreferenceTable import PreferenceTable
 from sutekh.gui.ConfigFile import FRAME
 import gtk
 

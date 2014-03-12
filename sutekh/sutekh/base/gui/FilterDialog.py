@@ -7,8 +7,8 @@
 
 """Allow the user to specify a filter."""
 
-from sutekh.gui.SutekhDialog import SutekhDialog, do_complaint_error, \
-                                    do_complaint_buttons
+from .SutekhDialog import (SutekhDialog, do_complaint_error,
+                           do_complaint_buttons)
 from ..core import FilterParser
 from sutekh.gui.ConfigFile import WW_CARDLIST, CARDSET, DEF_PROFILE_FILTER
 from .MessageBus import MessageBus, CONFIG_MSG
