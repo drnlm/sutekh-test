@@ -14,11 +14,11 @@ from .SutekhDialog import (SutekhDialog, do_complaint_error,
                            do_complaint_warning)
 from .AutoScrolledWindow import AutoScrolledWindow
 from .FrameProfileEditor import FrameProfileEditor
-from sutekh.gui.ConfigFile import CARDSET, WW_CARDLIST, CARDSET_LIST
+from sutekh.gui.ConfigFile import CARDSET, FULL_CARDLIST, CARDSET_LIST
 
 LABELS = {
         CARDSET: 'Card Set Profiles',
-        WW_CARDLIST: 'White Wolf Cardlist Profiles',
+        FULL_CARDLIST: 'White Wolf Cardlist Profiles',
         CARDSET_LIST: 'Card Set List Profiles',
         }
 
@@ -125,7 +125,7 @@ class ProfileMngDlg(SutekhDialog):
         self._oNotebook = gtk.Notebook()
         self._oNotebook.set_scrollable(True)
         self._oNotebook.popup_enable()
-        for sType in (CARDSET, WW_CARDLIST, CARDSET_LIST):
+        for sType in (CARDSET, FULL_CARDLIST, CARDSET_LIST):
             oProfileList = self._make_profile_list(sType)
             self._oNotebook.append_page(oProfileList, gtk.Label(LABELS[sType]))
             self._dLists[oProfileList] = sType
@@ -205,7 +205,7 @@ class ProfileMngDlg(SutekhDialog):
 
     def _get_in_use_mesg(self, sType, aPanes):
         """Return a suitable 'profile in use' message for profile deletion"""
-        if sType in (CARDSET_LIST, WW_CARDLIST):
+        if sType in (CARDSET_LIST, FULL_CARDLIST):
             return 'Profile is in use. Really delete?'
         else:
             # card set pane, so find names

@@ -17,7 +17,7 @@ from sutekh.base.core.BaseObjects import (PhysicalCardToAbstractCardAdapter,
                                           ExpansionNameAdapter)
 from sutekh.base.Utility import move_articles_to_back
 from sutekh.base.core.FilterParser import FilterParser
-from sutekh.gui.ConfigFile import WW_CARDLIST
+from sutekh.gui.ConfigFile import FULL_CARDLIST
 from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
 
 EXTRA_LEVEL_OPTION = "extra levels"
@@ -98,11 +98,11 @@ class CardListModel(gtk.TreeStore):
     configfilter = property(fget=lambda self: self._oConfigFilter,
             doc="Filter from the current profile.")
 
-    frame_id = property(fget=lambda self: WW_CARDLIST,
+    frame_id = property(fget=lambda self: FULL_CARDLIST,
             doc="Frame ID of the card list (for selecting profiles)")
 
     # This isn't a card set id, but it's here to support profiles
-    cardset_id = property(fget=lambda self: WW_CARDLIST,
+    cardset_id = property(fget=lambda self: FULL_CARDLIST,
             doc="Cardset ID of card list (for selecting profiles)")
 
     # pylint: enable-msg=W0212, C0103
@@ -576,18 +576,18 @@ class CardListModel(gtk.TreeStore):
 
     def update_options(self, bSkipLoad=False):
         """Respond to config file changes"""
-        sProfile = self._oConfig.get_profile(WW_CARDLIST, WW_CARDLIST)
-        sExpMode = self._oConfig.get_profile_option(WW_CARDLIST, sProfile,
+        sProfile = self._oConfig.get_profile(FULL_CARDLIST, FULL_CARDLIST)
+        sExpMode = self._oConfig.get_profile_option(FULL_CARDLIST, sProfile,
                 EXTRA_LEVEL_OPTION).lower()
         bExpMode = EXTRA_LEVEL_LOOKUP.get(sExpMode, True)
 
-        bUseIcons = self._oConfig.get_profile_option(WW_CARDLIST, sProfile,
+        bUseIcons = self._oConfig.get_profile_option(FULL_CARDLIST, sProfile,
                 USE_ICONS)
 
-        bHideIllegal = self._oConfig.get_profile_option(WW_CARDLIST, sProfile,
+        bHideIllegal = self._oConfig.get_profile_option(FULL_CARDLIST, sProfile,
                 HIDE_ILLEGAL)
 
-        sConfigFilter = self._oConfig.get_profile_option(WW_CARDLIST, sProfile,
+        sConfigFilter = self._oConfig.get_profile_option(FULL_CARDLIST, sProfile,
                 'filter')
 
         bReloadFilter = self._change_config_filter(sConfigFilter)
@@ -605,13 +605,13 @@ class CardListModel(gtk.TreeStore):
 
     def profile_option_changed(self, sType, _sProfile, _sKey):
         """One of the per-deck configuration items changed."""
-        if sType != WW_CARDLIST:
+        if sType != FULL_CARDLIST:
             return
         self.update_options()
 
     def profile_changed(self, sType, sId):
         """A profile option changed with a cardset changed."""
-        if sType != WW_CARDLIST or sId != WW_CARDLIST:
+        if sType != FULL_CARDLIST or sId != FULL_CARDLIST:
             return
         self.update_options()
 

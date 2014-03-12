@@ -17,7 +17,7 @@ import re
 from sqlobject import sqlhub
 from sutekh.base.core.DatabaseVersion import DatabaseVersion
 from sutekh.base.core.BaseObjects import PhysicalCardSet
-from sutekh.gui.ConfigFile import CARDSET, WW_CARDLIST, CARDSET_LIST, FRAME
+from sutekh.gui.ConfigFile import CARDSET, FULL_CARDLIST, CARDSET_LIST, FRAME
 from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG, DATABASE_MSG
 from sutekh.base.gui.SutekhDialog import do_complaint_warning
 
@@ -116,7 +116,7 @@ class PluginConfigFileListener(object):
         """One of the per-deck configuration items changed."""
         if sType == CARDSET or sType == FRAME:
             dConfig = self._oPlugin.dPerPaneConfig
-        elif sType == WW_CARDLIST:
+        elif sType == FULL_CARDLIST:
             dConfig = self._oPlugin.dCardListConfig
         elif sType == CARDSET_LIST:
             dConfig = self._oPlugin.dCardSetListConfig
@@ -142,7 +142,7 @@ class PluginConfigFileListener(object):
         """The profile associated with a frame changed."""
         if sType == FRAME and self._oPlugin.model.frame_id == sId:
             self._oPlugin.perpane_config_updated()
-        elif sType in (CARDSET, WW_CARDLIST, CARDSET_LIST) and \
+        elif sType in (CARDSET, FULL_CARDLIST, CARDSET_LIST) and \
                 self._oPlugin.model.cardset_id == sId:
             self._oPlugin.perpane_config_updated()
 
@@ -332,7 +332,7 @@ class SutekhPlugin(object):
         oModel = self.model
         if oModel is None or not hasattr(oModel, "cardset_id"):
             return None
-        if oModel.cardset_id == WW_CARDLIST or \
+        if oModel.cardset_id == FULL_CARDLIST or \
                 oModel.cardset_id == CARDSET_LIST:
             sProfile = self.config.get_profile(oModel.cardset_id,
                     oModel.cardset_id)

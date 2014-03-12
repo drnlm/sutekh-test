@@ -10,7 +10,7 @@
 import gtk
 from sutekh.gui.FilteredViewMenu import CardListMenu
 from sutekh.base.gui.FrameProfileEditor import FrameProfileEditor
-from sutekh.gui.ConfigFile import WW_CARDLIST
+from sutekh.gui.ConfigFile import FULL_CARDLIST
 from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
 
 
@@ -59,10 +59,10 @@ class PhysicalCardMenu(CardListMenu):
 
         self.create_menu_item('Edit _Profiles', oMenu, self._edit_profiles)
 
-        sProfile = self._oMainWindow.config_file.get_profile(WW_CARDLIST,
-                WW_CARDLIST)
+        sProfile = self._oMainWindow.config_file.get_profile(FULL_CARDLIST,
+                FULL_CARDLIST)
         self._oCardlistProfileMenu = self._create_profile_menu(oMenu,
-            "Cardlist Profile", WW_CARDLIST, self._select_cardlist_profile,
+            "Cardlist Profile", FULL_CARDLIST, self._select_cardlist_profile,
             sProfile)
 
         self.add_edit_menu_actions(oMenu)
@@ -77,9 +77,9 @@ class PhysicalCardMenu(CardListMenu):
     def _edit_profiles(self, _oWidget):
         """Open an options profiles editing dialog."""
         oDlg = FrameProfileEditor(self._oMainWindow,
-            self._oMainWindow.config_file, WW_CARDLIST)
-        sCurProfile = self._oMainWindow.config_file.get_profile(WW_CARDLIST,
-            WW_CARDLIST)
+            self._oMainWindow.config_file, FULL_CARDLIST)
+        sCurProfile = self._oMainWindow.config_file.get_profile(FULL_CARDLIST,
+            FULL_CARDLIST)
         oDlg.set_selected_profile(sCurProfile)
         oDlg.run()
 
@@ -87,25 +87,25 @@ class PhysicalCardMenu(CardListMenu):
 
     def _fix_profile_menu(self):
         """Set the profile menu correctly"""
-        sProfile = self._oMainWindow.config_file.get_profile(WW_CARDLIST,
-                WW_CARDLIST)
-        self._update_profile_group(self._oCardlistProfileMenu, WW_CARDLIST,
+        sProfile = self._oMainWindow.config_file.get_profile(FULL_CARDLIST,
+                FULL_CARDLIST)
+        self._update_profile_group(self._oCardlistProfileMenu, FULL_CARDLIST,
             self._select_cardlist_profile, sProfile)
 
     def _select_cardlist_profile(self, oRadio, sProfileKey):
         """Callback to change the profile of the current card set."""
         if oRadio.get_active():
             oConfig = self._oMainWindow.config_file
-            oConfig.set_profile(WW_CARDLIST, WW_CARDLIST, sProfileKey)
+            oConfig.set_profile(FULL_CARDLIST, FULL_CARDLIST, sProfileKey)
 
     # Respond to profile changes
 
     def remove_profile(self, sType, _sProfile):
         """A profile has been removed"""
-        if sType == WW_CARDLIST:
+        if sType == FULL_CARDLIST:
             self._fix_profile_menu()
 
     def profile_option_changed(self, sType, _sProfile, sKey):
         """Update menu if profiles are renamed."""
-        if sType == WW_CARDLIST and sKey == 'name':
+        if sType == FULL_CARDLIST and sKey == 'name':
             self._fix_profile_menu()

@@ -10,7 +10,7 @@
 from .SutekhDialog import (SutekhDialog, do_complaint_error,
                            do_complaint_buttons)
 from ..core import FilterParser
-from sutekh.gui.ConfigFile import WW_CARDLIST, CARDSET, DEF_PROFILE_FILTER
+from sutekh.gui.ConfigFile import FULL_CARDLIST, CARDSET, DEF_PROFILE_FILTER
 from .MessageBus import MessageBus, CONFIG_MSG
 from .FilterEditor import FilterEditor
 import gtk
@@ -335,11 +335,11 @@ class FilterDialog(SutekhDialog):
         dProfiles = self.__oConfig.get_profiles_for_filter(sName)
 
         if sConfigFilter is not None:
-            if dProfiles[WW_CARDLIST] or dProfiles[CARDSET]:
+            if dProfiles[FULL_CARDLIST] or dProfiles[CARDSET]:
                 # Filter is in use as a config filter, so prompt
                 sCardlist = '\n'.join(['Cardlist profile : %s' %
-                    self.__oConfig.get_profile_option(WW_CARDLIST, x, 'name')
-                    for x in dProfiles[WW_CARDLIST]])
+                    self.__oConfig.get_profile_option(FULL_CARDLIST, x, 'name')
+                    for x in dProfiles[FULL_CARDLIST]])
                 sCardset = '\n'.join(['Cardset profile : %s' %
                     self.__oConfig.get_profile_option(CARDSET, x, 'name')
                     for x in dProfiles[CARDSET]])
