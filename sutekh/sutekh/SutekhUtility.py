@@ -46,17 +46,17 @@ def refresh_tables(aTables, oConn, bMakeCache=True):
     return True
 
 
-def read_white_wolf_list(aWwFiles, oLogHandler=None):
+def read_white_wolf_list(aEncodedFiles, oLogHandler=None):
     """Parse in a new White Wolf cardlist
 
        aWwList is a list of objects with a .open() method (e.g.
-       sutekh.io.WwFile.WwFile's)
+       sutekh.base.io.EncodedFile.EncodedFile's)
        """
     flush_cache()
     oOldConn = sqlhub.processConnection
     sqlhub.processConnection = oOldConn.transaction()
     oParser = WhiteWolfTextParser(oLogHandler)
-    for oFile in aWwFiles:
+    for oFile in aEncodedFiles:
         fIn = oFile.open()
         oParser.parse(fIn)
         fIn.close()
@@ -67,8 +67,8 @@ def read_white_wolf_list(aWwFiles, oLogHandler=None):
 def read_rulings(aRulings, oLogHandler=None):
     """Parse a new White Wolf rulings file
 
-       oRulings is an object with a .open() method (e.g. a
-       sutekh.io.WwFile.WwFile)
+       aRulings is a list of objects with a .open() method (e.g. a
+       sutekh.base.io.EncodedFile.EncodedFile)
        """
     flush_cache()
     oOldConn = sqlhub.processConnection

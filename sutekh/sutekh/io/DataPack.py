@@ -166,7 +166,7 @@ def find_data_pack(sTag, sDocUrl=DOC_URL, sZipUrlBase=ZIP_URL_BASE,
 
 def fetch_data(oFile, oOutFile=None, sHash=None, oLogHandler=None,
         fErrorHandler=None):
-    """Fetch data from a file'ish object (WwFile, urlopen or file)"""
+    """Fetch data from a file'ish object (EncodedFile, urlopen or file)"""
     try:
         if hasattr(oFile, 'info') and callable(oFile.info):
             sLength = oFile.info().getheader('Content-Length')
