@@ -17,7 +17,8 @@ from .BaseObjects import (AbstractCard, IAbstractCard, IPhysicalCardSet,
                           IRarityPair, IRarity, Expansion, IExpansion,
                           RarityPair, PhysicalCardSet, PhysicalCard,
                           MapPhysicalCardToPhysicalCardSet, Artist,
-                          Keyword, IArtist, IKeyword)
+                          Keyword, IArtist, IKeyword, ICardType,
+                          CardType)
 from sqlobject import (SQLObjectNotFound, AND, OR, NOT, LIKE, func, sqlhub,
                        IN as SQLOBJ_IN)
 from sqlobject.sqlbuilder import (Table, Alias, LEFTJOINOn, Select,
@@ -309,6 +310,40 @@ def make_table_alias(sTable):
 
 
 # Individual Filters
+class CardTypeFilter(SingleFilter):
+    """Filter on card type"""
+    types = ('AbstractCard', 'PhysicalCard')
+
+    def __init__(self, sCardType):
+        # pylint: disable-msg=E1101
+        # SQLObject methods not detected by pylint
+        self._oId = ICardType(sCardType).id
+        self._oMapTable = make_table_alias('abs_type_map')
+        self._oIdField = self._oMapTable.q.card_type_id
+
+
+class MultiCardTypeFilter(MultiFilter):
+    """Filter on multiple card types"""
+    keyword = "CardType"
+    description = "Card Type"
+    helptext = "a list of card types.\nReturns all cards of the given types"
+    islistfilter = True
+    types = ('AbstractCard', 'PhysicalCard')
+
+    def __init__(self, aCardTypes):
+        # pylint: disable-msg=E1101
+        # SQLObject methods not detected by pylint
+        self._aIds = [ICardType(x).id for x in aCardTypes]
+        self._oMapTable = make_table_alias('abs_type_map')
+        self._oIdField = self._oMapTable.q.card_type_id
+
+    # pylint: disable-msg=C0111
+    # don't need docstrings for _get_expression, get_values & _get_joins
+    @classmethod
+    def get_values(cls):
+        return [x.name for x in CardType.select().orderBy('name')]
+
+
 class ExpansionFilter(MultiFilter):
     """Filter AbstractCard on Expansion name"""
     types = ('AbstractCard', 'PhysicalCard')
@@ -461,6 +496,34 @@ class MultiKeywordFilter(MultiFilter):
     @classmethod
     def get_values(cls):
         return [x.keyword for x in Keyword.select().orderBy('keyword')]
+
+
+class BaseCardTextFilter(DirectFilter):
+    """Base for filters on Card Text
+       
+       This defines the basics of a card text filter, without any special
+       logic for dealing with specially formatted text."""
+    keyword = "CardText"
+    description = "Card Text"
+    helptext = "the desired card text to search for (% can be used as a " \
+            "wildcard).\nReturns all cards whose text contains this string."
+    istextentry = True
+    types = ('AbstractCard', 'PhysicalCard')
+
+    def __init__(self, sPattern):
+        self._sPattern = sPattern.lower().encode('utf-8')
+
+    # pylint: disable-msg=C0111
+    # don't need docstrings for _get_expression, get_values & _get_joins
+    @classmethod
+    def get_values(cls):
+        return ''
+
+    def _get_expression(self):
+        # pylint: disable-msg=E1101
+        # SQLObject methods not detected by pylint
+        return LIKE(func.LOWER(AbstractCard.q.text),
+                   '%' + self._sPattern + '%')
 
 
 class CardNameFilter(DirectFilter):
@@ -1107,3 +1170,16 @@ class CSPhysicalCardSetInUseFilter(DirectFilter):
         # pylint: disable-msg=E1101
         # SQLObject methods not detected by pylint
         return PhysicalCardSet.q.inuse == True
+
+
+# Default list of filters exposed to the parser.
+# This should be extended as required in the full Filters.py file
+BASE_PARSER_LIST = [MultiCardTypeFilter, CardNameFilter,
+                    MultiExpansionRarityFilter,
+                    MultiPhysicalExpansionFilter, CardSetNameFilter,
+                    CardSetAuthorFilter, CardSetDescriptionFilter,
+                    CardSetAnnotationsFilter, MultiPhysicalCardSetFilter,
+                    PhysicalCardSetInUseFilter, CardSetMultiCardCountFilter,
+                    CSPhysicalCardSetInUseFilter,
+                    ParentCardSetFilter, MultiArtistFilter,
+                    MultiKeywordFilter]
