@@ -13,7 +13,7 @@ import os
 import traceback
 from sqlobject import sqlhub, connectionForURI
 from sutekh.core.SutekhObjects import VersionTable, TABLE_LIST
-from sutekh.SutekhUtility import prefs_dir, ensure_dir_exists, sqlite_uri, \
+from sutekh.base.Utility import prefs_dir, ensure_dir_exists, sqlite_uri, \
         get_database_url
 from sutekh.gui.SutekhMainWindow import SutekhMainWindow
 from sutekh.core.DatabaseVersion import DatabaseVersion

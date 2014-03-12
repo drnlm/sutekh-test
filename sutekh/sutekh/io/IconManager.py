@@ -12,7 +12,7 @@ from sutekh.base.core.BaseObjects import CardType, ICardType
 from sutekh.core.SutekhObjects import Clan, Creed, DisciplinePair, \
         Virtue, IDisciplinePair, IVirtue, ICreed, IClan
 from sutekh.core import Groupings
-from sutekh.SutekhUtility import ensure_dir_exists
+from sutekh.base.Utility import ensure_dir_exists
 
 
 # Utilty functions - convert object to a filename

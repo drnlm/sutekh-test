@@ -24,8 +24,9 @@ from sutekh.core.Filters import PhysicalCardSetFilter, FilterAndBox, \
         PhysicalCardFilter
 from sutekh.base.core.FilterParser import FilterParser
 from sutekh.SutekhUtility import refresh_tables, read_white_wolf_list, \
-        read_rulings, gen_temp_dir, prefs_dir, ensure_dir_exists, sqlite_uri, \
-        is_crypt_card, format_text, read_exp_date_list
+        read_rulings, is_crypt_card, format_text, read_exp_date_list
+from sutekh.base.Utility import gen_temp_dir, prefs_dir, ensure_dir_exists, \
+        sqlite_uri
 from sutekh.core.DatabaseUpgrade import attempt_database_upgrade
 from sutekh.base.core.CardSetHolder import CardSetWrapper
 from sutekh.base.core.CardSetUtilities import format_cs_list

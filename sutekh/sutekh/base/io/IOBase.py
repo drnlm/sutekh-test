@@ -7,7 +7,7 @@
 """Base classes for sutekh.io card set parsers and writers.
    """
 
-from sutekh.SutekhUtility import pretty_xml, norm_xml_quotes
+from ..Utility import pretty_xml, norm_xml_quotes
 # pylint: disable-msg=E0611, F0401
 # xml.etree is a python2.5 thing
 try:
