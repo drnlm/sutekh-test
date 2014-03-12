@@ -22,8 +22,8 @@ from sutekh.core.SutekhObjects import PhysicalCardSet, \
 from sutekh.tests.core.test_Filters import make_card
 # Needed to reduce speed impact of Grouping tests
 from sutekh.core.SutekhObjectCache import SutekhObjectCache
-from sutekh.core.DBSignals import send_changed_signal
-from sutekh.gui.MessageBus import MessageBus
+from sutekh.base.core.DBSignals import send_changed_signal
+from sutekh.base.gui.MessageBus import MessageBus
 import unittest
 
 

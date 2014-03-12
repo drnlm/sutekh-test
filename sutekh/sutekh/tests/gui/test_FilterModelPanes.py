@@ -8,10 +8,10 @@
 from sutekh.tests.GuiSutekhTest import GuiSutekhTest
 import unittest
 import gtk
-from sutekh.core.FilterParser import FilterParser
-from sutekh.gui.FilterModelPanes import FilterModelPanes, \
+from sutekh.base.core.FilterParser import FilterParser
+from sutekh.base.gui.FilterModelPanes import FilterModelPanes, \
         FilterEditorToolbar, ENTER_KEYS
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
 from sutekh.gui.CardSetsListView import CardSetsListView
 from sutekh.core.SutekhObjects import AbstractCard
 

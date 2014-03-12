@@ -9,7 +9,7 @@ from sutekh.tests.GuiSutekhTest import ConfigSutekhTest
 from sutekh.core.SutekhObjects import PhysicalCard, AbstractCard
 from sutekh.core import Filters, Groupings
 from sutekh.gui.CardListModel import CardListModel
-from sutekh.gui.MessageBus import MessageBus
+from sutekh.base.gui.MessageBus import MessageBus
 import unittest
 
 
