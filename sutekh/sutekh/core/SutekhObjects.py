@@ -249,6 +249,7 @@ class DisciplinePair(SQLObject):
     disciplineLevelIndex = DatabaseIndex(discipline, level, unique=True)
     cards = RelatedJoin('SutekhAbstractCard',
             intermediateTable='abs_discipline_pair_map',
+            otherColumn="abstract_card_id",
             createRelatedTable=False)
 
 
@@ -268,6 +269,7 @@ class Virtue(SQLObject):
     name = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
     fullname = UnicodeCol(default=None)
     cards = RelatedJoin('SutekhAbstractCard', intermediateTable='abs_virtue_map',
+            otherColumn="abstract_card_id",
             createRelatedTable=False)
 
 
@@ -278,6 +280,7 @@ class Creed(SQLObject):
     name = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
     shortname = UnicodeCol(default=None)
     cards = RelatedJoin('SutekhAbstractCard', intermediateTable='abs_creed_map',
+            otherColumn="abstract_card_id",
             createRelatedTable=False)
 
 
@@ -288,6 +291,7 @@ class Clan(SQLObject):
     name = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
     shortname = UnicodeCol(default=None)
     cards = RelatedJoin('SutekhAbstractCard', intermediateTable='abs_clan_map',
+            otherColumn="abstract_card_id",
             createRelatedTable=False)
 
 
@@ -306,6 +310,7 @@ class Sect(SQLObject):
     tableversion = 2
     name = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
     cards = RelatedJoin('SutekhAbstractCard', intermediateTable='abs_sect_map',
+            otherColumn="abstract_card_id",
             createRelatedTable=False)
 
 
@@ -315,6 +320,7 @@ class Title(SQLObject):
     tableversion = 2
     name = UnicodeCol(alternateID=True, length=MAX_ID_LENGTH)
     cards = RelatedJoin('SutekhAbstractCard', intermediateTable='abs_title_map',
+            otherColumn="abstract_card_id",
             createRelatedTable=False)
 
 
@@ -1015,6 +1021,10 @@ def flush_cache(bMakeCache=True):
         if type(oJoin) is SOCachedRelatedJoin:
             oJoin.flush_cache()
 
+    for oJoin in SutekhAbstractCard.sqlmeta.joins:
+        if type(oJoin) is SOCachedRelatedJoin:
+            oJoin.flush_cache()
+
     if bMakeCache:
         make_adaptor_caches()
 
@@ -1022,6 +1032,10 @@ def flush_cache(bMakeCache=True):
 def init_cache():
     """Initiliase the cached join tables."""
     for oJoin in AbstractCard.sqlmeta.joins:
+        if type(oJoin) is SOCachedRelatedJoin:
+            oJoin.init_cache()
+
+    for oJoin in SutekhAbstractCard.sqlmeta.joins:
         if type(oJoin) is SOCachedRelatedJoin:
             oJoin.init_cache()
 
