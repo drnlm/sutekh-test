@@ -9,23 +9,12 @@
 """Configuration handling for the Sutekh GUI."""
 
 from configobj import ConfigObj, flatten_errors
-from validate import Validator, is_option, is_list
+from validate import Validator, is_option
 from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
+from sutekh.base.gui.BaseConfig import (CARDSET, FRAME, FULL_CARDLIST,
+                                        CARDSET_LIST, DEF_PROFILE_FILTER,
+                                        is_option_list)
 import pkg_resources
-
-# Type definitions
-CARDSET = 'Card Set'
-FRAME = 'Frame'
-FULL_CARDLIST = 'cardlist'
-CARDSET_LIST = 'cardset list'
-
-# Reserved filter names (for filter in profile special cases)
-DEF_PROFILE_FILTER = 'No profile filter'
-
-
-def is_option_list(sValue, *aOptions):
-    """Validator function for option_list configspec type."""
-    return [is_option(sMem, *aOptions) for sMem in is_list(sValue)]
 
 
 class ConfigFile(object):

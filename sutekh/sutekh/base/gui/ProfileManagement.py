@@ -14,11 +14,11 @@ from .SutekhDialog import (SutekhDialog, do_complaint_error,
                            do_complaint_warning)
 from .AutoScrolledWindow import AutoScrolledWindow
 from .FrameProfileEditor import FrameProfileEditor
-from sutekh.gui.ConfigFile import CARDSET, FULL_CARDLIST, CARDSET_LIST
+from .BaseConfig import CARDSET, FULL_CARDLIST, CARDSET_LIST
 
 LABELS = {
         CARDSET: 'Card Set Profiles',
-        FULL_CARDLIST: 'White Wolf Cardlist Profiles',
+        FULL_CARDLIST: 'Full Cardlist Profiles',
         CARDSET_LIST: 'Card Set List Profiles',
         }
 

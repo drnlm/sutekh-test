@@ -11,7 +11,7 @@
 from .SutekhDialog import SutekhDialog
 from .AutoScrolledWindow import AutoScrolledWindow
 from .PreferenceTable import PreferenceTable
-from sutekh.gui.ConfigFile import FRAME
+from .BaseConfig import FRAME
 import gtk
 
 
