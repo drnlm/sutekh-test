@@ -497,6 +497,7 @@ def copy_abstract_card(oOrigConn, oTrans, oLogger):
     for oCard in SutekhAbstractCard.select(connection=oOrigConn):
         # force issue for SQObject >= 0.11.4
         oCard._connection = oOrigConn
+        oCard._parent._connection = oOrigConn
         oCardCopy = SutekhAbstractCard(id=oCard.id,
                 canonicalName=oCard.canonicalName, name=oCard.name,
                 text=oCard.text, search_text=oCard.search_text,
