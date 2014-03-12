@@ -7,7 +7,7 @@
 """Parser for JOL deck format"""
 
 import re
-from sutekh.io.IOBase import BaseLineParser
+from sutekh.base.io.IOBase import BaseLineParser
 from sutekh.base.Utility import move_articles_to_front
 
 

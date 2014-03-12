@@ -26,7 +26,7 @@
 
 import re
 from sutekh.base.Utility import move_articles_to_front
-from sutekh.io.IOBase import CardSetParser
+from sutekh.base.io.IOBase import CardSetParser
 
 
 class SLInventoryParser(CardSetParser):

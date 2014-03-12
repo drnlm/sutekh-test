@@ -10,7 +10,7 @@
 
 from sutekh.base.Utility import move_articles_to_back
 from sutekh.core.ArdbInfo import ArdbInfo
-from sutekh.io.IOBase import BaseXMLWriter
+from sutekh.base.io.IOBase import BaseXMLWriter
 import time
 # pylint: disable-msg=E0611, F0401
 # xml.etree is a python2.5 thing
