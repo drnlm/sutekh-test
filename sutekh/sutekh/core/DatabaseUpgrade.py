@@ -25,11 +25,10 @@ from logging import Logger
 from sutekh.core.SutekhObjects import PhysicalCard, AbstractCard, \
         PhysicalCardSet, Expansion, Clan, Virtue, Discipline, Rarity, \
         RarityPair, CardType, Ruling, TABLE_LIST, DisciplinePair, Creed, \
-        Sect, Title, Keyword, Artist, flush_cache, MAX_ID_LENGTH, \
-        SutekhAbstractCard
+        Sect, Title, Keyword, Artist, MAX_ID_LENGTH, SutekhAbstractCard
 from sutekh.base.core.CardSetHolder import CachedCardSetHolder
 from sutekh.io.WhiteWolfTextParser import strip_braces
-from sutekh.base.core.DBUtility import refresh_tables
+from sutekh.base.core.DBUtility import refresh_tables, flush_cache
 from sutekh.base.core.DatabaseVersion import DatabaseVersion
 
 # This file handles all the grunt work of the database upgrades. We have some

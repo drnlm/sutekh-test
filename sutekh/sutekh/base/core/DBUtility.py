@@ -9,9 +9,45 @@
 """Misc functions needed in various places in Sutekh."""
 
 
-from .BaseObjects import VersionTable, PhysicalCardSet
-from sutekh.core.SutekhObjects import flush_cache
+from .BaseObjects import VersionTable, PhysicalCardSet, AbstractCard
 from .DatabaseVersion import DatabaseVersion
+from .CachedRelatedJoin import SOCachedRelatedJoin
+from sutekh.core.SutekhObjects import CACHED_ADAPTORS
+
+
+def make_adaptor_caches():
+    """Flush all adaptor caches."""
+    for cAdaptor in CACHED_ADAPTORS:
+
+        cAdaptor.make_object_cache()
+
+
+def flush_cache(bMakeCache=True):
+    """Flush all the object caches - needed before importing new card lists
+       and such"""
+    for oJoin in AbstractCard.sqlmeta.joins:
+        if type(oJoin) is SOCachedRelatedJoin:
+            oJoin.flush_cache()
+
+    for oChild in AbstractCard.__subclasses__():
+        for oJoin in oChild.sqlmeta.joins:
+            if type(oJoin) is SOCachedRelatedJoin:
+                oJoin.flush_cache()
+    if bMakeCache:
+        make_adaptor_caches()
+
+
+def init_cache():
+    """Initiliase the cached join tables."""
+    for oJoin in AbstractCard.sqlmeta.joins:
+        if type(oJoin) is SOCachedRelatedJoin:
+            oJoin.init_cache()
+
+    for oChild in AbstractCard.__subclasses__():
+        for oJoin in oChild.sqlmeta.joins:
+            if type(oJoin) is SOCachedRelatedJoin:
+                oJoin.init_cache()
+    make_adaptor_caches()
 
 
 def refresh_tables(aTables, oConn, bMakeCache=True):

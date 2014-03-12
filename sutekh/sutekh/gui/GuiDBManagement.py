@@ -13,14 +13,13 @@ from sutekh.gui.ProgressDialog import ProgressDialog, SutekhHTMLLogHandler, \
         SutekhCountLogHandler
 from sutekh.core.DatabaseUpgrade import create_memory_copy, \
         create_final_copy, UnknownVersion, copy_to_new_abstract_card_db
-from sutekh.core.SutekhObjects import flush_cache
 from sutekh.base.gui.SutekhDialog import do_complaint_buttons, do_complaint, \
         do_complaint_warning, do_exception_complaint, \
         do_complaint_error_details
 from sutekh.io.ZipFileWrapper import ZipFileWrapper
 from sutekh.base.io.EncodedFile import EncodedFile
 from sutekh.core.SutekhObjects import TABLE_LIST, PhysicalCardSet
-from sutekh.base.core.DBUtility import refresh_tables, get_cs_id_name_table
+from sutekh.base.core.DBUtility import refresh_tables, get_cs_id_name_table, flush_cache
 from sutekh.SutekhUtility import (read_rulings, read_white_wolf_list,
                                   read_exp_date_list)
 

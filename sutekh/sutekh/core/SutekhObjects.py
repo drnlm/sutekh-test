@@ -10,8 +10,7 @@
 
 """The database definitions and pyprotocols adaptors for Sutekh"""
 
-from sutekh.base.core.CachedRelatedJoin import (CachedRelatedJoin,
-                                                SOCachedRelatedJoin)
+from sutekh.base.core.CachedRelatedJoin import CachedRelatedJoin
 from sutekh.base.core.BaseObjects import (AbstractCard, PhysicalCard,
                                           PhysicalCardSet,
                                           Expansion, Rarity, RarityPair,
@@ -32,6 +31,7 @@ from sutekh.base.core.BaseObjects import (AbstractCard, PhysicalCard,
                                           ExpansionNameAdapter,
                                           IAbstractCard, BaseObjectMaker,
                                           MAX_ID_LENGTH)
+
 from sutekh.core.Abbreviations import (CardTypes, Clans, Creeds, Disciplines,
         Expansions, Rarities, Sects, Titles, Virtues)
 # pylint: disable-msg=E0611
@@ -450,43 +450,12 @@ class DisciplinePairAdapter(object):
 
 # Flushing
 
-def make_adaptor_caches():
-    """Flush all adaptor caches."""
-    for cAdaptor in [ExpansionAdapter, RarityAdapter, DisciplineAdapter,
-                      ClanAdapter, CardTypeAdapter, SectAdaptor, TitleAdapter,
-                      VirtueAdapter, CreedAdapter, DisciplinePairAdapter,
-                      RarityPairAdapter, PhysicalCardAdapter,
-                      PhysicalCardMappingToPhysicalCardAdapter,
-                      PhysicalCardToAbstractCardAdapter,
-                      PhysicalCardMappingToAbstractCardAdapter,
-                      ExpansionNameAdapter,
-                      ]:
-        cAdaptor.make_object_cache()
-
-
-def flush_cache(bMakeCache=True):
-    """Flush all the object caches - needed before importing new card lists
-       and such"""
-    for oJoin in AbstractCard.sqlmeta.joins:
-        if type(oJoin) is SOCachedRelatedJoin:
-            oJoin.flush_cache()
-
-    for oJoin in SutekhAbstractCard.sqlmeta.joins:
-        if type(oJoin) is SOCachedRelatedJoin:
-            oJoin.flush_cache()
-
-    if bMakeCache:
-        make_adaptor_caches()
-
-
-def init_cache():
-    """Initiliase the cached join tables."""
-    for oJoin in AbstractCard.sqlmeta.joins:
-        if type(oJoin) is SOCachedRelatedJoin:
-            oJoin.init_cache()
-
-    for oJoin in SutekhAbstractCard.sqlmeta.joins:
-        if type(oJoin) is SOCachedRelatedJoin:
-            oJoin.init_cache()
-
-    make_adaptor_caches()
+CACHED_ADAPTORS = [ExpansionAdapter, RarityAdapter, DisciplineAdapter,
+                   ClanAdapter, CardTypeAdapter, SectAdaptor, TitleAdapter,
+                   VirtueAdapter, CreedAdapter, DisciplinePairAdapter,
+                   RarityPairAdapter, PhysicalCardAdapter,
+                   PhysicalCardMappingToPhysicalCardAdapter,
+                   PhysicalCardToAbstractCardAdapter,
+                   PhysicalCardMappingToAbstractCardAdapter,
+                   ExpansionNameAdapter,
+                   ]

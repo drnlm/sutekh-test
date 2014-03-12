@@ -5,9 +5,10 @@
 
 """Cache various objects used by sutekh to speed up database queries."""
 
+from sutekh.base.core.DBUtility import init_cache
 from sutekh.core.SutekhObjects import AbstractCard, RarityPair, Rarity, Clan, \
         Discipline, DisciplinePair, CardType, Expansion, Ruling, Sect, Title, \
-        Creed, Virtue, PhysicalCard, Keyword, Artist, init_cache
+        Creed, Virtue, PhysicalCard, Keyword, Artist
 
 
 class SutekhObjectCache(object):

@@ -12,7 +12,8 @@ import re
 from sqlobject import sqlhub
 
 
-from sutekh.core.SutekhObjects import flush_cache, CRYPT_TYPES
+from sutekh.base.core.DBUtility import flush_cache
+from sutekh.core.SutekhObjects import CRYPT_TYPES
 from sutekh.base.Utility import move_articles_to_back
 from sutekh.io.WhiteWolfTextParser import WhiteWolfTextParser
 from sutekh.io.RulingParser import RulingParser
