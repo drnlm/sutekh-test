@@ -11,8 +11,8 @@ pygtk.require('2.0')
 import gtk
 from itertools import chain
 
-from sutekh.gui.MainToolbar import MainToolbar
-from sutekh.base.gui.BasicFrame import BasicFrame
+from .MainToolbar import MainToolbar
+from .BasicFrame import BasicFrame
 
 
 class MultiPaneWindow(gtk.Window):

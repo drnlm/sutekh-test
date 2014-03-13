@@ -25,7 +25,7 @@ from sutekh.base.core.DBUtility import flush_cache
 from sutekh.core.SutekhObjectCache import SutekhObjectCache
 from sutekh.core.SutekhObjects import PhysicalCardSet, \
         PhysicalCard, IAbstractCard
-from sutekh.gui.MultiPaneWindow import MultiPaneWindow
+from sutekh.base.gui.MultiPaneWindow import MultiPaneWindow
 from sutekh.gui.PhysicalCardFrame import PhysicalCardFrame
 from sutekh.gui.CardTextFrame import CardTextFrame
 from sutekh.gui.CardSetFrame import CardSetFrame
