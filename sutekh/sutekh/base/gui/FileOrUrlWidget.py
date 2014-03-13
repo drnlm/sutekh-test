@@ -8,9 +8,9 @@
 import gtk
 import os.path
 from ..io.EncodedFile import EncodedFile
-from sutekh.io.DataPack import urlopen_with_timeout
+from ..io.UrlOps import urlopen_with_timeout
 from .SutekhFileWidget import SutekhFileButton
-from sutekh.gui.GuiDataPack import gui_error_handler, progress_fetch_data
+from .GuiDataPack import gui_error_handler, progress_fetch_data
 
 
 class FileOrUrlWidget(gtk.VBox):

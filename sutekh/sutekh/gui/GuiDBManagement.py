@@ -9,7 +9,7 @@ import logging
 from sqlobject import sqlhub, connectionForURI
 from sutekh.gui.DBUpgradeDialog import DBUpgradeDialog
 from sutekh.gui.WWFilesDialog import WWFilesDialog
-from sutekh.gui.ProgressDialog import ProgressDialog, SutekhHTMLLogHandler, \
+from sutekh.base.gui.ProgressDialog import ProgressDialog, SutekhHTMLLogHandler, \
         SutekhCountLogHandler
 from sutekh.core.DatabaseUpgrade import create_memory_copy, \
         create_final_copy, UnknownVersion, copy_to_new_abstract_card_db

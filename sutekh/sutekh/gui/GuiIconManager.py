@@ -12,7 +12,7 @@ from sutekh.base.Utility import prefs_dir, ensure_dir_exists
 from sutekh.core.SutekhObjects import Creed, DisciplinePair, Virtue, Clan, \
         CardType
 from sutekh.io.IconManager import IconManager
-from sutekh.gui.ProgressDialog import ProgressDialog, SutekhCountLogHandler
+from sutekh.base.gui.ProgressDialog import ProgressDialog, SutekhCountLogHandler
 from sutekh.base.gui.SutekhDialog import do_complaint
 
 

@@ -7,9 +7,9 @@
 
 import urllib2
 import socket
-from sutekh.io.DataPack import fetch_data
-from sutekh.base.gui.SutekhDialog import do_exception_complaint
-from sutekh.gui.ProgressDialog import ProgressDialog, SutekhCountLogHandler
+from ..io.UrlOps import fetch_data
+from .SutekhDialog import do_exception_complaint
+from .ProgressDialog import ProgressDialog, SutekhCountLogHandler
 
 
 def gui_error_handler(oExp):
