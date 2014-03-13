@@ -6,14 +6,14 @@
 """Compare the contents of two card sets"""
 
 import gtk
-from sutekh.core.SutekhObjects import PhysicalCard, IPhysicalCard, \
+from sutekh.base.core.BaseObjects import PhysicalCard, IPhysicalCard, \
         PhysicalCardSet, IAbstractCard, IPhysicalCardSet
-from sutekh.core.Filters import PhysicalCardSetFilter
+from sutekh.base.core.BaseFilters import PhysicalCardSetFilter
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhDialog import SutekhDialog, do_complaint_error
-from sutekh.gui.CardSetsListView import CardSetsListView
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.GuiCardSetFunctions import create_card_set
+from sutekh.base.gui.SutekhDialog import SutekhDialog, do_complaint_error
+from sutekh.base.gui.CardSetsListView import CardSetsListView
+from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.base.gui.GuiCardSetFunctions import create_card_set
 
 UNKNOWN_EXP = 'Unspecified Expansion'
 

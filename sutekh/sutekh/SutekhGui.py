@@ -12,15 +12,18 @@ import optparse
 import os
 import traceback
 from sqlobject import sqlhub, connectionForURI
-from sutekh.core.SutekhObjects import VersionTable, TABLE_LIST
-from sutekh.base.Utility import prefs_dir, ensure_dir_exists, sqlite_uri, \
-        get_database_url
+from sutekh.base.core.BaseObjects import VersionTable
+from sutekh.core.SutekhObjects import TABLE_LIST
+from sutekh.base.Utility import (prefs_dir, ensure_dir_exists, sqlite_uri,
+                                 get_database_url)
 from sutekh.gui.SutekhMainWindow import SutekhMainWindow
-from sutekh.core.DatabaseVersion import DatabaseVersion
+from sutekh.base.core.DatabaseVersion import DatabaseVersion
 from sutekh.gui.ConfigFile import ConfigFile
 from sutekh.gui.GuiDBManagement import do_db_upgrade, initialize_db
-from sutekh.gui.SutekhDialog import do_complaint_error, do_complaint_warning, \
-        do_exception_complaint, do_complaint_error_details
+from sutekh.base.gui.SutekhDialog import (do_complaint_error,
+                                          do_complaint_warning,
+                                          do_exception_complaint,
+                                          do_complaint_error_details)
 from sutekh.SutekhInfo import SutekhInfo
 
 

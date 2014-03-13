@@ -12,11 +12,12 @@ import gtk
 import pango
 import gobject
 from sqlobject import SQLObjectNotFound
-from sutekh.core.SutekhObjects import PhysicalCard, Clan, ICardType, \
+from sutekh.base.core.BaseObjects import PhysicalCard, ICardType, \
         AbstractCard, IKeyword
+from sutekh.core.SutekhObjects import Clan
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhDialog import SutekhDialog
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.base.gui.SutekhDialog import SutekhDialog
+from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
 
 
 class ClanDisciplineStats(SutekhPlugin):

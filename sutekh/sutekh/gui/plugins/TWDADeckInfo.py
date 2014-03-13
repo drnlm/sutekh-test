@@ -5,28 +5,28 @@
 
 """Adds info about the TWDA decks cards are found in"""
 
-from sutekh.core.SutekhObjects import (PhysicalCardSet,
-                                       MapPhysicalCardToPhysicalCardSet,
-                                       IPhysicalCardSet, PhysicalCard,
-                                       IAbstractCard)
-from sutekh.core.Filters import (FilterOrBox, FilterAndBox,
-                                 SpecificCardFilter,
-                                 MultiPhysicalCardSetMapFilter)
+from sutekh.base.core.BaseObjects import (PhysicalCardSet,
+                                          MapPhysicalCardToPhysicalCardSet,
+                                          IPhysicalCardSet, PhysicalCard,
+                                          IAbstractCard)
+from sutekh.base.core.BaseFilters import (FilterOrBox, FilterAndBox,
+                                          SpecificCardFilter,
+                                          MultiPhysicalCardSetMapFilter)
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.ProgressDialog import ProgressDialog, SutekhCountLogHandler
-from sutekh.gui.SutekhDialog import (SutekhDialog, do_exception_complaint,
-                                     do_complaint_error)
-from sutekh.core.CardSetUtilities import (delete_physical_card_set,
-                                          find_children, has_children)
+from sutekh.base.gui.ProgressDialog import ProgressDialog, SutekhCountLogHandler
+from sutekh.base.gui.SutekhDialog import (SutekhDialog, do_exception_complaint,
+                                          do_complaint_error)
+from sutekh.base.core.CardSetUtilities import (delete_physical_card_set,
+                                               find_children, has_children)
 from sutekh.io.ZipFileWrapper import ZipFileWrapper
-from sutekh.io.DataPack import (find_all_data_packs, DOC_URL,
-                                urlopen_with_timeout, fetch_data)
-from sutekh.gui.GuiCardSetFunctions import (reparent_all_children,
-                                            update_open_card_sets)
-from sutekh.gui.FileOrUrlWidget import FileOrUrlWidget
-from sutekh.gui.SutekhFileWidget import add_filter
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.GuiDataPack import gui_error_handler
+from sutekh.io.DataPack import find_all_data_packs, DOC_URL
+from sutekh.base.io.UrlOps import urlopen_with_timeout, fetch_data
+from sutekh.base.gui.GuiCardSetFunctions import (reparent_all_children,
+                                                 update_open_card_sets)
+from sutekh.base.gui.FileOrUrlWidget import FileOrUrlWidget
+from sutekh.base.gui.SutekhFileWidget import add_filter
+from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.base.gui.GuiDataPack import gui_error_handler
 import re
 import gtk
 import datetime

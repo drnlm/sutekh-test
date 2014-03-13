@@ -9,12 +9,12 @@
 import gtk
 import pango
 import gobject
-from sutekh.core.SutekhObjects import PhysicalCard, AbstractCard, IExpansion
+from sutekh.base.core.BaseObjects import PhysicalCard, AbstractCard, IExpansion
 from sutekh.core.Groupings import ExpansionRarityGrouping
 from sutekh.core.Filters import make_illegal_filter, NullFilter
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhDialog import SutekhDialog
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.base.gui.SutekhDialog import SutekhDialog
+from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
 
 
 class ExpansionStats(SutekhPlugin):

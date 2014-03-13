@@ -7,14 +7,14 @@
 """Test whether card sets can be constructed independently"""
 
 import gtk
-from sutekh.core.SutekhObjects import PhysicalCardSet, IPhysicalCardSet, \
+from sutekh.base.core.BaseObjects import PhysicalCardSet, IPhysicalCardSet, \
         IAbstractCard
-from sutekh.core.Filters import ParentCardSetFilter
+from sutekh.base.core.BaseFilters import ParentCardSetFilter
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.CardSetsListView import CardSetsListView
-from sutekh.gui.SutekhDialog import SutekhDialog, do_complaint, \
+from sutekh.base.gui.CardSetsListView import CardSetsListView
+from sutekh.base.gui.SutekhDialog import SutekhDialog, do_complaint, \
         do_complaint_error
-from sutekh.gui.AutoScrolledWindow import AutoScrolledWindow
+from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
 
 
 # helper functions and classes

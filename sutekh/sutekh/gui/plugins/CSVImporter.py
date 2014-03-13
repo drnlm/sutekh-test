@@ -8,12 +8,12 @@
 import gtk
 import csv
 import gobject
-from sutekh.core.SutekhObjects import PhysicalCardSet
+from sutekh.base.core.BaseObjects import PhysicalCardSet
 from sutekh.io.CSVParser import CSVParser
 from sutekh.gui.PluginManager import SutekhPlugin
-from sutekh.gui.SutekhDialog import SutekhDialog, do_complaint_error
-from sutekh.gui.SutekhFileWidget import SutekhFileButton
-from sutekh.gui.GuiCardSetFunctions import import_cs
+from sutekh.base.gui.SutekhDialog import SutekhDialog, do_complaint_error
+from sutekh.base.gui.SutekhFileWidget import SutekhFileButton
+from sutekh.base.gui.GuiCardSetFunctions import import_cs
 
 
 class CSVImporter(SutekhPlugin):
