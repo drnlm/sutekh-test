@@ -5,13 +5,13 @@
 
 """Cache various objects used by sutekh to speed up database queries."""
 
-from sutekh.base.core.DBUtility import init_cache
+from sutekh.base.core.ObjectCache import ObjectCache
 from sutekh.core.SutekhObjects import AbstractCard, RarityPair, Rarity, Clan, \
         Discipline, DisciplinePair, CardType, Expansion, Ruling, Sect, Title, \
-        Creed, Virtue, PhysicalCard, Keyword, Artist
+        Creed, Virtue, PhysicalCard, Keyword, Artist, SutekhAbstractCard
 
 
-class SutekhObjectCache(object):
+class SutekhObjectCache(ObjectCache):
     """Holds references to commonly used database objects so that they don't
        get removed from the cache during big reads.
 
@@ -27,10 +27,6 @@ class SutekhObjectCache(object):
         aTypesToCache = [Rarity, Expansion, RarityPair, Discipline,
                 DisciplinePair, Clan, CardType, AbstractCard, Ruling,
                 Creed, Virtue, Sect, Title, PhysicalCard, Keyword,
-                Artist]
+                Artist, SutekhAbstractCard]
 
-        self._dCache = {}
-        for cType in aTypesToCache:
-            self._dCache[cType] = list(cType.select())
-
-        init_cache()
+        super(SutekhObjectCache, self).__init__(aTypesToCache)
