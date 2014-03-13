@@ -7,7 +7,6 @@
 
 """Frame to hold the CardTextView."""
 
-import gtk
 from sutekh.base.gui.ScrolledFrame import BaseCardTextFrame
 from sutekh.gui.CardTextView import CardTextView
 from sutekh.base.gui.MessageBus import MessageBus, CARD_TEXT_MSG

@@ -8,7 +8,7 @@
 
 """Base classes and constants for configuation management."""
 
-from validate import is_list
+from validate import is_list, is_option
 
 # Type definitions
 CARDSET = 'Card Set'

@@ -6,9 +6,9 @@
 """Tests the Card List Model"""
 
 from sutekh.tests.GuiSutekhTest import ConfigSutekhTest
-from sutekh.core.SutekhObjects import PhysicalCard, AbstractCard
+from sutekh.base.core.BaseObjects import PhysicalCard, AbstractCard
 from sutekh.core import Filters, Groupings
-from sutekh.gui.CardListModel import CardListModel
+from sutekh.base.gui.CardListModel import CardListModel
 from sutekh.base.gui.MessageBus import MessageBus
 import unittest
 
@@ -80,7 +80,7 @@ class CardListModelTests(ConfigSutekhTest):
         # pylint: disable-msg=R0915, R0914
         # R0915, R0914: Want a long, sequential test case to minimise
         # repeated setups, so it has lots of lines + variables
-        oModel = CardListModel(self.oConfig)
+        oModel = CardListModel(self.oConfig, Filters.make_illegal_filter())
         # We test with illegal cards shown
         oModel.hideillegal = False
         oListener = TestListener(oModel)
@@ -174,7 +174,7 @@ class CardListModelTests(ConfigSutekhTest):
 
     def test_postfix(self):
         """Test that the postfix display option works as expected"""
-        oModel = CardListModel(self.oConfig)
+        oModel = CardListModel(self.oConfig, Filters.make_illegal_filter())
         oModel.load()
         aCards = self._get_card_names(oModel)
         self.assertEqual('The Path of Blood' in aCards, True)
@@ -198,7 +198,7 @@ class CardListModelTests(ConfigSutekhTest):
 
     def test_illegal(self):
         """Test that the hide/show illegal cards works as expected"""
-        oModel = CardListModel(self.oConfig)
+        oModel = CardListModel(self.oConfig, Filters.make_illegal_filter())
         oModel.load()
         aCards = self._get_card_names(oModel)
         self.assertEqual('Dramatic Upheaval' in aCards, False)

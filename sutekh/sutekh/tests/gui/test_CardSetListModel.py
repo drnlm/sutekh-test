@@ -9,16 +9,16 @@
 """Tests the Card List Model"""
 
 from sutekh.tests.GuiSutekhTest import ConfigSutekhTest
-from sutekh.gui.ConfigFile import CARDSET, FRAME
-from sutekh.gui.CardSetListModel import CardSetCardListModel, \
+from sutekh.base.gui.BaseConfig import CARDSET, FRAME
+from sutekh.base.gui.CardSetListModel import CardSetCardListModel, \
         EXTRA_LEVEL_OPTION, EXTRA_LEVEL_LOOKUP, SHOW_CARD_OPTION, \
         SHOW_CARD_LOOKUP, PARENT_COUNT_MODE, PARENT_COUNT_LOOKUP, \
         NO_SECOND_LEVEL, SHOW_EXPANSIONS, SHOW_CARD_SETS, EXP_AND_CARD_SETS, \
         CARD_SETS_AND_EXP, ALL_CARDS, PARENT_CARDS, MINUS_SETS_IN_USE, \
         CHILD_CARDS, IGNORE_PARENT, PARENT_COUNT, MINUS_THIS_SET, THIS_SET_ONLY
 from sutekh.core import Filters, Groupings
-from sutekh.core.SutekhObjects import PhysicalCardSet, \
-        MapPhysicalCardToPhysicalCardSet
+from sutekh.base.core.BaseObjects import (PhysicalCardSet,
+                                          MapPhysicalCardToPhysicalCardSet)
 from sutekh.tests.core.test_Filters import make_card
 # Needed to reduce speed impact of Grouping tests
 from sutekh.core.SutekhObjectCache import SutekhObjectCache
@@ -384,7 +384,8 @@ class CardSetListModelTests(ConfigSutekhTest):
         """Set of simple tests of the Card Set List Model"""
         _oCache = SutekhObjectCache()
         oPCS = PhysicalCardSet(name=self.aNames[0])
-        oModel = CardSetCardListModel(self.aNames[0], self.oConfig)
+        oModel = CardSetCardListModel(self.aNames[0], self.oConfig,
+                                      Filters.make_illegal_filter())
         oListener = CardSetListener(oModel)
         self.assertFalse(oListener.bLoadCalled)
         oModel.load()
@@ -436,7 +437,8 @@ class CardSetListModelTests(ConfigSutekhTest):
         # pylint: disable-msg=W0212
         # we need to access protected methods
         oPCS = PhysicalCardSet(name=self.aNames[0])
-        oModel = CardSetCardListModel(self.aNames[0], self.oConfig)
+        oModel = CardSetCardListModel(self.aNames[0], self.oConfig,
+                                      Filters.make_illegal_filter())
         oDummy = DummyController()
         oModel.set_controller(oDummy)
         oPCS2 = PhysicalCardSet(name=self.aNames[1], parent=oPCS)
@@ -480,7 +482,8 @@ class CardSetListModelTests(ConfigSutekhTest):
         # pylint: disable-msg=W0212
         # we need to access protected methods
         PhysicalCardSet(name=self.aNames[0])
-        oModel = CardSetCardListModel(self.aNames[0], self.oConfig)
+        oModel = CardSetCardListModel(self.aNames[0], self.oConfig,
+                                      Filters.make_illegal_filter())
         oDummy = DummyController()
         oModel.set_controller(oDummy)
         sTestValue = list(SHOW_CARD_LOOKUP)[0]
@@ -522,7 +525,8 @@ class CardSetListModelTests(ConfigSutekhTest):
 
     def _get_model(self, sName):
         """Return a model for the named card set, with the null grouping"""
-        oModel = CardSetCardListModel(sName, self.oConfig)
+        oModel = CardSetCardListModel(sName, self.oConfig,
+                                      Filters.make_illegal_filter())
         oModel.hideillegal = False
         oModel.groupby = Groupings.NullGrouping
         return oModel

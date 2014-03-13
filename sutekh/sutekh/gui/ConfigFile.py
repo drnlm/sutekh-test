@@ -9,7 +9,7 @@
 """Configuration handling for the Sutekh GUI."""
 
 from configobj import ConfigObj, flatten_errors
-from validate import Validator, is_option
+from validate import Validator
 from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
 from sutekh.base.gui.BaseConfig import (CARDSET, FRAME, FULL_CARDLIST,
                                         CARDSET_LIST, DEF_PROFILE_FILTER,

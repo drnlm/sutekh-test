@@ -12,7 +12,7 @@ from sutekh.base.core.FilterParser import FilterParser
 from sutekh.base.gui.FilterModelPanes import FilterModelPanes, \
         FilterEditorToolbar, ENTER_KEYS
 from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.gui.CardSetsListView import CardSetsListView
+from sutekh.base.gui.CardSetsListView import CardSetsListView
 from sutekh.core.SutekhObjects import AbstractCard
 
 

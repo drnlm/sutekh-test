@@ -9,7 +9,6 @@
 from sqlobject import SQLObjectNotFound
 # pylint: disable-msg=W0402
 # we need string.punctuation
-import string
 # pylint: enable-msg=W0402
 from .BaseObjects import IPhysicalCard, IExpansion, IAbstractCard
 
