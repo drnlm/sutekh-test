@@ -10,7 +10,6 @@
 import gtk
 from ..Utility import safe_filename
 from .SutekhFileWidget import ExportDialog
-from sutekh.io.XmlFileHandling import PhysicalCardSetXmlFile
 from .FilteredViewMenu import CardListMenu
 from .FrameProfileEditor import FrameProfileEditor
 from .LocalProfileEditor import LocalProfileEditor
@@ -29,8 +28,9 @@ class CardSetMenu(CardListMenu):
        """
     # pylint: disable-msg=R0902
     # R0902 - we are keeping a lot of state, so many instance variables
-    def __init__(self, oFrame, oController, oWindow):
+    def __init__(self, oFrame, oController, oWindow, cWriter):
         super(CardSetMenu, self).__init__(oFrame, oWindow, oController)
+        self._cWriter = cWriter
         self.__create_card_set_menu()
         self.create_edit_menu()
         self.create_filter_menu()
@@ -139,7 +139,7 @@ class CardSetMenu(CardListMenu):
         sFileName = oFileChooser.get_name()
         if sFileName is not None:
             # User has OK'd us overwriting anything
-            oWriter = PhysicalCardSetXmlFile(sFileName)
+            oWriter = self._cWriter(sFileName)
             oWriter.write(self.name)
 
     def _card_set_delete(self, _oWidget):

@@ -26,6 +26,7 @@ from sutekh.core.SutekhObjectCache import SutekhObjectCache
 from sutekh.base.core.BaseObjects import (PhysicalCardSet,
                                           PhysicalCard, IAbstractCard)
 from sutekh.core.Filters import make_illegal_filter, best_guess_filter
+from sutekh.io.XmlFileHandling import PhysicalCardSetXmlFile
 from sutekh.base.gui.MultiPaneWindow import MultiPaneWindow
 from sutekh.base.gui.PhysicalCardFrame import PhysicalCardFrame
 from sutekh.gui.CardTextFrame import CardTextFrame
@@ -283,7 +284,7 @@ class SutekhMainWindow(MultiPaneWindow):
             # not doing anything for errors right now
             try:
                 oPane = CardSetFrame(self, sName, make_illegal_filter(),
-                                     bStartEditable)
+                                     PhysicalCardSetXmlFile, bStartEditable)
                 self.replace_frame(oFrame, oPane)
                 # Open card lists may have changed because of the frame we've
                 # kicked out

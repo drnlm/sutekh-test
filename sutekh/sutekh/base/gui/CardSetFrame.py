@@ -24,7 +24,8 @@ class CardSetFrame(CardListFrame):
        """
     _cModelType = PhysicalCardSet
 
-    def __init__(self, oMainWindow, sName, oIllegalFilter, bStartEditable):
+    def __init__(self, oMainWindow, sName, oIllegalFilter,
+                 cWriter, bStartEditable):
         super(CardSetFrame, self).__init__(oMainWindow)
         try:
             _oCS = IPhysicalCardSet(sName)
@@ -37,7 +38,8 @@ class CardSetFrame(CardListFrame):
 
         self.init_plugins()
 
-        self._oMenu = CardSetMenu(self, self._oController, self._oMainWindow)
+        self._oMenu = CardSetMenu(self, self._oController, self._oMainWindow,
+                                  cWriter)
         self.set_name("physical card set card list")
         self.add_parts()
 
