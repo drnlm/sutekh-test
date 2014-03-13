@@ -6,8 +6,8 @@
 
 """Controller for the Physical Card Collection"""
 
-from sutekh.gui.PhysicalCardView import PhysicalCardView
-from sutekh.gui.MessageBus import MessageBus, CARD_TEXT_MSG
+from .PhysicalCardView import PhysicalCardView
+from .MessageBus import MessageBus, CARD_TEXT_MSG
 
 
 class PhysicalCardController(object):

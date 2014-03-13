@@ -9,16 +9,17 @@
 import gtk
 import gobject
 import logging
-from sutekh.core.Filters import FilterAndBox, NullFilter, PhysicalCardFilter, \
-        make_illegal_filter, CachedFilter
-from sutekh.core.Groupings import CardTypeGrouping
-from sutekh.base.core.BaseObjects import (PhysicalCardToAbstractCardAdapter,
-                                          PhysicalCard, PhysicalCardAdapter,
-                                          ExpansionNameAdapter)
-from sutekh.base.Utility import move_articles_to_back
-from sutekh.base.core.FilterParser import FilterParser
-from sutekh.gui.ConfigFile import FULL_CARDLIST
-from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
+from ..core.BaseFilters import (FilterAndBox, NullFilter, PhysicalCardFilter,
+                                CachedFilter)
+from ..core.BaseGroupings import CardTypeGrouping
+from ..core.BaseObjects import (PhysicalCardToAbstractCardAdapter,
+                                PhysicalCard, PhysicalCardAdapter,
+                                ExpansionNameAdapter)
+from ..Utility import move_articles_to_back
+from ..core.FilterParser import FilterParser
+from .BaseConfig import FULL_CARDLIST
+from .MessageBus import MessageBus, CONFIG_MSG
+from sutekh.core.Filters import make_illegal_filter
 
 EXTRA_LEVEL_OPTION = "extra levels"
 EXTRA_LEVEL_LOOKUP = {

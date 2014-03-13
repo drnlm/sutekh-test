@@ -7,8 +7,8 @@
 """gtk.TreeView classes for displaying the card list."""
 
 import gtk
-from sutekh.base.gui.FilteredView import FilteredView
-from sutekh.base.gui.FilterDialog import FilterDialog
+from .FilteredView import FilteredView
+from .FilterDialog import FilterDialog
 
 
 class CardListView(FilteredView):
@@ -172,7 +172,7 @@ class CardListView(FilteredView):
 
         sSource, aLines = \
                 super(CardListView, self).split_selection_data(sSelectionData)
-        if sSource in ("None", "Sutekh Pane:", "Card Set:"):
+        if sSource in ("None", "Base Pane:", "Card Set:"):
             # Not cards that were dragged, so just return
             return sSource, aLines
         aCardInfo = zip([int(x) for x in aLines[1::3]], aLines[2::3],

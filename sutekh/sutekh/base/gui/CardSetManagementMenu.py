@@ -8,10 +8,10 @@
 """Menu for the card set list"""
 
 import gtk
-from sutekh.gui.FilteredViewMenu import FilteredViewMenu
-from sutekh.base.gui.FrameProfileEditor import FrameProfileEditor
-from sutekh.gui.ConfigFile import CARDSET_LIST
-from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
+from .FilteredViewMenu import FilteredViewMenu
+from .FrameProfileEditor import FrameProfileEditor
+from .BaseConfig import CARDSET_LIST
+from .MessageBus import MessageBus, CONFIG_MSG
 
 
 class CardSetManagementMenu(FilteredViewMenu):

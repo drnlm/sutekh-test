@@ -7,9 +7,9 @@
 """Provide a TreeView for the physical card collection"""
 
 import gtk
-from sutekh.gui.CardListView import CardListView
-from sutekh.gui.CardListModel import CardListModel
-from sutekh.base.gui.CellRendererIcons import CellRendererIcons
+from .CardListView import CardListView
+from .CardListModel import CardListModel
+from .CellRendererIcons import CellRendererIcons
 
 
 class PhysicalCardView(CardListView):

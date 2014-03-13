@@ -288,7 +288,7 @@ class BasicFrame(gtk.Frame):
             bDragRes = False
         else:
             aData = oSelectionData.data.splitlines()
-            if aData[0] == 'Sutekh Pane:':
+            if aData[0] == 'Base Pane:':
                 if not self.do_swap(aData):
                     bDragRes = False
             elif aData[0] == 'Card Set:':
@@ -301,7 +301,7 @@ class BasicFrame(gtk.Frame):
     def create_drag_data(self, _oBtn, _oContext, oSelectionData, _oInfo,
             _oTime):
         """Fill in the needed data for drag-n-drop code"""
-        sData = 'Sutekh Pane:\n%s' % self.pane_id
+        sData = 'Base Pane:\n%s' % self.pane_id
         oSelectionData.set(oSelectionData.target, 8, sData)
 
     # pylint: disable-msg=R0201

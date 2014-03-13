@@ -7,11 +7,11 @@
 """View object for card sets."""
 
 import gtk
-from sutekh.base.gui.CellRendererSutekhButton import CellRendererSutekhButton
-from sutekh.base.gui.CellRendererIcons import CellRendererIcons
-from sutekh.gui.CardListView import CardListView
-from sutekh.gui.CardSetListModel import CardSetCardListModel
-from sutekh.base.core.BaseObjects import PhysicalCardSet
+from .CellRendererSutekhButton import CellRendererSutekhButton
+from .CellRendererIcons import CellRendererIcons
+from .CardListView import CardListView
+from .CardSetListModel import CardSetCardListModel
+from ..core.BaseObjects import PhysicalCardSet
 
 NUM_KEYS = {
         gtk.gdk.keyval_from_name('1'): 1,
@@ -241,7 +241,7 @@ class CardSetView(CardListView):
         else:
             sSource, aCardInfo = self.split_selection_data(oData.data)
             bSkip = False
-            if sSource == "Sutekh Pane:" or sSource == "Card Set:":
+            if sSource == "Base Pane:" or sSource == "Card Set:":
                 self._oController.frame.drag_drop_handler(oWidget, oContext,
                         iXPos, iYPos, oData, oInfo, oTime)
                 return

@@ -7,10 +7,10 @@
 
 import gtk
 from sqlobject import SQLObjectNotFound
-from sutekh.base.core.BaseObjects import IPhysicalCardSet
-from sutekh.base.gui.GuiCardSetFunctions import reparent_card_set
-from sutekh.gui.CardSetsListView import CardSetsListView
-from sutekh.base.gui.FilterDialog import FilterDialog
+from ..core.BaseObjects import IPhysicalCardSet
+from .GuiCardSetFunctions import reparent_card_set
+from .CardSetsListView import CardSetsListView
+from .FilterDialog import FilterDialog
 
 
 class CardSetManagementView(CardSetsListView):
@@ -76,7 +76,7 @@ class CardSetManagementView(CardSetsListView):
         # Pass off to the Frame Handler
         sSource, aData = self.split_selection_data(oData.data)
         bDragRes = False
-        if sSource == "Sutekh Pane:":
+        if sSource == "Base Pane:":
             self._oController.frame.drag_drop_handler(oWidget, oContext,
                     iXPos, iYPos, oData, oInfo, oTime)
             return

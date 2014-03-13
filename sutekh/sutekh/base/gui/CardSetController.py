@@ -7,15 +7,15 @@
 """Controller for the card sets"""
 
 from sqlobject import SQLObjectNotFound
-from sutekh.base.gui.GuiCardSetFunctions import check_ok_to_delete, \
-        update_card_set
-from sutekh.gui.CardSetView import CardSetView
-from sutekh.gui.MessageBus import MessageBus, CARD_TEXT_MSG
-from sutekh.base.core.DBSignals import send_changed_signal
-from sutekh.base.core.BaseObjects import IPhysicalCardSet, PhysicalCardSet, \
-        IAbstractCard, PhysicalCard, MapPhysicalCardToPhysicalCardSet, \
-        IExpansion, IPhysicalCard
-from sutekh.base.core.CardSetUtilities import delete_physical_card_set
+from .GuiCardSetFunctions import (check_ok_to_delete, update_card_set)
+from .CardSetView import CardSetView
+from .MessageBus import MessageBus, CARD_TEXT_MSG
+from ..core.DBSignals import send_changed_signal
+from ..core.BaseObjects import (IPhysicalCardSet, PhysicalCardSet,
+                                IAbstractCard, PhysicalCard,
+                                MapPhysicalCardToPhysicalCardSet,
+                                IExpansion, IPhysicalCard)
+from ..core.CardSetUtilities import delete_physical_card_set
 
 
 class CardSetController(object):

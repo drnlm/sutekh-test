@@ -6,7 +6,7 @@
 
 """Base class for the pane menus"""
 
-from sutekh.gui.SutekhMenu import SutekhMenu
+from .SutekhMenu import SutekhMenu
 import gtk
 
 

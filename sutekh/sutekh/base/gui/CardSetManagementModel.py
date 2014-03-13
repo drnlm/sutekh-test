@@ -7,9 +7,9 @@
 
 import gtk
 import gobject
-from sutekh.base.core.BaseObjects import PhysicalCardSet, IPhysicalCardSet
-from sutekh.base.core.BaseFilters import NullFilter
-from sutekh.gui.ConfigFile import CARDSET_LIST
+from ..core.BaseObjects import PhysicalCardSet, IPhysicalCardSet
+from ..core.BaseFilters import NullFilter
+from .BaseConfig import CARDSET_LIST
 
 
 class CardSetManagementModel(gtk.TreeStore):

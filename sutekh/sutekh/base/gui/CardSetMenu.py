@@ -8,14 +8,14 @@
 """Menu for the card set pane"""
 
 import gtk
-from sutekh.base.Utility import safe_filename
-from sutekh.base.gui.SutekhFileWidget import ExportDialog
+from ..Utility import safe_filename
+from .SutekhFileWidget import ExportDialog
 from sutekh.io.XmlFileHandling import PhysicalCardSetXmlFile
-from sutekh.gui.FilteredViewMenu import CardListMenu
-from sutekh.base.gui.FrameProfileEditor import FrameProfileEditor
-from sutekh.base.gui.LocalProfileEditor import LocalProfileEditor
-from sutekh.gui.ConfigFile import CARDSET, FRAME
-from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
+from .FilteredViewMenu import CardListMenu
+from .FrameProfileEditor import FrameProfileEditor
+from .LocalProfileEditor import LocalProfileEditor
+from .BaseConfig import CARDSET, FRAME
+from .MessageBus import MessageBus, CONFIG_MSG
 
 
 class CardSetMenu(CardListMenu):

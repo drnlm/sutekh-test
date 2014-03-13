@@ -6,8 +6,8 @@
 """gtk.TreeView class for the card set list."""
 
 import gtk
-from sutekh.gui.CardSetManagementModel import CardSetManagementModel
-from sutekh.base.gui.FilteredView import FilteredView
+from .CardSetManagementModel import CardSetManagementModel
+from .FilteredView import FilteredView
 
 
 class CardSetsListView(FilteredView):

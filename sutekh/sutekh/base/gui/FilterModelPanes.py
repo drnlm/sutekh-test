@@ -9,7 +9,7 @@
 from .AutoScrolledWindow import AutoScrolledWindow
 from .ScrolledList import ScrolledList
 from .CustomDragIconView import CustomDragIconView
-from sutekh.gui.CardSetsListView import CardSetsListView
+from .CardSetsListView import CardSetsListView
 from ..core.FilterParser import get_filters_for_type
 from ..core.FilterBox import (FilterBoxItem, FilterBoxModel, BOXTYPE,
                                         BOXTYPE_ORDER)

@@ -8,10 +8,10 @@
 """Menu for the Physical card collection."""
 
 import gtk
-from sutekh.gui.FilteredViewMenu import CardListMenu
-from sutekh.base.gui.FrameProfileEditor import FrameProfileEditor
-from sutekh.gui.ConfigFile import FULL_CARDLIST
-from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG
+from .FilteredViewMenu import CardListMenu
+from .FrameProfileEditor import FrameProfileEditor
+from .BaseConfig import FULL_CARDLIST
+from .MessageBus import MessageBus, CONFIG_MSG
 
 
 class PhysicalCardMenu(CardListMenu):

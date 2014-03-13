@@ -7,10 +7,10 @@
 
 """Frame which holds the PhysicalCardView"""
 
-from sutekh.core.SutekhObjects import PhysicalCard
-from sutekh.gui.CardListFrame import CardListFrame
-from sutekh.gui.PhysicalCardController import PhysicalCardController
-from sutekh.gui.PhysicalCardMenu import PhysicalCardMenu
+from ..core.BaseObjects import PhysicalCard
+from .CardListFrame import CardListFrame
+from .PhysicalCardController import PhysicalCardController
+from .PhysicalCardMenu import PhysicalCardMenu
 
 
 class PhysicalCardFrame(CardListFrame):
@@ -21,7 +21,7 @@ class PhysicalCardFrame(CardListFrame):
        Set the title, and menus as needed for the card collection.
        """
     _cModelType = PhysicalCard
-    _sName = "White Wolf Card List"
+    _sName = "Full Card List"
 
     def __init__(self, oMainWindow):
         super(PhysicalCardFrame, self).__init__(oMainWindow)

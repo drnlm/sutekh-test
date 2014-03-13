@@ -17,7 +17,7 @@ from sutekh.io.IdentifyXMLFile import IdentifyXMLFile
 from sutekh.io.AbstractCardSetParser import AbstractCardSetParser
 from sutekh.io.PhysicalCardParser import PhysicalCardParser
 from sutekh.io.PhysicalCardSetParser import PhysicalCardSetParser
-from sutekh.gui.SutekhMenu import SutekhMenu
+from sutekh.base.gui.SutekhMenu import SutekhMenu
 
 
 class MainMenu(SutekhMenu):

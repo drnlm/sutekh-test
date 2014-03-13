@@ -26,14 +26,14 @@ from sutekh.core.SutekhObjectCache import SutekhObjectCache
 from sutekh.core.SutekhObjects import PhysicalCardSet, \
         PhysicalCard, IAbstractCard
 from sutekh.base.gui.MultiPaneWindow import MultiPaneWindow
-from sutekh.gui.PhysicalCardFrame import PhysicalCardFrame
+from sutekh.base.gui.PhysicalCardFrame import PhysicalCardFrame
 from sutekh.gui.CardTextFrame import CardTextFrame
-from sutekh.gui.CardSetFrame import CardSetFrame
+from sutekh.base.gui.CardSetFrame import CardSetFrame
 from sutekh.gui.AboutDialog import SutekhAboutDialog
 from sutekh.gui.MainMenu import MainMenu
-from sutekh.gui.GuiCardLookup import GuiLookup
+from sutekh.base.gui.GuiCardLookup import GuiLookup
 from sutekh.base.gui.GuiCardSetFunctions import break_existing_loops
-from sutekh.gui.CardSetManagementFrame import CardSetManagementFrame
+from sutekh.base.gui.CardSetManagementFrame import CardSetManagementFrame
 from sutekh.gui.PluginManager import PluginManager
 from sutekh.gui.GuiDBManagement import refresh_ww_card_list
 from sutekh.gui import SutekhIcon
