@@ -9,8 +9,8 @@
    a card set with a name that's already in use."""
 
 import gtk
-from sutekh.base.gui.SutekhDialog import SutekhDialog, do_complaint_error
-from sutekh.core.SutekhObjects import PhysicalCardSet, MAX_ID_LENGTH
+from .SutekhDialog import SutekhDialog, do_complaint_error
+from ..core.BaseObjects import PhysicalCardSet, MAX_ID_LENGTH
 
 RENAME, REPLACE, PROMPT = 1, 2, 3
 

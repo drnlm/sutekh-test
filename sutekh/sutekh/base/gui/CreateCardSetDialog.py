@@ -8,10 +8,10 @@
 
 import gtk
 from sqlobject import SQLObjectNotFound
-from sutekh.base.gui.SutekhDialog import SutekhDialog, do_complaint_error
+from .SutekhDialog import SutekhDialog, do_complaint_error
+from .AutoScrolledWindow import AutoScrolledWindow
+from ..core.BaseObjects import IPhysicalCardSet, MAX_ID_LENGTH
 from sutekh.gui.CardSetsListView import CardSetsListView
-from sutekh.base.gui.AutoScrolledWindow import AutoScrolledWindow
-from sutekh.base.core.BaseObjects import IPhysicalCardSet, MAX_ID_LENGTH
 
 
 def make_scrolled_text(oCardSet, sAttr):

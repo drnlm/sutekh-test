@@ -32,13 +32,13 @@ from sutekh.gui.CardSetFrame import CardSetFrame
 from sutekh.gui.AboutDialog import SutekhAboutDialog
 from sutekh.gui.MainMenu import MainMenu
 from sutekh.gui.GuiCardLookup import GuiLookup
-from sutekh.gui.GuiCardSetFunctions import break_existing_loops
+from sutekh.base.gui.GuiCardSetFunctions import break_existing_loops
 from sutekh.gui.CardSetManagementFrame import CardSetManagementFrame
 from sutekh.gui.PluginManager import PluginManager
 from sutekh.gui.GuiDBManagement import refresh_ww_card_list
 from sutekh.gui import SutekhIcon
 from sutekh.base.gui.MessageBus import MessageBus, DATABASE_MSG
-from sutekh.gui.HTMLTextView import HTMLViewDialog
+from sutekh.base.gui.HTMLTextView import HTMLViewDialog
 from sutekh.gui.GuiIconManager import GuiIconManager
 from sutekh.base.gui.SutekhDialog import do_complaint_error_details, \
         do_exception_complaint, do_complaint

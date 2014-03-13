@@ -7,7 +7,7 @@
 """Controller for the card sets"""
 
 from sqlobject import SQLObjectNotFound
-from sutekh.gui.GuiCardSetFunctions import check_ok_to_delete, \
+from sutekh.base.gui.GuiCardSetFunctions import check_ok_to_delete, \
         update_card_set
 from sutekh.gui.CardSetView import CardSetView
 from sutekh.gui.MessageBus import MessageBus, CARD_TEXT_MSG

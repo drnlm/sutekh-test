@@ -9,7 +9,7 @@ from sqlobject import SQLObjectNotFound
 from sutekh.base.core.BaseObjects import PhysicalCardSet, IPhysicalCardSet
 from sutekh.gui.CardSetManagementView import CardSetManagementView
 from sutekh.base.core.CardSetUtilities import delete_physical_card_set
-from sutekh.gui.GuiCardSetFunctions import create_card_set, update_card_set, \
+from sutekh.base.gui.GuiCardSetFunctions import create_card_set, update_card_set, \
         check_ok_to_delete, break_existing_loops
 
 
