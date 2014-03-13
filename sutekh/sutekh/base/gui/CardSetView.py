@@ -61,8 +61,10 @@ class CardSetView(CardListView):
     # Initialise key ranges for key tests
     # pylint: disable-msg=R0915
     # We need a lot of setup here, so this is long
-    def __init__(self, oMainWindow, oController, sName, bStartEditable):
-        oModel = CardSetCardListModel(sName, oMainWindow.config_file)
+    def __init__(self, oMainWindow, oController, sName,
+                 oIllegalFilter, bStartEditable):
+        oModel = CardSetCardListModel(sName, oMainWindow.config_file,
+                                      oIllegalFilter)
         oModel.enable_sorting()
         if bStartEditable:
             oModel.bEditable = True

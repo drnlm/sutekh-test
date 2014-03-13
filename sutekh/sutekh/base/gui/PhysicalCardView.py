@@ -26,8 +26,8 @@ class PhysicalCardView(CardListView):
        """
     sDragPrefix = 'Phys:'
 
-    def __init__(self, oController, oWindow, oConfig):
-        oModel = CardListModel(oConfig)
+    def __init__(self, oController, oWindow, oConfig, oIllegalFilter):
+        oModel = CardListModel(oConfig, oIllegalFilter)
         oModel.enable_sorting()
         super(PhysicalCardView, self).__init__(oController, oWindow,
                 oModel, oConfig)

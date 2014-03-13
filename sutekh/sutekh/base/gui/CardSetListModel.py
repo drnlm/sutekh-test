@@ -157,8 +157,8 @@ class CardSetCardListModel(CardListModel):
        entries. Updates the model to correspond to database changes in
        response to calls from CardSetController.
        """
-    def __init__(self, sSetName, oConfig):
-        super(CardSetCardListModel, self).__init__(oConfig)
+    def __init__(self, sSetName, oConfig, oIllegalFilter):
+        super(CardSetCardListModel, self).__init__(oConfig, oIllegalFilter)
         self._cCardClass = MapPhysicalCardToPhysicalCardSet
         self._oBaseFilter = CachedFilter(PhysicalCardSetFilter(sSetName))
         self._oCardSet = PhysicalCardSetAdapter(sSetName)

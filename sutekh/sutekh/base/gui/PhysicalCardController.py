@@ -16,11 +16,11 @@ class PhysicalCardController(object):
        Provide settings needed for the Physical Card List,
        and suitable card manipulation methods.
        """
-    def __init__(self, oFrame, oMainWindow):
+    def __init__(self, oFrame, oMainWindow, oIllegalFilter):
         self.__oMainWin = oMainWindow
         self.__oFrame = oFrame
         self.__oView = PhysicalCardView(self, oMainWindow,
-                oMainWindow.config_file)
+                oMainWindow.config_file, oIllegalFilter)
         self.__oModel = self.__oView.get_model()
         self._sFilterType = 'PhysicalCard'
         self.model.set_controller(self)

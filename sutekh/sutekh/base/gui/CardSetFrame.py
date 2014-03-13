@@ -24,14 +24,14 @@ class CardSetFrame(CardListFrame):
        """
     _cModelType = PhysicalCardSet
 
-    def __init__(self, oMainWindow, sName, bStartEditable):
+    def __init__(self, oMainWindow, sName, oIllegalFilter, bStartEditable):
         super(CardSetFrame, self).__init__(oMainWindow)
         try:
             _oCS = IPhysicalCardSet(sName)
         except SQLObjectNotFound:
             raise RuntimeError("Card Set %s does not exist" % sName)
         self._oController = CardSetController(sName,
-                oMainWindow, self, bStartEditable)
+                oMainWindow, self, oIllegalFilter, bStartEditable)
 
         self._sName = sName
 

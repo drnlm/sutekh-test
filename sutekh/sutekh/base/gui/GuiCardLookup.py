@@ -16,7 +16,6 @@ from ..core.BaseObjects import (AbstractCard, PhysicalCard,
                                 IPhysicalCard, IAbstractCard)
 from ..core.CardLookup import (AbstractCardLookup, PhysicalCardLookup,
                                ExpansionLookup, LookupFailed)
-from sutekh.core.Filters import best_guess_filter
 from .SutekhDialog import SutekhDialog, do_complaint_error
 from .CellRendererSutekhButton import CellRendererSutekhButton
 from .PhysicalCardView import PhysicalCardView
@@ -105,7 +104,7 @@ class ReplacementTreeView(gtk.TreeView):
     # pylint: disable-msg=R0904
     # gtk.Widget, so many public methods.
 
-    def __init__(self, oCardListView, oFilterToggleButton):
+    def __init__(self, oCardListView, oFilterToggleButton, fGuessFilter):
         """Construct a gtk.TreeView object showing the current
            card replacements.
 
@@ -122,6 +121,7 @@ class ReplacementTreeView(gtk.TreeView):
 
         super(ReplacementTreeView, self).__init__(oModel)
         self.oCardListView = oCardListView
+        self._fGuessFilter = fGuessFilter
         self.oModel = oModel
         self.oFilterToggleButton = oFilterToggleButton
         self.set_enable_search(False)  # Not much point searching this tree
@@ -239,7 +239,7 @@ class ReplacementTreeView(gtk.TreeView):
         sFullName = self.oModel.get_value(oIter, 1)
         sName, _sExp = self.parse_card_name(sFullName)
 
-        oFilter = best_guess_filter(sName)
+        oFilter = self._fGuessFilter(sName)
         self.oCardListView.get_model().selectfilter = oFilter
 
         if not self.oFilterToggleButton.get_active():
@@ -282,9 +282,10 @@ class GuiLookup(AbstractCardLookup, PhysicalCardLookup, ExpansionLookup):
     """Lookup AbstractCards. Use the user as the AI if a simple lookup fails.
        """
 
-    def __init__(self, oConfig):
+    def __init__(self, oConfig, fGuessFilter):
         super(GuiLookup, self).__init__()
         self._oConfig = oConfig
+        self._fGuessfilter = fGuessFilter
 
     def lookup(self, aNames, sInfo):
         """Lookup missing abstract cards.
@@ -551,7 +552,7 @@ class GuiLookup(AbstractCardLookup, PhysicalCardLookup, ExpansionLookup):
                 'Shortcut : <b>Ctrl-F</b>')
 
         oReplacementView = ReplacementTreeView(oView,
-            oFilterApplyButton)
+            oFilterApplyButton, self._fGuessFilter)
 
         oReplacementWin = AutoScrolledWindow(oReplacementView)
         oReplacementWin.set_size_request(600, 600)
@@ -618,7 +619,7 @@ class GuiLookup(AbstractCardLookup, PhysicalCardLookup, ExpansionLookup):
 
         # Populate the model with the card names and best guesses
         for sName in dUnknownCards:
-            oBestGuessFilter = best_guess_filter(sName)
+            oBestGuessFilter = self._fGuessFilter(sName)
             aCards = list(oBestGuessFilter.select(AbstractCard))
             if len(aCards) == 1:
                 sBestGuess = aCards[0].name

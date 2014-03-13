@@ -23,8 +23,9 @@ from itertools import chain
 from sqlobject import SQLObjectNotFound
 from sutekh.base.core.DBUtility import flush_cache
 from sutekh.core.SutekhObjectCache import SutekhObjectCache
-from sutekh.core.SutekhObjects import PhysicalCardSet, \
-        PhysicalCard, IAbstractCard
+from sutekh.base.core.BaseObjects import (PhysicalCardSet,
+                                          PhysicalCard, IAbstractCard)
+from sutekh.core.Filters import make_illegal_filter, best_guess_filter
 from sutekh.base.gui.MultiPaneWindow import MultiPaneWindow
 from sutekh.base.gui.PhysicalCardFrame import PhysicalCardFrame
 from sutekh.gui.CardTextFrame import CardTextFrame
@@ -88,7 +89,7 @@ class SutekhMainWindow(MultiPaneWindow):
         """After database checks are passed, setup what we need to display
            data from the database."""
         self._oConfig = oConfig
-        self._oCardLookup = GuiLookup(self._oConfig)
+        self._oCardLookup = GuiLookup(self._oConfig, best_guess_filter)
 
         # Check database is correctly populated
 
@@ -281,7 +282,8 @@ class SutekhMainWindow(MultiPaneWindow):
             # pylint: disable-msg=W0704
             # not doing anything for errors right now
             try:
-                oPane = CardSetFrame(self, sName, bStartEditable)
+                oPane = CardSetFrame(self, sName, make_illegal_filter(),
+                                     bStartEditable)
                 self.replace_frame(oFrame, oPane)
                 # Open card lists may have changed because of the frame we've
                 # kicked out
@@ -323,7 +325,7 @@ class SutekhMainWindow(MultiPaneWindow):
             return None
         if oOldFrame is None:
             oOldFrame = self._oFocussed
-        oPane = PhysicalCardFrame(self)
+        oPane = PhysicalCardFrame(self, make_illegal_filter())
         self.replace_frame(oOldFrame, oPane)
         return oPane
 

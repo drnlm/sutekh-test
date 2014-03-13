@@ -23,12 +23,13 @@ class PhysicalCardFrame(CardListFrame):
     _cModelType = PhysicalCard
     _sName = "Full Card List"
 
-    def __init__(self, oMainWindow):
+    def __init__(self, oMainWindow, oIllegalFilter):
         super(PhysicalCardFrame, self).__init__(oMainWindow)
         self.set_title(self._sName)
         self.set_name("physical card list")
 
-        self._oController = PhysicalCardController(self, oMainWindow)
+        self._oController = PhysicalCardController(self, oMainWindow,
+                                                   oIllegalFilter)
 
         self.init_plugins()
 

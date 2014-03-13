@@ -19,7 +19,6 @@ from ..Utility import move_articles_to_back
 from ..core.FilterParser import FilterParser
 from .BaseConfig import FULL_CARDLIST
 from .MessageBus import MessageBus, CONFIG_MSG
-from sutekh.core.Filters import make_illegal_filter
 
 EXTRA_LEVEL_OPTION = "extra levels"
 EXTRA_LEVEL_LOOKUP = {
@@ -41,7 +40,7 @@ class CardListModel(gtk.TreeStore):
 
     sUnknownExpansion = ExpansionNameAdapter.sUnknownExpansion
 
-    def __init__(self, oConfig):
+    def __init__(self, oConfig, oIllegalFilter):
         # STRING is the card name, INT is the card count
         super(CardListModel, self).__init__(str, int, int, bool, bool,
                 gobject.TYPE_PYOBJECT, gobject.TYPE_PYOBJECT,
@@ -56,7 +55,7 @@ class CardListModel(gtk.TreeStore):
         self._cCardClass = PhysicalCard  # card class to use
         # Filter to exclude illegal cards. Needs to be defined after
         # we esablish database connections, et al.
-        self.oLegalFilter = CachedFilter(make_illegal_filter())
+        self.oLegalFilter = CachedFilter(oIllegalFilter)
         self._bApplyFilter = False  # whether to apply the select filter
         # additional filters for selecting from the list
         self._oSelectFilter = None

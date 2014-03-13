@@ -22,13 +22,15 @@ class CardSetController(object):
     """Controller class for the Card Sets."""
     _sFilterType = 'PhysicalCard'
 
-    def __init__(self, sName, oMainWindow, oFrame, bStartEditable):
+    def __init__(self, sName, oMainWindow, oFrame,
+                 oIllegalFilter, bStartEditable):
         # pylint: disable-msg=E1101, E1103
         # SQLObject methods confuse pylint
         self._oMainWindow = oMainWindow
         self._oMenu = None
         self._oFrame = oFrame
-        self._oView = CardSetView(oMainWindow, self, sName, bStartEditable)
+        self._oView = CardSetView(oMainWindow, self, sName,
+                                  oIllegalFilter, bStartEditable)
         self.__oPhysCardSet = IPhysicalCardSet(sName)
         self.model.set_controller(self)
 
