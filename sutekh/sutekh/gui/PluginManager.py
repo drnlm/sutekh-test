@@ -17,7 +17,7 @@ import re
 from sqlobject import sqlhub
 from sutekh.base.core.DatabaseVersion import DatabaseVersion
 from sutekh.base.core.BaseObjects import PhysicalCardSet
-from sutekh.gui.ConfigFile import CARDSET, FULL_CARDLIST, CARDSET_LIST, FRAME
+from sutekh.base.gui.BaseConfig import CARDSET, FULL_CARDLIST, CARDSET_LIST, FRAME
 from sutekh.base.gui.MessageBus import MessageBus, CONFIG_MSG, DATABASE_MSG
 from sutekh.base.gui.SutekhDialog import do_complaint_warning
 
