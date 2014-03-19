@@ -14,8 +14,7 @@ import datetime
 from StringIO import StringIO
 from logging import Logger
 from sqlobject import sqlhub, SQLObjectNotFound
-from sutekh.base.core.BaseObjects import PhysicalCardSet
-from sutekh.core.SutekhObjects import PHYSICAL_SET_LIST
+from sutekh.base.core.BaseObjects import PhysicalCardSet, PHYSICAL_SET_LIST
 from sutekh.base.core.CardLookup import DEFAULT_LOOKUP
 from sutekh.base.core.CardSetHolder import CachedCardSetHolder, CardSetWrapper
 from sutekh.base.core.DBUtility import refresh_tables

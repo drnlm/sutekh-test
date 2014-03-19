@@ -304,24 +304,22 @@ class MapAbstractCardToKeyword(SQLObject):
 
 # List of Tables to be created, dropped, etc.
 
-TABLE_LIST = [AbstractCard, PhysicalCard, PhysicalCardSet,
-               Ruling, Artist, Keyword,
-               # Mapping tables from here on out
-               MapPhysicalCardToPhysicalCardSet,
-               MapAbstractCardToRuling,
-               MapAbstractCardToArtist,
-               MapAbstractCardToKeyword,
-               ]
-# For reloading the Physical Card Sets
+BASE_TABLE_LIST = [AbstractCard, PhysicalCard, PhysicalCardSet,
+                   Expansion, Rarity, RarityPair, CardType,
+                   Ruling, Artist, Keyword,
+                   # Mapping tables from here on out
+                   MapPhysicalCardToPhysicalCardSet,
+                   MapAbstractCardToRarityPair,
+                   MapAbstractCardToCardType,
+                   MapAbstractCardToRuling,
+                   MapAbstractCardToArtist,
+                   MapAbstractCardToKeyword,
+                   ]
 
-PHYSICAL_SET_LIST = [PhysicalCardSet,
-        MapPhysicalCardToPhysicalCardSet]
+# For reloading the Physical Card Sets
+PHYSICAL_SET_LIST = [PhysicalCardSet, MapPhysicalCardToPhysicalCardSet]
 # For database upgrades, etc.
 PHYSICAL_LIST = [PhysicalCard] + PHYSICAL_SET_LIST
-
-# Generically useful constant
-CRYPT_TYPES = ('Vampire', 'Imbued')
-
 
 # Object Maker API
 class BaseObjectMaker(object):

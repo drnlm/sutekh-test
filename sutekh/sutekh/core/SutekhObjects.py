@@ -30,7 +30,10 @@ from sutekh.base.core.BaseObjects import (AbstractCard, PhysicalCard,
                                           PhysicalCardMappingToAbstractCardAdapter,
                                           ExpansionNameAdapter,
                                           IAbstractCard, BaseObjectMaker,
-                                          MAX_ID_LENGTH)
+                                          MAX_ID_LENGTH,
+                                          BASE_TABLE_LIST, PHYSICAL_SET_LIST,
+                                          PHYSICAL_LIST,
+                                          )
 
 from sutekh.core.Abbreviations import (CardTypes, Clans, Creeds, Disciplines,
         Expansions, Rarities, Sects, Titles, Virtues)
@@ -283,31 +286,17 @@ class MapAbstractCardToVirtue(SQLObject):
 
 # List of Tables to be created, dropped, etc.
 
-TABLE_LIST = [AbstractCard, SutekhAbstractCard, Expansion,
-               PhysicalCard, PhysicalCardSet,
-               Rarity, RarityPair, Discipline, DisciplinePair,
-               Clan, CardType, Sect, Title, Ruling, Virtue, Creed,
-               Artist, Keyword,
+TABLE_LIST = BASE_TABLE_LIST + [SutekhAbstractCard,
+               Discipline, DisciplinePair, Clan, Sect,
+               Title, Virtue, Creed,
                # Mapping tables from here on out
-               MapPhysicalCardToPhysicalCardSet,
-               MapAbstractCardToRarityPair,
-               MapAbstractCardToRuling,
                MapAbstractCardToClan,
                MapAbstractCardToDisciplinePair,
-               MapAbstractCardToCardType,
                MapAbstractCardToSect,
                MapAbstractCardToTitle,
                MapAbstractCardToVirtue,
                MapAbstractCardToCreed,
-               MapAbstractCardToArtist,
-               MapAbstractCardToKeyword,
                ]
-# For reloading the Physical Card Sets
-
-PHYSICAL_SET_LIST = [PhysicalCardSet,
-        MapPhysicalCardToPhysicalCardSet]
-# For database upgrades, etc.
-PHYSICAL_LIST = [PhysicalCard] + PHYSICAL_SET_LIST
 
 # Generically useful constant
 CRYPT_TYPES = ('Vampire', 'Imbued')

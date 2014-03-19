@@ -18,8 +18,9 @@ from logging import StreamHandler
 from sqlobject import sqlhub, connectionForURI, SQLObjectNotFound
 from sutekh.base.core.BaseObjects import (Ruling, IPhysicalCardSet,
                                           IAbstractCard, PhysicalCard,
-                                          MapPhysicalCardToPhysicalCardSet)
-from sutekh.core.SutekhObjects import TABLE_LIST, PHYSICAL_LIST
+                                          MapPhysicalCardToPhysicalCardSet,
+                                          PHYSICAL_LIST)
+from sutekh.core.SutekhObjects import TABLE_LIST
 from sutekh.core.Filters import PhysicalCardSetFilter, FilterAndBox, \
         PhysicalCardFilter
 from sutekh.base.core.FilterParser import FilterParser
