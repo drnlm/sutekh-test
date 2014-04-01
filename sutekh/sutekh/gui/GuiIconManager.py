@@ -6,7 +6,6 @@
 """GTK gui icon manager."""
 
 import gtk
-import gobject
 import os
 from sutekh.base.Utility import prefs_dir, ensure_dir_exists
 from sutekh.core.SutekhObjects import Creed, DisciplinePair, Virtue, Clan, \

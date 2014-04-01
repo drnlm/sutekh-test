@@ -89,25 +89,6 @@ class SutekhMainWindow(AppMainWindow):
                     
     # pylint: enable-msg=W0201
 
-    # pylint: disable-msg=W0212
-    # We allow access via these properties
-    # Needed for Backup plugin
-    cardLookup = property(fget=lambda self: self._oCardLookup,
-        doc="Used if user instance is needed to identify card names.")
-    # Needed for plugins
-    plugin_manager = property(fget=lambda self: self._oPluginManager,
-            doc="The plugin manager for the application")
-    plugins = property(fget=lambda self: self._aPlugins,
-            doc="Plugins enabled for the main window.")
-    config_file = property(fget=lambda self: self._oConfig,
-            doc="The config file")
-    icon_manager = property(fget=lambda self: self._oIconManager,
-            doc="Used to lookup icons for disciplines, clans, etc.")
-    card_text_pane = property(fget=lambda self: self._oCardTextPane,
-            doc="Return reference to the card text pane")
-
-    # pylint: enable-msg=W0212
-
     def update_to_new_db(self):
         """Resync panes against the database.
 

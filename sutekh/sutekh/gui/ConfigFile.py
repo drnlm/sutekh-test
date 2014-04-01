@@ -8,7 +8,6 @@
 
 """Configuration handling for the Sutekh GUI."""
 
-from configobj import ConfigObj, flatten_errors
 from sutekh.base.gui.BaseConfig import BaseConfigFile, is_option_list
 import pkg_resources
 
