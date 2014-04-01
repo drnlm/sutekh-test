@@ -15,7 +15,7 @@ import traceback
 from gobject import markup_escape_text
 
 from ..Utility import get_database_url
-from sutekh.SutekhInfo import SutekhInfo
+from sutekh.SutekhInfo import SutekhInfo as Info
 
 
 class SutekhDialog(gtk.Dialog):
@@ -116,9 +116,9 @@ class DetailDialog(SutekhDialog):
 
 def do_complaint_error_details(sMessage, sDetails):
     """Popup an details dialog for an error"""
-    sSutekhInfo = "Sutekh version %s\nDatabase: %s\n\n" % (
-            SutekhInfo.VERSION_STR, get_database_url())
-    oComplaint = DetailDialog(sMessage, '\n'.join([sSutekhInfo, sDetails]))
+    sInfo = "%s version %s\nDatabase: %s\n\n" % (
+            Info.NAME, Info.VERSION_STR, get_database_url())
+    oComplaint = DetailDialog(sMessage, '\n'.join([sInfo, sDetails]))
     iResponse = oComplaint.run()
     oComplaint.destroy()
     return iResponse
