@@ -58,9 +58,9 @@ def gen_temp_file(sBaseName, sDir):
     return sFilename
 
 
-def gen_temp_dir():
+def gen_temp_dir_for_app(sApp):
     """Create a temporary directory using mkdtemp"""
-    sTempdir = tempfile.mkdtemp('dir', 'sutekh')
+    sTempdir = tempfile.mkdtemp('dir', sApp)
     return sTempdir
 
 

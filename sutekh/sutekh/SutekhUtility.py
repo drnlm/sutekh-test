@@ -14,10 +14,14 @@ from sqlobject import sqlhub
 
 from sutekh.base.core.DBUtility import flush_cache
 from sutekh.core.SutekhObjects import CRYPT_TYPES
-from sutekh.base.Utility import move_articles_to_back
+from sutekh.base.Utility import move_articles_to_back, gen_temp_dir_for_app
 from sutekh.io.WhiteWolfTextParser import WhiteWolfTextParser
 from sutekh.io.RulingParser import RulingParser
 from sutekh.io.ExpDateCSVParser import ExpDateCSVParser
+
+
+def gen_temp_dir():
+    return gen_temp_dir_for_app('sutekh')
 
 
 def read_white_wolf_list(aEncodedFiles, oLogHandler=None):
